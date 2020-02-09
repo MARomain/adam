@@ -20,7 +20,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Shoot"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""c3bc7557-2b92-44c4-be1f-25afe7a94129"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -33,14 +33,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb181653-2c5a-4e90-86d1-57a154bbb7af"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""fdb9042a-13ae-44ba-a5d2-b9e0590c4958"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Shoot"",
@@ -51,7 +59,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b99f8a61-9a47-46f3-b42b-ef3ec335cbed"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Shoot"",
@@ -62,7 +70,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""4bd58069-5ab5-4396-aabc-431403cc9c09"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Shoot"",
@@ -182,7 +190,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Left Stick"",
                     ""id"": ""f2030b0b-dbf2-4cc7-b8dc-ffa6b6972a16"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(normalize=false)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -288,6 +296,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03753007-5184-482a-a21b-00a875804625"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21d5a486-acdb-4ff2-9211-8ac0f73b7422"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -326,6 +356,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -377,12 +408,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -398,6 +431,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -408,6 +444,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -434,5 +473,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

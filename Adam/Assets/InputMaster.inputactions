@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Shoot",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "c3bc7557-2b92-44c4-be1f-25afe7a94129",
                     "expectedControlType": "",
                     "processors": "",
@@ -20,14 +20,22 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "bb181653-2c5a-4e90-86d1-57a154bbb7af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "fdb9042a-13ae-44ba-a5d2-b9e0590c4958",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Shoot",
@@ -38,7 +46,7 @@
                     "name": "",
                     "id": "b99f8a61-9a47-46f3-b42b-ef3ec335cbed",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Shoot",
@@ -49,7 +57,7 @@
                     "name": "",
                     "id": "4bd58069-5ab5-4396-aabc-431403cc9c09",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Shoot",
@@ -169,7 +177,7 @@
                 {
                     "name": "Left Stick",
                     "id": "f2030b0b-dbf2-4cc7-b8dc-ffa6b6972a16",
-                    "path": "2DVector",
+                    "path": "2DVector(normalize=false)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -275,6 +283,28 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "03753007-5184-482a-a21b-00a875804625",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21d5a486-acdb-4ff2-9211-8ac0f73b7422",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
