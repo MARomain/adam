@@ -16,21 +16,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
     ""maps"": [
         {
             ""name"": ""Player"",
-            ""id"": ""c4655e29-288d-4ee9-9f45-d19427d00a22"",
+            ""id"": ""fe601e50-d0b9-42f2-ae00-030784bc8ff2"",
             ""actions"": [
                 {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""a62d84d2-b992-4c66-9c7e-247c03abcafb"",
+                    ""id"": ""c3bc7557-2b92-44c4-be1f-25afe7a94129"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
-                    ""id"": ""d4895901-c113-4c25-8c5b-865b7fe65e4d"",
-                    ""expectedControlType"": """",
+                    ""type"": ""Value"",
+                    ""id"": ""5bc69c03-bce2-45ac-841e-70fee12bd89c"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -38,31 +38,31 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""7d4ca57a-b5bd-43db-a429-491e730211b4"",
+                    ""id"": ""fdb9042a-13ae-44ba-a5d2-b9e0590c4958"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f2a81a0d-9ff2-4960-b81b-032f66f1987e"",
+                    ""id"": ""b99f8a61-9a47-46f3-b42b-ef3ec335cbed"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4349fc93-274e-4b56-9975-fe737da60069"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""id"": ""4bd58069-5ab5-4396-aabc-431403cc9c09"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Shoot"",
@@ -71,7 +71,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Arrows"",
-                    ""id"": ""f864e9b3-e05f-46ff-95e4-6282304ab8b1"",
+                    ""id"": ""89a23656-ac39-4dfd-98c0-108970f894cf"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -82,51 +82,51 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""3c89619c-0172-4b43-bfa4-d96d3de4e0bb"",
+                    ""id"": ""66f39d43-1909-4e9d-95c7-6e75fbd09fae"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""ced2021e-39ad-47e0-873c-e15a768eb628"",
+                    ""id"": ""6daf2004-0c54-4a97-94c6-09f9d09e558c"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""3eed3978-11fa-4971-ae79-9aeac1da0104"",
+                    ""id"": ""a5d7a8af-82d6-4101-89ba-37dae07cc1a1"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""6afd796b-ed4c-4f36-abb3-2f947e828517"",
+                    ""id"": ""256cb144-14dd-4ba9-befe-da040d1ed490"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""ZQSD"",
-                    ""id"": ""161a6136-0003-43f3-b1c2-9cfd17ae71e6"",
+                    ""id"": ""5a4c37ae-ba63-42a9-b8b3-d958919a4ffd"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -137,51 +137,51 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""8dcbe401-a6be-4512-bdf0-fcbaad4d86c0"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""id"": ""e0cb51c6-5971-467d-a2d9-277e4e97d6cf"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""c6e76de5-25cb-43c9-b2dd-8033114880ee"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""c3265f44-b6b7-4d50-acfd-c55cdbf98a1c"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""6f55425c-ccba-4e03-aff3-8364f5e3ddc7"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""901df3c9-be76-460c-979e-c45ce127fb2c"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""ba7501cd-278d-400d-9831-9e01ca336390"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""ad6501d3-1396-4833-aff8-27b1e6317c87"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Left stick"",
-                    ""id"": ""85211d2f-1d29-4992-8d7e-d65c349ec655"",
+                    ""name"": ""Left Stick"",
+                    ""id"": ""f2030b0b-dbf2-4cc7-b8dc-ffa6b6972a16"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -192,7 +192,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""a2b334e8-5b77-40b9-9cc3-420e816d34ea"",
+                    ""id"": ""8479e0f5-1b92-4b85-961b-b0af4afffc72"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -203,7 +203,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""6060c036-d3bc-4045-961d-4edb502626a8"",
+                    ""id"": ""c1458181-2895-4dbe-a9a3-a559a9e49dbc"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -214,7 +214,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""83a8a8a6-554f-48ef-b0f5-d74a39d7dc1a"",
+                    ""id"": ""524fe0ab-9d2a-4c45-b085-f9be05d37ace"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -225,8 +225,63 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""e8eac3b8-353f-4aea-9f55-811b272ffba2"",
+                    ""id"": ""675a1723-9b91-4970-bec4-027988511b01"",
                     ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""D Pad"",
+                    ""id"": ""5bce9c48-f4d9-48be-8a81-60dbe8fab03b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""00cfc918-3fbc-4554-bfe9-f15aa814a73f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cf76f143-bf49-4a73-ac58-d4c7ca96edda"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7d379eb5-35d5-4530-9e67-7ce14582cc3d"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cc7acdef-9203-47c7-9702-50b725f9338a"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -239,16 +294,16 @@ public class @InputMaster : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Keyboard and mouse"",
-            ""bindingGroup"": ""Keyboard and mouse"",
+            ""name"": ""Mouse and Keyboard"",
+            ""bindingGroup"": ""Mouse and Keyboard"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Keyboard>"",
+                    ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 },
                 {
-                    ""devicePath"": ""<Mouse>"",
+                    ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -357,13 +412,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-    private int m_KeyboardandmouseSchemeIndex = -1;
-    public InputControlScheme KeyboardandmouseScheme
+    private int m_MouseandKeyboardSchemeIndex = -1;
+    public InputControlScheme MouseandKeyboardScheme
     {
         get
         {
-            if (m_KeyboardandmouseSchemeIndex == -1) m_KeyboardandmouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard and mouse");
-            return asset.controlSchemes[m_KeyboardandmouseSchemeIndex];
+            if (m_MouseandKeyboardSchemeIndex == -1) m_MouseandKeyboardSchemeIndex = asset.FindControlSchemeIndex("Mouse and Keyboard");
+            return asset.controlSchemes[m_MouseandKeyboardSchemeIndex];
         }
     }
     private int m_GamepadSchemeIndex = -1;
