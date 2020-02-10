@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         movementInput = controls.Player.Movement.ReadValue<Vector2>();
         //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
 
-        rb.velocity = new Vector2(movementInput.x, 0f) * movementSpeed * Time.deltaTime;
+        rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
     }
 
     void Aim()
@@ -193,6 +193,16 @@ public class Player : MonoBehaviour
 
 private void Update()
     {
+
+        //ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -
+        //a but de demo rapide je rajoute un input.getkeydown
+       if(Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpRequest = true;
+
+        }
+        //ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -
+
         Aim();
 
         if (controls.Player.Shoot.ReadValue<float>() >= 1f && canShoot == true)
