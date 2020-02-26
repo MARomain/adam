@@ -307,6 +307,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dev",
+            "id": "7b07a1d3-7dcf-4ad7-ae59-27ebd0c11772",
+            "actions": [
+                {
+                    "name": "Spawn Ennemy at location",
+                    "type": "Button",
+                    "id": "ee296db4-82df-4789-99e0-60640a0a1375",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9c0718c7-d202-4c3b-a84e-ebce26d247ac",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn Ennemy at location",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

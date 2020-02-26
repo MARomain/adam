@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
 
     public float movementSpeed;
 
+    public float health = 100f;
+    public Text healthtext;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -71,14 +74,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
 
-        //ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -
-        //a but de demo rapide je rajoute un input.getkeydown
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpRequest = true;
-
-        }
-        //ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -ALERTE DESTRUCTION DE TOUTE OPTIMITATION -
 
         Aim();
 
@@ -88,8 +83,6 @@ public class Player : MonoBehaviour
             StartCoroutine("Shoot");
         }
 
-        Debug.Log(IsGrounded());
-        Debug.Log(distToGround);
     }
 
     private void FixedUpdate()
@@ -201,6 +194,8 @@ public class Player : MonoBehaviour
             //jumpCount = 0;
         }
 
+        //il faut conserver la structure avec "jumprequest" pour permettre à Jump d'être éxécuter dans l'update
+        //et donc que ce code puisse être lu dans l'update
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
@@ -222,7 +217,23 @@ public class Player : MonoBehaviour
         jumpRequest = true;
     }
 
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        healthtext.text = "Player hp : " + health.ToString();
 
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        //death particles
+        //death sound effects
+        Destroy(this.gameObject);
+    }
 
     private void OnEnable()
     {

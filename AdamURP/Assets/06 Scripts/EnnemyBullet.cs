@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnnemyBullet : MonoBehaviour
 {
     public float damage;
     public float speed = 20f;
@@ -17,10 +17,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponentInParent<Ennemy>() != null)
+        if(other.GetComponent<Player>() != null)
         {
-            Ennemy ennemy = other.GetComponentInParent<Ennemy>();
-            ennemy.TakeDamage(damage);
+            Player player = other.GetComponent<Player>();
+            player.TakeDamage(damage);
         }
 
         Die();

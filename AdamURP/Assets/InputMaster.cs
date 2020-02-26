@@ -320,6 +320,33 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dev"",
+            ""id"": ""7b07a1d3-7dcf-4ad7-ae59-27ebd0c11772"",
+            ""actions"": [
+                {
+                    ""name"": ""Spawn Ennemy at location"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee296db4-82df-4789-99e0-60640a0a1375"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9c0718c7-d202-4c3b-a84e-ebce26d247ac"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn Ennemy at location"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -357,6 +384,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        // Dev
+        m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
+        m_Dev_SpawnEnnemyatlocation = m_Dev.FindAction("Spawn Ennemy at location", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -451,6 +481,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Dev
+    private readonly InputActionMap m_Dev;
+    private IDevActions m_DevActionsCallbackInterface;
+    private readonly InputAction m_Dev_SpawnEnnemyatlocation;
+    public struct DevActions
+    {
+        private @InputMaster m_Wrapper;
+        public DevActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SpawnEnnemyatlocation => m_Wrapper.m_Dev_SpawnEnnemyatlocation;
+        public InputActionMap Get() { return m_Wrapper.m_Dev; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DevActions set) { return set.Get(); }
+        public void SetCallbacks(IDevActions instance)
+        {
+            if (m_Wrapper.m_DevActionsCallbackInterface != null)
+            {
+                @SpawnEnnemyatlocation.started -= m_Wrapper.m_DevActionsCallbackInterface.OnSpawnEnnemyatlocation;
+                @SpawnEnnemyatlocation.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnSpawnEnnemyatlocation;
+                @SpawnEnnemyatlocation.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnSpawnEnnemyatlocation;
+            }
+            m_Wrapper.m_DevActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SpawnEnnemyatlocation.started += instance.OnSpawnEnnemyatlocation;
+                @SpawnEnnemyatlocation.performed += instance.OnSpawnEnnemyatlocation;
+                @SpawnEnnemyatlocation.canceled += instance.OnSpawnEnnemyatlocation;
+            }
+        }
+    }
+    public DevActions @Dev => new DevActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -474,5 +537,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IDevActions
+    {
+        void OnSpawnEnnemyatlocation(InputAction.CallbackContext context);
     }
 }
