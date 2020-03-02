@@ -207,9 +207,9 @@ public class Player : MonoBehaviour
     }
 
     bool IsGrounded()  
- {
-   return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, groundLayer);
- }
+    {
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, groundLayer);
+    }
 
     void JumpRequest()
     {

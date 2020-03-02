@@ -113,6 +113,8 @@ MonoBehaviour:
     type: 3}
   rof: 0.1
   movementSpeed: 300
+  health: 100
+  healthtext: {fileID: 0}
   jumpForce: 14
   fallMultiplier: 5
   lowJumpMultiplier: 2.5
