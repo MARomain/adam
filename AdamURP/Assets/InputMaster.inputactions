@@ -353,6 +353,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "InMenu",
+            "id": "678ba91e-3aeb-4220-ab6f-ee4363a74a90",
+            "actions": [
+                {
+                    "name": "StartToPlay",
+                    "type": "Button",
+                    "id": "bb76648b-979e-451a-8189-7da6cd9d178a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7cf978fb-8d19-4fd3-9516-d9be61048a93",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "StartToPlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bbb2729-ece4-41c5-8fb9-89b0848a5fae",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "StartToPlay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

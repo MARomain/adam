@@ -366,6 +366,44 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""InMenu"",
+            ""id"": ""678ba91e-3aeb-4220-ab6f-ee4363a74a90"",
+            ""actions"": [
+                {
+                    ""name"": ""StartToPlay"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb76648b-979e-451a-8189-7da6cd9d178a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7cf978fb-8d19-4fd3-9516-d9be61048a93"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartToPlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7bbb2729-ece4-41c5-8fb9-89b0848a5fae"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""StartToPlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -407,6 +445,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Dev
         m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
         m_Dev_SpawnEnnemyatlocation = m_Dev.FindAction("Spawn Ennemy at location", throwIfNotFound: true);
+        // InMenu
+        m_InMenu = asset.FindActionMap("InMenu", throwIfNotFound: true);
+        m_InMenu_StartToPlay = m_InMenu.FindAction("StartToPlay", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -542,6 +583,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public DevActions @Dev => new DevActions(this);
+
+    // InMenu
+    private readonly InputActionMap m_InMenu;
+    private IInMenuActions m_InMenuActionsCallbackInterface;
+    private readonly InputAction m_InMenu_StartToPlay;
+    public struct InMenuActions
+    {
+        private @InputMaster m_Wrapper;
+        public InMenuActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @StartToPlay => m_Wrapper.m_InMenu_StartToPlay;
+        public InputActionMap Get() { return m_Wrapper.m_InMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IInMenuActions instance)
+        {
+            if (m_Wrapper.m_InMenuActionsCallbackInterface != null)
+            {
+                @StartToPlay.started -= m_Wrapper.m_InMenuActionsCallbackInterface.OnStartToPlay;
+                @StartToPlay.performed -= m_Wrapper.m_InMenuActionsCallbackInterface.OnStartToPlay;
+                @StartToPlay.canceled -= m_Wrapper.m_InMenuActionsCallbackInterface.OnStartToPlay;
+            }
+            m_Wrapper.m_InMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @StartToPlay.started += instance.OnStartToPlay;
+                @StartToPlay.performed += instance.OnStartToPlay;
+                @StartToPlay.canceled += instance.OnStartToPlay;
+            }
+        }
+    }
+    public InMenuActions @InMenu => new InMenuActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -570,5 +644,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IDevActions
     {
         void OnSpawnEnnemyatlocation(InputAction.CallbackContext context);
+    }
+    public interface IInMenuActions
+    {
+        void OnStartToPlay(InputAction.CallbackContext context);
     }
 }
