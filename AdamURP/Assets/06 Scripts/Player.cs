@@ -14,12 +14,20 @@ public class Player : MonoBehaviour
 
     public float health = 100f;
     public Text healthtext;
+    public float degatcoup = 1;
+    private bool canattack = true;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public bool jumpRequest;
+    public bool faceright = true;
     public float distToGround;
+    public Animator animator;
+    public float porteecoup=3f;
+
+    public bool inglorykill = false;
     public LayerMask groundLayer;
+
 
     public Transform canonTransform;
 
@@ -63,6 +71,7 @@ public class Player : MonoBehaviour
 
 
         controls.Player.Jump.performed += ctx => JumpRequest();
+        controls.Player.attack.performed += ctx => Attack();
     }
 
     private void Start()
@@ -126,6 +135,7 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = Vector3.zero;
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+            faceright = true;
         }
 
         //haut droit
@@ -133,6 +143,7 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 45f);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+        
         }
 
         //haut
@@ -154,6 +165,7 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 180);
             canonTransform.localPosition = new Vector3(-0.75f, 0.3f, 0f);
+            faceright = false;
         }
 
         //bas gauche
@@ -250,6 +262,68 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * distToGround);
+
     }
+    public void Attack()
+    {
+        if (canattack)
+        {
+            animator.SetTrigger("attack");
+            canattack = false;
+        }
+
+    }
+    public void Reattack()
+    {
+        canattack = true;
+    }
+  
+    public void Attackdegat()
+    {
+        //tu m'a bien dit que je fesait ce que je voulais mais je devais commenter 
+        //TO DO feedback attack
+       
+        //Debug.Log("attack cac");
+        RaycastHit hit;
+        if (faceright)
+        {
+            if (Physics.Raycast(transform.position, Vector3.right, out hit))
+                if (hit.collider != null)
+                {
+                    Debug.DrawLine(transform.position, hit.point, Color.red);
+                    if( hit.distance< porteecoup)
+                    {
+                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null)
+                        {
+                            Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                            ennemy.TakeDamage(degatcoup);
+                            print("CQC attack");
+                        }
+                    
+                    }
+                }
+        }
+        else
+        {
+            if (Physics.Raycast(transform.position, -Vector3.right, out hit))
+                if (hit.collider != null)
+                {
+                    Debug.DrawLine(transform.position, hit.point, Color.red);
+                    if (hit.distance < porteecoup)
+                    {
+                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null)
+                        {
+                            Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                            ennemy.TakeDamage(degatcoup);
+                            print("CQC attack");
+                        }
+
+                    }
+                }
+        }
+
+        
+    }
+
 
 }

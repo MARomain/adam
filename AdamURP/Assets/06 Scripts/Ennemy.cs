@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ennemy : MonoBehaviour
 {
     public float health = 3f;
+    public float glorykilllife = 1f;
+    public bool opennedtoglorykill = false;
     public float movementSpeed = 5f;
     public float detectionRange = 5f;
     public float attackRange = 3f;
@@ -15,6 +17,7 @@ public class Ennemy : MonoBehaviour
     public Transform canonTransform;
     public enum EnnemyType { range, melee };
     public EnnemyType ennemyType;
+
 
     private void Start()
     {
@@ -47,6 +50,11 @@ public class Ennemy : MonoBehaviour
         if(health <= 0f)
         {
             Die();
+        }
+        else if (health >= glorykilllife)
+        {
+            opennedtoglorykill = true;
+            // TO DO feedback openned to glorykill(couleur blink)
         }
     }
 
@@ -175,6 +183,14 @@ public class Ennemy : MonoBehaviour
         }
         Gizmos.DrawLine(pos, lastPos);
     }
+   public void Glorykill()
+    {
+        //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
 
+
+        //Ändere die Spielerposition auf dem Feind
+       
+
+    }
 
 }

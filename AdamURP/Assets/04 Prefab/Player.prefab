@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6903519814137286603}
   - component: {fileID: 6903519814137286602}
   - component: {fileID: -6986792102793168375}
+  - component: {fileID: 685150491}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -113,13 +114,18 @@ MonoBehaviour:
     type: 3}
   rof: 0.1
   movementSpeed: 300
-  health: 100
+  health: 100000
   healthtext: {fileID: 0}
+  degatcoup: 1
   jumpForce: 14
   fallMultiplier: 5
   lowJumpMultiplier: 2.5
   jumpRequest: 0
+  faceright: 1
   distToGround: 0
+  animator: {fileID: 685150491}
+  porteecoup: 3
+  inglorykill: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -141,6 +147,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!95 &685150491
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903519814137286601}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d42799682d628d24a9bb1927373f3ee5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6903519814275646035
 GameObject:
   m_ObjectHideFlags: 0

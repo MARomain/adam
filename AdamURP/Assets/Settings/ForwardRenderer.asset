@@ -27,8 +27,8 @@ MonoBehaviour:
   m_Name: ForwardRenderer
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: 8929693322053512765}
-  - {fileID: -6801026042786441313}
+  - {fileID: 4713277838983126058, guid: fa31d55b4078e7142a706fcdf08be64a, type: 2}
+  - {fileID: -1732820766858529118, guid: fa31d55b4078e7142a706fcdf08be64a, type: 2}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
