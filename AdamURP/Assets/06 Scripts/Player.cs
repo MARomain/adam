@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
+        healthtext = GameObject.Find("PlayerHpText").GetComponent<Text>();
     }
 
     private void Update()
