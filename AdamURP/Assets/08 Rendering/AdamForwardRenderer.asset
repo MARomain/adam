@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Outline
   m_EditorClassIdentifier: 
   settings:
-    outlineMaterial: {fileID: 2100000, guid: 643f47a89e7458f43816f0be977bdedf, type: 2}
+    outlineMaterial: {fileID: 2100000, guid: 114d8678773052f4b96f2d223970211a, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

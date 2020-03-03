@@ -5,10 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/05 Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
-    path: Assets/05 Scenes/RomainGraphicsScene.unity
-    guid: 31acdb217023ea74c82cceed68b429e3
-  m_configObjects: {}
+    path: Assets/05 Scenes/Menu.unity
+    guid: dc67f77fab12a5840b5d1a0d4e8507d6
+  - enabled: 1
+    path: Assets/05 Scenes/RomainScene.unity
+    guid: 8c02034fc49c1ba43b6571cd324d88be
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: e80bcb0dc346acc4a9f7648cbd22f346,
+      type: 2}
