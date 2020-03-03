@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private bool canShoot = true;
 
     public float movementSpeed;
-
     public float health = 100f;
     public Text healthtext;
     public float degatcoup = 1;
@@ -135,6 +134,12 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = Vector3.zero;
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+   
+            if (!faceright)
+            {
+                this.transform.Rotate(0, -180,0 );
+                print("change");
+            }
             faceright = true;
         }
 
@@ -165,6 +170,11 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 180);
             canonTransform.localPosition = new Vector3(-0.75f, 0.3f, 0f);
+            if (faceright)
+            {
+                this.transform.Rotate(0, 180, 0);
+                print("change");
+            }
             faceright = false;
         }
 
