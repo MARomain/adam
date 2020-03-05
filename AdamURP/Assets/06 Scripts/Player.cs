@@ -10,8 +10,10 @@ public class Player : MonoBehaviour
     public float rof;
     private bool canShoot = true;
 
+    public int weapontype =1;
     public float movementSpeed;
     public float health = 100f;
+    public float maxhealth = 100f;
     public Text healthtext;
     public float degatcoup = 1;
     private bool canattack = true;
@@ -24,7 +26,6 @@ public class Player : MonoBehaviour
     public Animator animator;
     public float porteecoup=3f;
 
-    public bool inglorykill = false;
     public LayerMask groundLayer;
 
 
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        Movement();
 
         Aim();
 
@@ -93,10 +94,10 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    
     private void FixedUpdate()
     {
-        Movement();
+     
         Jump();
         IsGrounded();
     }
@@ -162,14 +163,14 @@ public class Player : MonoBehaviour
         if (movementInput.x < 0f && movementInput.y >= 0.5f)
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 135f);
-            canonTransform.localPosition = new Vector3(-0.75f, 0.3f, 0f);
+            canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
         }
 
         //gauche
         if (movementInput.x < 0f && movementInput.y == 0f)
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 180);
-            canonTransform.localPosition = new Vector3(-0.75f, 0.3f, 0f);
+            canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
             if (faceright)
             {
                 this.transform.Rotate(0, 180, 0);
@@ -182,14 +183,14 @@ public class Player : MonoBehaviour
         if (movementInput.x < 0f && movementInput.y < 0f)
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 225f);
-            canonTransform.localPosition = new Vector3(-0.75f, -0.3f, 0f);
+            canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
         }
 
         //bas
         if (movementInput.x == 0f && movementInput.y < 0f)
         {
             //canonTransform.eulerAngles = Vector3.zero;
-            canonTransform.localPosition = new Vector3(canonTransform.localPosition.x, -0.3f, 0f);
+            canonTransform.localPosition = new Vector3(canonTransform.localPosition.x, 0.3f, 0f);
         }
 
         //bas droit
@@ -300,14 +301,27 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(transform.position, Vector3.right, out hit))
                 if (hit.collider != null)
                 {
-                    Debug.DrawLine(transform.position, hit.point, Color.red);
-                    if( hit.distance< porteecoup)
+                    Debug.DrawLine(transform.position, hit.point, Color.red); //dessine la portée
+                    if( hit.distance< porteecoup)//check si c'est pas trop loin
                     {
-                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null)
+                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                         {
                             Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
                             ennemy.TakeDamage(degatcoup);
-                            print("CQC attack");
+                            if (ennemy.opennedtoglorykill)//si il etait stun
+                            {
+                      
+                                ennemy.Glorykill();//glorykill;
+                               
+                            }
+                            else
+                            {
+                                ennemy.TakeDamage(degatcoup); //retire de la vie
+                            }
+                           
+                            ennemy.TakeDamage(degatcoup);
+                           // print("CQC attack");
+                           
                         }
                     
                     }
@@ -335,5 +349,13 @@ public class Player : MonoBehaviour
         
     }
 
-
+    public void Heal(float healamount)
+    {
+        Debug.Log("player was healed of " + healamount + " pv");
+        health = health + healamount;
+        if (health > maxhealth)
+        {
+            health = maxhealth;
+        }
+    }
 }

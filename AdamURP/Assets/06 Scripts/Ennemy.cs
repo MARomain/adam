@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Ennemy : MonoBehaviour
 {
+    public Animator animator;
     public float health = 3f;
-    public float glorykilllife = 1f;
-    public bool opennedtoglorykill = false;
+
+
+
+    public int weapontype = 1;
     public float movementSpeed = 5f;
     public float detectionRange = 5f;
     public float attackRange = 3f;
     public float rateOfAttack;
     public bool canAttack = true;
+
+    //glorykill
+    public float glorykilllife = 1f;
+    public float livegivedback = 10f;
+    public bool opennedtoglorykill = false;
+    public float timetodieafterstun = 3;
+    private float timer;
+
     public GameObject projectile;
     public GameObject target;
     public Transform canonTransform;
@@ -22,13 +33,34 @@ public class Ennemy : MonoBehaviour
     private void Start()
     {
         FindTarget();
+        timer = timetodieafterstun;
     }
     private void Update()
     {
-        IsInDetectionRange();
-        ChasePlayer();
-        AttackPlayer();
-        AimLeftRight();
+        if (!opennedtoglorykill)
+        {
+            IsInDetectionRange();
+            ChasePlayer();
+            AttackPlayer();
+            AimLeftRight();
+        }
+        else
+        {
+            timer = timer - Time.deltaTime;
+            if (timer <= 0)
+            {
+               
+                print("too long,did not survive!");
+
+            }
+        }
+
+
+
+
+
+
+  
     }
 
     //V1 
@@ -49,17 +81,41 @@ public class Ennemy : MonoBehaviour
 
         if(health <= 0f)
         {
-            Die();
+            animator.SetTrigger("die");
+           // Die(); Die est maintenant dans l'animator
+            
         }
-        else if (health >= glorykilllife)
+        else if (health <= glorykilllife)
         {
             opennedtoglorykill = true;
-            // TO DO feedback openned to glorykill(couleur blink)
+            animator.SetTrigger("stun");
+        }
+        else
+        {
+            int rnganim =1;
+            rnganim = Random.Range(1, 3);
+            switch (rnganim)
+            {
+                case 1:
+                    animator.SetInteger("hitnum", 1);
+                    break;
+                case 2:
+                    animator.SetInteger("hitnum", 2);
+                    break;
+                case 3:
+                    animator.SetInteger("hitnum", 3);
+                    break;
+            }
+            animator.SetTrigger("hit");
+
+
+
         }
     }
 
     public void Die()
     {
+
         //death particles
         //death sound effects
         Destroy(this.gameObject);
@@ -186,10 +242,16 @@ public class Ennemy : MonoBehaviour
    public void Glorykill()
     {
         //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
+        Debug.Log("Glorykill");
+        GameObject[] playerGO;
+        playerGO = GameObject.FindGameObjectsWithTag("Player");
+        Player player;
+       player = playerGO[0].GetComponent<Player>();
 
+        player.Heal(livegivedback);
+        player.weapontype = weapontype;
+    
 
-        //Ändere die Spielerposition auf dem Feind
-       
 
     }
 
