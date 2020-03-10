@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     public float distToGround;
     public Animator animator;
     public float porteecoup=3f;
-
+    public bool invulnaribilite = false;
+    public bool disabledinput = false;
     public LayerMask groundLayer;
 
 
@@ -97,28 +98,36 @@ public class Player : MonoBehaviour
     
     private void FixedUpdate()
     {
-     
-        Jump();
+        if (!disabledinput) { Jump(); }
+      
         IsGrounded();
     }
 
     IEnumerator Shoot()
     {
-        canShoot = false;
-        GameObject go = Instantiate(bulletPrefab, canonTransform);
-        go.transform.SetParent(null);
-        Destroy(go, 6f);
-        yield return new WaitForSeconds(rof);
-        canShoot = true;
+        if (!disabledinput)
+        {
+            canShoot = false;
+            GameObject go = Instantiate(bulletPrefab, canonTransform);
+            go.transform.SetParent(null);
+            Destroy(go, 6f);
+            yield return new WaitForSeconds(rof);
+            canShoot = true;
+        }
+
     }
 
     //problème "GetButtonDown" pour le mouvement
     void Movement()
     {
-        movementInput = controls.Player.Movement.ReadValue<Vector2>();
-        //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
+        if (!disabledinput)
+        {
+            movementInput = controls.Player.Movement.ReadValue<Vector2>();
+            //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
 
-        rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+        }
+   
     }
 
     void Aim()
@@ -139,7 +148,7 @@ public class Player : MonoBehaviour
             if (!faceright)
             {
                 this.transform.Rotate(0, -180,0 );
-                print("change");
+          
             }
             faceright = true;
         }
@@ -174,7 +183,7 @@ public class Player : MonoBehaviour
             if (faceright)
             {
                 this.transform.Rotate(0, 180, 0);
-                print("change");
+         
             }
             faceright = false;
         }
@@ -217,8 +226,13 @@ public class Player : MonoBehaviour
 
         if(IsGrounded())
         {
-            animator.SetTrigger("ground");
+            animator.SetBool("grounded", true);
+        
             //jumpCount = 0;
+        }
+        else
+        {
+            animator.SetBool("grounded", false);
         }
 
         //il faut conserver la structure avec "jumprequest" pour permettre à Jump d'être éxécuter dans l'update
@@ -246,13 +260,17 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        healthtext.text = "Player hp : " + health.ToString();
-
-        if (health <= 0f)
+        if (!invulnaribilite)
         {
-            Die();
+            health -= amount;
+            healthtext.text = "Player hp : " + health.ToString();
+
+            if (health <= 0f)
+            {
+                Die();
+            }
         }
+
     }
 
     void Die()
@@ -280,85 +298,111 @@ public class Player : MonoBehaviour
     }
     public void Attack()
     {
-        if (canattack)
+        if (!disabledinput)
         {
-            animator.SetTrigger("attack");
-            canattack = false;
+
+            RaycastHit hit;
+            if (faceright)
+            {
+                if (Physics.Raycast(transform.position, Vector3.right, out hit))
+                    if (hit.collider != null)
+                    {
+                        Debug.DrawLine(transform.position, hit.point, Color.red); //dessine la portée
+                        if (hit.distance < porteecoup)//check si c'est pas trop loin
+                        {
+                            if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
+                            {
+                                Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                                ennemy.TakeDamage(degatcoup);
+                                if (ennemy.opennedtoglorykill)//si il etait stun
+                                {
+                                    ennemy.Glorykill();//glorykill;
+                                    Debug.Log("glorykill");
+                                    animator.SetTrigger("glorykill");
+                                }
+                                else
+                                {
+                                    animator.SetTrigger("kick"); Debug.Log("kick");
+                                    ennemy.TakeDamage(degatcoup); //retire de la vie
+                                }
+                            }
+                        }
+                        else
+                        {
+                            animator.SetTrigger("kick");
+                            Debug.Log("empty kick");
+                        }
+                    }
+                animator.SetTrigger("kick");
+                Debug.Log("empty dsd");
+
+            }
+            else
+            {
+                if (Physics.Raycast(transform.position, -Vector3.right, out hit))
+                    if (hit.collider != null)
+                    {
+                        Debug.DrawLine(transform.position, hit.point, Color.red); //dessine la portée
+                        if (hit.distance < porteecoup)//check si c'est pas trop loin
+                        {
+                            if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
+                            {
+                                Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                                ennemy.TakeDamage(degatcoup);
+                                if (ennemy.opennedtoglorykill)//si il etait stun
+                                {
+                                    ennemy.Glorykill();//glorykill;
+                                    Debug.Log("glorykill");
+                                    animator.SetTrigger("glorykill");
+                                }
+                                else
+                                {
+                                    animator.SetTrigger("kick"); Debug.Log("kick");
+                                    ennemy.TakeDamage(degatcoup); //retire de la vie
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            animator.SetTrigger("kick");
+                            Debug.Log("empty kick");
+                        }
+                    }
+                animator.SetTrigger("kick");
+
+
+            }
         }
+       
+
 
     }
     public void Reattack()
     {
         canattack = true;
     }
+
   
     public void Attackdegat()
     {
         //tu m'a bien dit que je fesait ce que je voulais mais je devais commenter 
         //TO DO feedback attack
-       
         //Debug.Log("attack cac");
-        RaycastHit hit;
-        if (faceright)
-        {
-            if (Physics.Raycast(transform.position, Vector3.right, out hit))
-                if (hit.collider != null)
-                {
-                    Debug.DrawLine(transform.position, hit.point, Color.red); //dessine la portée
-                    if( hit.distance< porteecoup)//check si c'est pas trop loin
-                    {
-                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
-                        {
-                            Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                            ennemy.TakeDamage(degatcoup);
-                            if (ennemy.opennedtoglorykill)//si il etait stun
-                            {
-                      
-                                ennemy.Glorykill();//glorykill;
-                               
-                            }
-                            else
-                            {
-                                ennemy.TakeDamage(degatcoup); //retire de la vie
-                            }
-                           
-                            ennemy.TakeDamage(degatcoup);
-                           // print("CQC attack");
-                           
-                        }
-                    
-                    }
-                }
-        }
-        else
-        {
-            if (Physics.Raycast(transform.position, -Vector3.right, out hit))
-                if (hit.collider != null)
-                {
-                    Debug.DrawLine(transform.position, hit.point, Color.red);
-                    if (hit.distance < porteecoup)
-                    {
-                        if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null)
-                        {
-                            Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                            ennemy.TakeDamage(degatcoup);
-                            print("CQC attack");
-                        }
-
-                    }
-                }
-        }
-
-        
     }
 
     public void Heal(float healamount)
     {
         Debug.Log("player was healed of " + healamount + " pv");
+        Debug.Log(health + " + " + healamount);
         health = health + healamount;
-        if (health > maxhealth)
+       
+ 
+        if(health > maxhealth)
         {
             health = maxhealth;
         }
+        healthtext.text = "Player hp : " + health.ToString();
     }
+    
 }

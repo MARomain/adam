@@ -29,6 +29,7 @@ public class Ennemy : MonoBehaviour
     public enum EnnemyType { range, melee };
     public EnnemyType ennemyType;
 
+ 
 
     private void Start()
     {
@@ -54,13 +55,6 @@ public class Ennemy : MonoBehaviour
 
             }
         }
-
-
-
-
-
-
-  
     }
 
     //V1 
@@ -78,39 +72,26 @@ public class Ennemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
-
-        if(health <= 0f)
-        {
-            animator.SetTrigger("die");
-           // Die(); Die est maintenant dans l'animator
-            
-        }
-        else if (health <= glorykilllife)
-        {
-            opennedtoglorykill = true;
-            animator.SetTrigger("stun");
-        }
-        else
-        {
-            int rnganim =1;
-            rnganim = Random.Range(1, 3);
-            switch (rnganim)
+      
+            if (health <= 0f)
             {
-                case 1:
-                    animator.SetInteger("hitnum", 1);
-                    break;
-                case 2:
-                    animator.SetInteger("hitnum", 2);
-                    break;
-                case 3:
-                    animator.SetInteger("hitnum", 3);
-                    break;
+                animator.SetTrigger("die");
+                // Die(); Die est maintenant dans l'animator
+
             }
-            animator.SetTrigger("hit");
+            else if (health <= glorykilllife)
+            {
+                opennedtoglorykill = true;
 
+                animator.SetTrigger("hit");
+                animator.SetTrigger("stun");
+            }
+            else
+            {
+                animator.SetTrigger("hit");
+            }
+        
 
-
-        }
     }
 
     public void Die()
@@ -243,6 +224,7 @@ public class Ennemy : MonoBehaviour
     {
         //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
         Debug.Log("Glorykill");
+        animator.SetTrigger("glorykill");
         GameObject[] playerGO;
         playerGO = GameObject.FindGameObjectsWithTag("Player");
         Player player;
@@ -250,9 +232,6 @@ public class Ennemy : MonoBehaviour
 
         player.Heal(livegivedback);
         player.weapontype = weapontype;
-    
-
-
     }
 
 }

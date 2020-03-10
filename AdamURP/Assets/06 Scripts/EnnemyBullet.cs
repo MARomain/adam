@@ -26,6 +26,7 @@ public class EnnemyBullet : MonoBehaviour
         Die();
     }
 
+
     public void Die()
     {
         //death particles

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8166937665258161066}
   - component: {fileID: 8358572781460156632}
   - component: {fileID: 8929485046889471570}
-  - component: {fileID: 8655795094621292716}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8655795094621292716
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433581910242983266}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1604044825147626177
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +90,6 @@ GameObject:
   - component: {fileID: 3110668692653356945}
   - component: {fileID: 7276486295093985215}
   - component: {fileID: 5858160384575200467}
-  - component: {fileID: 5311583505638074688}
   m_Layer: 0
   m_Name: Playermodel
   m_TagString: Untagged
@@ -120,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604044825147626177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.047, y: -0.142, z: 0}
   m_LocalScale: {x: 0.74773, y: 1.5979844, z: 0.74773}
   m_Children:
   - {fileID: 8166937665258161066}
@@ -174,19 +159,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5311583505638074688
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1604044825147626177}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6903519814137286601
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6903519814137286598}
   - component: {fileID: 6903519814137286597}
+  - component: {fileID: 8808831247751885313}
   - component: {fileID: 6903519814137286603}
   - component: {fileID: 6903519814137286602}
   - component: {fileID: -6986792102793168375}
@@ -232,6 +205,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6903519814137286601}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &8808831247751885313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903519814137286601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7332766, y: 1.5829504, z: 1}
+  m_Center: {x: 0.061719954, y: -0.14291489, z: 0}
 --- !u!136 &6903519814137286603
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -241,7 +227,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 6903519814137286601}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -261,8 +247,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2057420624986835056, guid: 17e93cf542ee2ef4db73a8357b0bf77c,
     type: 3}
   rof: 0.1
+  weapontype: 1
   movementSpeed: 300
   health: 100000
+  maxhealth: 100
   healthtext: {fileID: 0}
   degatcoup: 1
   jumpForce: 14
@@ -273,7 +261,6 @@ MonoBehaviour:
   distToGround: 0
   animator: {fileID: 685150491}
   porteecoup: 3
-  inglorykill: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
