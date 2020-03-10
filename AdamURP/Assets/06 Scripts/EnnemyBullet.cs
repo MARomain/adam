@@ -33,4 +33,6 @@ public class EnnemyBullet : MonoBehaviour
         //death sound effects
         Destroy(this.gameObject);
     }
+
+ 
 }

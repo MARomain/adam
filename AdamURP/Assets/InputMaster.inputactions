@@ -6,6 +6,14 @@
             "id": "fe601e50-d0b9-42f2-ae00-030784bc8ff2",
             "actions": [
                 {
+                    "name": "attack",
+                    "type": "Button",
+                    "id": "43c721c4-aba1-4ef8-9fcd-e45f46e57f76",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Shoot",
                     "type": "Value",
                     "id": "c3bc7557-2b92-44c4-be1f-25afe7a94129",
@@ -25,14 +33,6 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "bb181653-2c5a-4e90-86d1-57a154bbb7af",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "attack",
-                    "type": "Button",
-                    "id": "43c721c4-aba1-4ef8-9fcd-e45f46e57f76",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -321,6 +321,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
+                    "action": "attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76b8f029-7f1c-466a-a035-8c2101396153",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "attack",
                     "isComposite": false,
                     "isPartOfComposite": false

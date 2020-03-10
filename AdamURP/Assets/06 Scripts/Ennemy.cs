@@ -220,6 +220,8 @@ public class Ennemy : MonoBehaviour
         }
         Gizmos.DrawLine(pos, lastPos);
     }
+
+
    public void Glorykill()
     {
         //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
@@ -229,7 +231,7 @@ public class Ennemy : MonoBehaviour
         playerGO = GameObject.FindGameObjectsWithTag("Player");
         Player player;
        player = playerGO[0].GetComponent<Player>();
-
+        player.ammoleft = player.weaponmaxammo;
         player.Heal(livegivedback);
         player.weapontype = weapontype;
     }

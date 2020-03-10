@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float rof;
     private bool canShoot = true;
 
-    public int weapontype =1;
+    public int weapontype =0;
     public float movementSpeed;
     public float health = 100f;
     public float maxhealth = 100f;
@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public bool disabledinput = false;
     public LayerMask groundLayer;
 
+    //WEAPON 1 STAT C EST VRAIMENT CACA LE CODE
+    public int weaponmaxammo = 10;
+    public int ammoleft = 0;
 
     public Transform canonTransform;
 
@@ -107,12 +110,31 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
-            canShoot = false;
-            GameObject go = Instantiate(bulletPrefab, canonTransform);
-            go.transform.SetParent(null);
-            Destroy(go, 6f);
-            yield return new WaitForSeconds(rof);
-            canShoot = true;
+            switch (weapontype)
+            {
+                case 0:
+
+                    break;
+                case 1:
+                    canShoot = false;
+                    GameObject go = Instantiate(bulletPrefab, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                    go.transform.SetParent(null);
+                    Destroy(go, 6f);
+                    yield return new WaitForSeconds(rof);
+                    canShoot = true;
+                 
+                    break;
+            }
+          
+        }
+     
+        if (ammoleft == 0)
+        {
+            weapontype = 0;
+        }
+        else
+        {
+            ammoleft = ammoleft - 1;
         }
 
     }
@@ -404,5 +426,26 @@ public class Player : MonoBehaviour
         }
         healthtext.text = "Player hp : " + health.ToString();
     }
-    
+    public void Disableplayerinput()
+    {
+        //sert dans l'animation (glorykill)
+        disabledinput = true;
+
+    }
+    public void Enableplayerinput()
+    {
+        //sert dans l'animation (glorykill)
+        disabledinput = false;
+
+    }
+    public void InvincibleON()
+    {
+        //sert dans l'animation (glorykill)
+        invulnaribilite = true;
+    }
+    public void InvincibleOFF()
+    {
+        //sert dans l'animation (glorykill)
+        invulnaribilite = false;
+    }
 }
