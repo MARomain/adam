@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
+    public Animator transition2;
     public float transitionTime = 1f;
 
     public InputMaster controls;
@@ -18,13 +19,7 @@ public class LevelLoader : MonoBehaviour
 
         controls.InMenu.StartToPlay.performed += ctx => LoadNextLevel();
     }
-    private void Update()
-    {
-        //if(Keyboard.current[Key.Enter].wasPressedThisFrame)
-        //{
-        //    LoadNextLevel();
-        //}
-    }
+
 
     void LoadNextLevel()
     {
@@ -34,9 +29,11 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
+        if (transition2 != null)
+            transition2.SetTrigger("Start");
         controls.InMenu.Disable();
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
+        //SceneManager.LoadScene(levelIndex);
     }
 
     private void OnEnable()
