@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public UImanager uImanager;
     public GameObject bulletPrefab;
     public float rof;
     private bool canShoot = true;
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
         }
 
     }
-    
+   
     private void FixedUpdate()
     {
         if (!disabledinput) { Jump(); }
@@ -128,7 +129,7 @@ public class Player : MonoBehaviour
           
         }
      
-        if (ammoleft == 0)
+        if (ammoleft == 1)
         {
             weapontype = 0;
         }
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
             if (!faceright)
             {
                 this.transform.Rotate(0, -180,0 );
-                this.transform.Rotate(0, -180,0 );
+              
           
             }
             faceright = true;
@@ -287,6 +288,9 @@ public class Player : MonoBehaviour
         {
             health -= amount;
             healthtext.text = "Player hp : " + health.ToString();
+            //animation degats sur un autre calque d'animation 
+            print("hited");
+            animator.SetTrigger("hit");
 
             if (health <= 0f)
             {
@@ -419,9 +423,12 @@ public class Player : MonoBehaviour
         Debug.Log("player was healed of " + healamount + " pv");
         Debug.Log(health + " + " + healamount);
         health = health + healamount;
-       
- 
-        if(health > maxhealth)
+        uImanager.animator.SetTrigger("heal");
+        print("heal");
+
+
+
+        if (health > maxhealth)
         {
             health = maxhealth;
         }
