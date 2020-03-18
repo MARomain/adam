@@ -170,6 +170,7 @@ public class Player : MonoBehaviour
             if (!faceright)
             {
                 this.transform.Rotate(0, -180,0 );
+                this.transform.Rotate(0, -180,0 );
           
             }
             faceright = true;
