@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Ennemy : MonoBehaviour
 {
     public Animator animator;
     public float health = 3f;
-
-
 
     public int weapontype = 1;
     public float movementSpeed = 5f;
@@ -29,7 +28,7 @@ public class Ennemy : MonoBehaviour
     public enum EnnemyType { range, melee };
     public EnnemyType ennemyType;
 
- 
+    public Vector3 direction;
 
     private void Start()
     {
@@ -55,6 +54,9 @@ public class Ennemy : MonoBehaviour
 
             }
         }
+
+        direction = target.transform.position - transform.position;
+
     }
 
     //V1 
