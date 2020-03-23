@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class Ennemy : MonoBehaviour
 {
@@ -9,7 +9,6 @@ public class Ennemy : MonoBehaviour
     public float health = 3f;
 
     public int weapontype = 1;
-    public float movementSpeed = 5f;
     public float detectionRange = 5f;
     public float attackRange = 3f;
     public float rateOfAttack;
@@ -28,10 +27,11 @@ public class Ennemy : MonoBehaviour
     public enum EnnemyType { range, melee };
     public EnnemyType ennemyType;
 
-    public Vector3 direction;
+    public NavMeshAgent agent;
 
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         FindTarget();
         timer = timetodieafterstun;
     }
@@ -55,7 +55,6 @@ public class Ennemy : MonoBehaviour
             }
         }
 
-        direction = target.transform.position - transform.position;
 
     }
 
@@ -145,9 +144,12 @@ public class Ennemy : MonoBehaviour
     {
         if(IsInDetectionRange() && IsInAttackRange() == false)
         {
-            Vector3 direction = (target.transform.position - this.transform.position).normalized;
-            direction.y = 0f;
-            transform.Translate(direction * Time.deltaTime * movementSpeed);
+            //old way = BAD
+            //Vector3 direction = (target.transform.position - this.transform.position).normalized;
+            //direction.y = 0f;
+            //transform.Translate(direction * Time.deltaTime * movementSpeed);
+
+            agent.SetDestination(target.transform.position);
         }
     }
 

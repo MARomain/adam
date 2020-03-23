@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604044825147626177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.047, y: -0.142, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.74773, y: 1.5979844, z: 0.74773}
   m_Children:
   - {fileID: 8166937665258161066}
@@ -170,13 +170,12 @@ GameObject:
   - component: {fileID: 6903519814137286598}
   - component: {fileID: 6903519814137286597}
   - component: {fileID: 8808831247751885313}
-  - component: {fileID: 6903519814137286603}
   - component: {fileID: 6903519814137286602}
   - component: {fileID: -6986792102793168375}
   - component: {fileID: 685150491}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,20 +216,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7332766, y: 1.5829504, z: 1}
-  m_Center: {x: 0.061719954, y: -0.14291489, z: 0}
---- !u!136 &6903519814137286603
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6903519814137286601}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6903519814137286602
 MonoBehaviour:
@@ -244,12 +229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48c052ecde3c0c47bb2fde7e0c499fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uImanager: {fileID: 0}
   bulletPrefab: {fileID: 2057420624986835056, guid: 17e93cf542ee2ef4db73a8357b0bf77c,
     type: 3}
   rof: 0.1
-  weapontype: 1
-  movementSpeed: 300
-  health: 100000
+  weapontype: 0
+  movementSpeed: 1000
+  health: 100
   maxhealth: 100
   healthtext: {fileID: 0}
   degatcoup: 1
@@ -261,9 +247,13 @@ MonoBehaviour:
   distToGround: 0
   animator: {fileID: 685150491}
   porteecoup: 3
+  invulnaribilite: 0
+  disabledinput: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  weaponmaxammo: 10
+  ammoleft: 0
   canonTransform: {fileID: 6903519814275646028}
   rb: {fileID: -6986792102793168375}
 --- !u!54 &-6986792102793168375
@@ -279,7 +269,7 @@ Rigidbody:
   m_AngularDrag: 2
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!95 &685150491

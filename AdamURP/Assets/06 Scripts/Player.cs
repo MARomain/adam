@@ -42,6 +42,14 @@ public class Player : MonoBehaviour
 
     Vector2 movementInput;
 
+    public AudioSource audioSource;
+    public AudioClip footstepClip;
+    public AudioClip jumpClip;
+    public AudioClip fallClip;
+    public AudioClip shootClip;
+    public AudioClip punchClip;
+    public AudioClip deathClip;
+
     // Documentation
     // Pour des actions qui ne se lance qu'une fois, setup un callback qui lance une fonction associé à l'action est good
     // Pour une action de type continue (il faut avoir l'info à toutes les frames) on la choppe avec .ReadValue<>()
@@ -119,6 +127,10 @@ public class Player : MonoBehaviour
                 case 1:
                     canShoot = false;
                     GameObject go = Instantiate(bulletPrefab, canonTransform);//CHANGER LE PREFAB POUR L ARME
+
+                    //sound
+                    audioSource.PlayOneShot(shootClip);
+
                     go.transform.SetParent(null);
                     Destroy(go, 6f);
                     yield return new WaitForSeconds(rof);
@@ -149,6 +161,16 @@ public class Player : MonoBehaviour
             //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
 
             rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+        }
+
+        if (rb.velocity.x != 0f && audioSource.isPlaying == false && IsGrounded())
+        {
+            audioSource.clip = footstepClip;
+            audioSource.volume = Random.Range(0.8f, 1f);
+            audioSource.pitch = Random.Range(0.8f, 1.1f);
+            audioSource.Play();
+            audioSource.volume = 1f;
+            audioSource.pitch = 1f;
         }
    
     }
@@ -246,6 +268,8 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             //rb.velocity = Vector3.up * jumpForce;
 
+            audioSource.clip = jumpClip;
+            audioSource.Play();
         }
 
         if(IsGrounded())
@@ -304,18 +328,26 @@ public class Player : MonoBehaviour
     {
         //death particles
         //death sound effects
-        Destroy(this.gameObject);
+
+        //audioSource.clip = deathClip;
+        audioSource.PlayOneShot(deathClip);
+
+        //FIX THIS LATER
+        foreach (MeshRenderer item in this.gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            item.enabled = false;
+        }
+        foreach (Collider item in this.gameObject.GetComponentsInChildren<Collider>())
+        {
+            item.enabled = false;
+        }
+        this.rb.useGravity = false;
+
+
+        //Destroy(this.gameObject);
     }
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
+    
 
     private void OnDrawGizmos()
     {
@@ -327,7 +359,7 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
-
+            audioSource.PlayOneShot(punchClip);
             RaycastHit hit;
             if (faceright)
             {
@@ -455,5 +487,15 @@ public class Player : MonoBehaviour
     {
         //sert dans l'animation (glorykill)
         invulnaribilite = false;
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 }
