@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public float maxhealth = 100f;
     public Text healthtext;
     public float degatcoup = 1;
-    private bool canattack = true;
+
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -57,12 +57,13 @@ public class Player : MonoBehaviour
 
 
 
-
+        
     private void Awake()
     {
 
         //On instancie InputMaster
         controls = new InputMaster();
+       
 
         // ** NE FONCTIONNE PAS ** 
         // Ne permet pas de laisser le bouton appuyer pour tirer en continue
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
 
         controls.Player.Jump.performed += ctx => JumpRequest();
         controls.Player.attack.performed += ctx => Attack();
+        controls.Player.Shoot.performed += ctx => Shoot();
     }
 
     private void Start()
@@ -92,6 +94,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
         healthtext = GameObject.Find("PlayerHpText").GetComponent<Text>();
+      
     }
 
     private void Update()
@@ -99,12 +102,12 @@ public class Player : MonoBehaviour
         Movement();
 
         Aim();
-
+        /*
         if (controls.Player.Shoot.ReadValue<float>() >= 1f && canShoot == true)
         {
             StopCoroutine("Shoot");
             StartCoroutine("Shoot");
-        }
+        }*/
 
     }
    
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour
       
         IsGrounded();
     }
-
+    /* changer par de l'anim cherche "shoot"
     IEnumerator Shoot()
     {
         if (!disabledinput)
@@ -134,6 +137,7 @@ public class Player : MonoBehaviour
                     go.transform.SetParent(null);
                     Destroy(go, 6f);
                     yield return new WaitForSeconds(rof);
+                    animator.SetTrigger("shoot");
                     canShoot = true;
                  
                     break;
@@ -150,31 +154,29 @@ public class Player : MonoBehaviour
             ammoleft = ammoleft - 1;
         }
 
-    }
+    }*/
 
     //problème "GetButtonDown" pour le mouvement
     void Movement()
     {
         if (!disabledinput)
         {
+            if (movementInput.x==0)
+            {
+                animator.SetBool("run", false);
+            }
+            else
+            {
+                animator.SetBool("run", true);
+            }
 
+      
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
+          
             //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
-
             rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
-       
+
         }
-        /* // ce que tu a fait pour le son,je le déplace pour le gerer dans une animation
-        if (rb.velocity.x != 0f && audioSource.isPlaying == false && IsGrounded())
-        {
-            audioSource.clip = footstepClip;
-            audioSource.volume = Random.Range(0.8f, 1f);
-            audioSource.pitch = Random.Range(0.8f, 1.1f);
-            audioSource.Play();
-            audioSource.volume = 1f;
-            audioSource.pitch = 1f;
-        }*/
-   
     }
 
 
@@ -440,10 +442,7 @@ public class Player : MonoBehaviour
 
 
     }
-    public void Reattack()
-    {
-        canattack = true;
-    }
+
 
   
     public void Attackdegat()
@@ -501,6 +500,50 @@ public class Player : MonoBehaviour
         audioSource.Play();
         audioSource.volume = 1f;
         audioSource.pitch = 1f;
+    }
+    //remplace l'enumerator 
+    public void Shoot()
+    {
+        if (weapontype != 0)
+        {
+            if (ammoleft == 1)
+            {
+                weapontype = 0;
+            }
+            else
+            {
+                animator.SetTrigger("shoot");
+                ammoleft = ammoleft - 1;
+            }
+        }
+
+      
+    }
+    public void Fire()
+    {
+        if (!disabledinput)
+        {
+            switch (weapontype)
+            {
+                case 0:
+
+                    break;
+                case 1:
+
+                    GameObject go = Instantiate(bulletPrefab, canonTransform);//CHANGER LE PREFAB POUR L ARME
+
+                    //sound
+                    audioSource.PlayOneShot(shootClip);
+
+                    go.transform.SetParent(null);
+                    Destroy(go, 6f);
+
+
+
+                    break;
+            }
+
+        }
     }
     private void OnEnable()
     {
