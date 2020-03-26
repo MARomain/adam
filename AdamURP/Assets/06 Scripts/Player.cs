@@ -157,12 +157,14 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
+
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
             //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
 
             rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+       
         }
-
+        /* // ce que tu a fait pour le son,je le déplace pour le gerer dans une animation
         if (rb.velocity.x != 0f && audioSource.isPlaying == false && IsGrounded())
         {
             audioSource.clip = footstepClip;
@@ -171,9 +173,10 @@ public class Player : MonoBehaviour
             audioSource.Play();
             audioSource.volume = 1f;
             audioSource.pitch = 1f;
-        }
+        }*/
    
     }
+
 
     void Aim()
     {
@@ -489,6 +492,16 @@ public class Player : MonoBehaviour
         invulnaribilite = false;
     }
 
+    public void Bruitdepas()
+    {
+        //sert dans l'animation (run)
+        audioSource.clip = footstepClip;
+        audioSource.volume = Random.Range(0.8f, 1f);
+        audioSource.pitch = Random.Range(0.8f, 1.1f);
+        audioSource.Play();
+        audioSource.volume = 1f;
+        audioSource.pitch = 1f;
+    }
     private void OnEnable()
     {
         controls.Enable();
