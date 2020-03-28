@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public Transform canonTransform;
 
     public Rigidbody rb;
-
+    public GameObject armeadam;
     public InputMaster controls;
 
     Vector2 movementInput;
@@ -579,9 +579,11 @@ public class Player : MonoBehaviour
             if (ammoleft == 1)
             {
                 weapontype = 0;
+                animator.SetFloat("weapontypes", 0);
             }
             else
             {
+                animator.SetFloat("weapontypes", 1);
                 animator.SetTrigger("shoot");
                 ammoleft = ammoleft - 1;
             }

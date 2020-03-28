@@ -148,9 +148,9 @@ public class Ennemy : MonoBehaviour
         if(IsInDetectionRange() && IsInAttackRange() == false)
         {
             //old way = BAD
-         //   Vector3 direction = (target.transform.position - this.transform.position).normalized;
-         //  direction.y = 0f;
-         //   transform.Translate(direction * Time.deltaTime * movementSpeed);
+           Vector3 direction = (target.transform.position - this.transform.position).normalized;
+           direction.y = 0f;
+            transform.Translate(direction * Time.deltaTime * movementSpeed);
             //new way =bah je sais pas trop en faite 
            // agent.SetDestination(target.transform.position);
         }
