@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public Text healthtext;
     public float degatcoup = 1;
 
+    public float cacpush = 10f;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -187,6 +188,7 @@ public class Player : MonoBehaviour
         {
             //canonTransform.eulerAngles = Vector3.zero;
             canonTransform.localPosition = new Vector3(canonTransform.localPosition.x, canonTransform.localPosition.y, 0f);
+            animator.SetFloat("fireaim", 0);
         }
 
         //droite
@@ -194,7 +196,8 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = Vector3.zero;
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
-   
+            animator.SetFloat("fireaim", 0);
+
             if (!faceright)
             {
                 this.transform.Rotate(0, -180,0 );
@@ -209,7 +212,15 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 45f);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
-        
+            animator.SetFloat("fireaim", 1);
+            if (!faceright)
+            {
+                this.transform.Rotate(0, -180, 0);
+
+
+            }
+            faceright = true;
+
         }
 
         //haut
@@ -217,6 +228,7 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 90f);
             canonTransform.localPosition = new Vector3(0f, 1.2f, 0f);
+            animator.SetFloat("fireaim", 2);
         }
 
         //haut gauche 
@@ -224,6 +236,13 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 135f);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+            animator.SetFloat("fireaim", 1);
+            if (faceright)
+            {
+                this.transform.Rotate(0, 180, 0);
+
+            }
+            faceright = false;
         }
 
         //gauche
@@ -231,6 +250,7 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 180);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+            animator.SetFloat("fireaim", 0);
             if (faceright)
             {
                 this.transform.Rotate(0, 180, 0);
@@ -244,6 +264,13 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 225f);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+            animator.SetFloat("fireaim", -1);
+            if (faceright)
+            {
+                this.transform.Rotate(0, 180, 0);
+
+            }
+            faceright = false;
         }
 
         //bas
@@ -251,6 +278,7 @@ public class Player : MonoBehaviour
         {
             //canonTransform.eulerAngles = Vector3.zero;
             canonTransform.localPosition = new Vector3(canonTransform.localPosition.x, 0.3f, 0f);
+            animator.SetFloat("fireaim", -2);
         }
 
         //bas droit
@@ -258,6 +286,14 @@ public class Player : MonoBehaviour
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 315f);
             canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+            animator.SetFloat("fireaim", -1);
+            if (!faceright)
+            {
+                this.transform.Rotate(0, -180, 0);
+
+
+            }
+            faceright = true;
         }
 
     }
@@ -364,7 +400,7 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
-            audioSource.PlayOneShot(punchClip);
+           
             RaycastHit hit;
             if (faceright)
             {
@@ -386,19 +422,37 @@ public class Player : MonoBehaviour
                                 }
                                 else
                                 {
-                                    animator.SetTrigger("kick"); Debug.Log("kick");
+                                   
                                     ennemy.TakeDamage(degatcoup); //retire de la vie
+                                
+                                    Debug.Log("soundhit");
+                                    animator.SetTrigger("kick"); Debug.Log("kick");
+
+                                    //Knockback
+                                    if (faceright)
+                                    {
+                                        ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
+                                        Debug.Log("kicked");
+                                    }
+                                    else
+                                    {
+                                        ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
+                                        Debug.Log("kicked");
+                                    }
                                 }
                             }
                         }
                         else
                         {
+                   
                             animator.SetTrigger("kick");
-                            Debug.Log("empty kick");
+                            
+
                         }
                     }
+
                 animator.SetTrigger("kick");
-                Debug.Log("empty dsd");
+               
 
             }
             else
@@ -421,20 +475,36 @@ public class Player : MonoBehaviour
                                 }
                                 else
                                 {
+                                   
                                     animator.SetTrigger("kick"); Debug.Log("kick");
                                     ennemy.TakeDamage(degatcoup); //retire de la vie
+                                    
+                                  
+                                    //Knockback
+                                    if (faceright)
+                                    {
+                                        ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
+                                        Debug.Log("kicked");
+                                    }
+                                    else
+                                    {
+                                        ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
+                                        Debug.Log("kicked");
+                                    }
                                 }
                             }
 
                         }
                         else
                         {
+                     
                             animator.SetTrigger("kick");
-                            Debug.Log("empty kick");
+                         
                         }
                     }
+                
                 animator.SetTrigger("kick");
-
+          
 
             }
         }
@@ -554,4 +624,29 @@ public class Player : MonoBehaviour
     {
         controls.Disable();
     }
+    private void Pushplayer()
+    {
+        if (faceright)
+        {
+            rb.AddForce(Vector3.right * jumpForce, ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector3.left * jumpForce, ForceMode.Impulse);
+        }
+    }
+    public void Checkautomaticfire()//utile quand l'arme est automatique,check si il bouton est toujours appuyé et relance l'animation de tire.
+    {
+        //if(input.GetKeyDown("fire")
+        //{
+        //animator.SetTrigger("shoot")}
+    }
+    public void Punchsound()
+    {
+        audioSource.PlayOneShot(punchClip);
+ 
+     
+
+    }
+
 }

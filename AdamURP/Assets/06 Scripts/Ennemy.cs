@@ -20,7 +20,9 @@ public class Ennemy : MonoBehaviour
     public bool opennedtoglorykill = false;
     public float timetodieafterstun = 3;
     private float timer;
-
+    public float movementSpeed = 16f;
+    public float knockbackforce =5;
+    public Rigidbody rb;
     public GameObject projectile;
     public GameObject target;
     public Transform canonTransform;
@@ -31,6 +33,7 @@ public class Ennemy : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         FindTarget();
         timer = timetodieafterstun;
@@ -145,11 +148,11 @@ public class Ennemy : MonoBehaviour
         if(IsInDetectionRange() && IsInAttackRange() == false)
         {
             //old way = BAD
-            //Vector3 direction = (target.transform.position - this.transform.position).normalized;
-            //direction.y = 0f;
-            //transform.Translate(direction * Time.deltaTime * movementSpeed);
-
-            agent.SetDestination(target.transform.position);
+         //   Vector3 direction = (target.transform.position - this.transform.position).normalized;
+         //  direction.y = 0f;
+         //   transform.Translate(direction * Time.deltaTime * movementSpeed);
+            //new way =bah je sais pas trop en faite 
+           // agent.SetDestination(target.transform.position);
         }
     }
 
@@ -239,5 +242,7 @@ public class Ennemy : MonoBehaviour
         player.Heal(livegivedback);
         player.weapontype = weapontype;
     }
+
+
 
 }

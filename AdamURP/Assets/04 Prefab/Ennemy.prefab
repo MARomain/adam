@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191605669472941450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1495574829345334417}
@@ -377,7 +377,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   health: 3
   weapontype: 1
-  movementSpeed: 5
   detectionRange: 8
   attackRange: 3
   rateOfAttack: 0
@@ -386,8 +385,11 @@ MonoBehaviour:
   livegivedback: 10
   opennedtoglorykill: 0
   timetodieafterstun: 3
+  knockbackforce: 15
+  rb: {fileID: 0}
   projectile: {fileID: 2057420624986835056, guid: 8b77118accc7e9547a241446b53f953a,
     type: 3}
   target: {fileID: 0}
   canonTransform: {fileID: 5389199670942661083}
   ennemyType: 0
+  agent: {fileID: 0}
