@@ -53,7 +53,7 @@ public class Ennemy : MonoBehaviour
             if (timer <= 0)
             {
                
-                print("too long,did not survive!");
+                //print("too long,did not survive!");
 
             }
         }
@@ -241,6 +241,7 @@ public class Ennemy : MonoBehaviour
         player.ammoleft = player.weaponmaxammo;
         player.Heal(livegivedback);
         player.weapontype = weapontype;
+       
     }
 
 

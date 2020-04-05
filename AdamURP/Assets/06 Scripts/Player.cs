@@ -173,9 +173,11 @@ public class Player : MonoBehaviour
 
       
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
-          
+
             //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
-            rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+             rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
+
+          
 
         }
     }
@@ -417,27 +419,29 @@ public class Player : MonoBehaviour
                                 if (ennemy.opennedtoglorykill)//si il etait stun
                                 {
                                     ennemy.Glorykill();//glorykill;
-                                    Debug.Log("glorykill");
+                                    
+                                  
                                     animator.SetTrigger("glorykill");
+                                    Changeweaponmodel();
                                 }
                                 else
                                 {
                                    
                                     ennemy.TakeDamage(degatcoup); //retire de la vie
                                 
-                                    Debug.Log("soundhit");
-                                    animator.SetTrigger("kick"); Debug.Log("kick");
+                                   
+                                    animator.SetTrigger("kick"); 
 
                                     //Knockback
                                     if (faceright)
                                     {
                                         ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
-                                        Debug.Log("kicked");
+                                 ;
                                     }
                                     else
                                     {
                                         ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
-                                        Debug.Log("kicked");
+                                      
                                     }
                                 }
                             }
@@ -470,13 +474,13 @@ public class Player : MonoBehaviour
                                 if (ennemy.opennedtoglorykill)//si il etait stun
                                 {
                                     ennemy.Glorykill();//glorykill;
-                                    Debug.Log("glorykill");
+                                ;
                                     animator.SetTrigger("glorykill");
                                 }
                                 else
                                 {
                                    
-                                    animator.SetTrigger("kick"); Debug.Log("kick");
+                                    animator.SetTrigger("kick");
                                     ennemy.TakeDamage(degatcoup); //retire de la vie
                                     
                                   
@@ -484,12 +488,12 @@ public class Player : MonoBehaviour
                                     if (faceright)
                                     {
                                         ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
-                                        Debug.Log("kicked");
+                                   
                                     }
                                     else
                                     {
                                         ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
-                                        Debug.Log("kicked");
+                                   
                                     }
                                 }
                             }
@@ -579,13 +583,12 @@ public class Player : MonoBehaviour
             if (ammoleft == 1)
             {
                 weapontype = 0;
-                animator.SetFloat("weapontypes", 0);
+                Changeweaponmodel();
             }
             else
             {
-                animator.SetFloat("weapontypes", 1);
                 animator.SetTrigger("shoot");
-                ammoleft = ammoleft - 1;
+           
             }
         }
 
@@ -609,7 +612,7 @@ public class Player : MonoBehaviour
 
                     go.transform.SetParent(null);
                     Destroy(go, 6f);
-
+                    ammoleft = ammoleft - 1;
 
 
                     break;
@@ -617,6 +620,26 @@ public class Player : MonoBehaviour
 
         }
     }
+    private void Changeweaponmodel()
+    {
+        switch (weapontype)
+        {
+            case 0:
+                armeadam.SetActive(false);
+                animator.SetFloat("weapontype", 0);
+
+                break;
+            case 1:
+                armeadam.SetActive(true);
+                animator.SetFloat("weapontype",1);
+                //TO DO changer le model de l'arme
+                break;
+        }
+        Debug.Log("change weapon check");
+  
+     
+    }
+
     private void OnEnable()
     {
         controls.Enable();
