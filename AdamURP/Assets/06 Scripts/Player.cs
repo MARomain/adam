@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public int weapontype =0;
     public float movementSpeed;
+    public float maxMovementSpeed;
     public float health = 100f;
     public float maxhealth = 100f;
     public Text healthtext;
@@ -174,10 +175,21 @@ public class Player : MonoBehaviour
       
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
 
-            //transform.Translate(new Vector3(movementInput.x, 0f, 0f) * movementSpeed * Time.deltaTime);
-             rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
 
-          
+            //player movement
+            rb.AddForce(new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y));
+
+            if (rb.velocity.x > maxMovementSpeed)
+            {
+                rb.velocity = new Vector2(maxMovementSpeed, rb.velocity.y);
+            }
+
+            if (rb.velocity.x < -maxMovementSpeed)
+            {
+                rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
+            }
+
+
 
         }
     }
