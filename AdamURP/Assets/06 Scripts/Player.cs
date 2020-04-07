@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
       
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
 
-
+            /*
             //player movement
             rb.AddForce(new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y));
 
@@ -188,7 +188,8 @@ public class Player : MonoBehaviour
             {
                 rb.velocity = new Vector2(-maxMovementSpeed, rb.velocity.y);
             }
-
+            */
+            rb.velocity = new Vector2(movementInput.x * movementSpeed * Time.deltaTime, rb.velocity.y);
 
 
         }
