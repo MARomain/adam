@@ -29,12 +29,12 @@ public class Ennemy : MonoBehaviour
     public enum EnnemyType { range, melee };
     public EnnemyType ennemyType;
 
-    public NavMeshAgent agent;
+   // public NavMeshAgent agent;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+       // agent = GetComponent<NavMeshAgent>();
         FindTarget();
         timer = timetodieafterstun;
     }
