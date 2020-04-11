@@ -665,11 +665,11 @@ public class Player : MonoBehaviour
     {
         if (faceright)
         {
-            rb.AddForce(Vector3.right * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.right * cacpush, ForceMode.Impulse);
         }
         else
         {
-            rb.AddForce(Vector3.left * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.left * cacpush, ForceMode.Impulse);
         }
     }
     public void Checkautomaticfire()//utile quand l'arme est automatique,check si il bouton est toujours appuyé et relance l'animation de tire.

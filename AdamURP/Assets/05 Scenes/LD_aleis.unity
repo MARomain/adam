@@ -1667,6 +1667,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0038928783
       objectReference: {fileID: 0}
+    - target: {fileID: 2020375182282138952, guid: 68f8e735fdd3d4c459c05e0d70e4d995,
+        type: 3}
+      propertyPath: m_Drag
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5083969713538066306, guid: 68f8e735fdd3d4c459c05e0d70e4d995,
         type: 3}
       propertyPath: bassin
