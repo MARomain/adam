@@ -24,32 +24,50 @@ public class Ennemy : MonoBehaviour
     public float timetodieafterstun = 3;
     private float timer;
 
-    public Vector3 lookpos;
     public bool lookplayer = true;
     public GameObject gyroscope; //ca c'est du debug bien sale ,moyen opti ,qui est pas tres beau,qui sert pour le calcule de rotation 
     public bool faceright = true;
-  
+
+
+    //tire
+    public float précision=3;
+    public bool insight = false;
+    public GameObject projectile;
+    public Transform Cannondirection;
+    public GameObject cannontip;
+    public bool canshoot = true;
+    public float firerate = 1;
+
     public GameObject bassin;
     public Vector3 originalrotation;
     public Vector3 calculaterotation;
     public Rigidbody rb;
-    public GameObject projectile;
     public GameObject target;
-    public Transform canonTransform;
+    public Library lb;
 
     // Start is called before the first frame update
     void Start()
     {
       //  originalrotation = new Vector3(bassin.transform.rotation.eulerAngles.x, bassin.transform.rotation.eulerAngles.y, bassin.transform.rotation.eulerAngles.z);
         rb = GetComponent<Rigidbody>();
-
+        lb = FindObjectOfType<Library>();
+        target = lb.cibleplayer;
+        animator.SetFloat("firerate", firerate);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        //regarde le joueur
         if (lookplayer == true)
         {
+            //oriante le gyro (ca fait partie des choses pas propre
+            var lookPos = lb.cibleplayer.transform.position - gyroscope.transform.position;
+
+            var rotation = Quaternion.LookRotation(lookPos);
+            gyroscope.transform.rotation = Quaternion.Slerp(gyroscope.transform.rotation, rotation, Time.deltaTime * précision);
+
             //calculaterotation = new Vector3(gyroscope.transform.rotation.eulerAngles.x + originalrotation.x, originalrotation.y, originalrotation.z);
 
             if (target.transform.position.x > this.transform.position.x)
@@ -75,6 +93,34 @@ public class Ennemy : MonoBehaviour
             bassin.transform.eulerAngles = calculaterotation;
 
         }
+
+        // BUG PRESENT AU NIVEAU DU "INSIGHT" QUI S ACTIVE ET CE DESACTIVE DE FACON ALEATOIRE ,VIENS SURMENT DE L APPELLE DU RAYCAST
+        RaycastHit hit;
+        Debug.DrawRay(Cannondirection.position, -Cannondirection.right * attackRange, Color.white);
+        if (Physics.Raycast(Cannondirection.position, -Cannondirection.right, out hit, attackRange))
+        {
+           
+   
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                insight = true;
+              
+                Debug.DrawRay(Cannondirection.position, -Cannondirection.right * attackRange, Color.red);
+            }
+            else 
+            {
+                insight = false;
+               
+               
+            }
+        }
+
+        if (insight)
+        {
+            Firecheck();
+        }
+        
+
     }
     public void TakeDamage(float amount)
     {
@@ -97,17 +143,22 @@ public class Ennemy : MonoBehaviour
         {
             animator.SetTrigger("hit");
         }
+    }
 
-
+    public void Firecheck()
+    {
+        if (canshoot)
+        {
+            animator.SetTrigger("fire");
+        }
+    }
+    public void Fire()
+    {
+        GameObject go = Instantiate(projectile, cannontip.transform.position,Cannondirection.rotation );
     }
     public void Die()
     {
         Destroy(this.gameObject);
-    }
-
-    public void FindTarget()
-    {
-        target = GameObject.FindObjectOfType<Player>().gameObject;
     }
     public void AimLeftRight()
     {
@@ -136,4 +187,6 @@ public class Ennemy : MonoBehaviour
         player.weapontype = weapontype;
 
     }
+
+   
 }

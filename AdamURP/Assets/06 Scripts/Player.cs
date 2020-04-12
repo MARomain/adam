@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public UImanager uImanager;
     public GameObject bulletPrefab;
     public float rof;
-    private bool canShoot = true;
+
 
     public int weapontype =0;
     public float movementSpeed;
