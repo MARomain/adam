@@ -50,7 +50,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 2ebe7a150720c9142b7631667719b620,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2ebe7a150720c9142b7631667719b620,
         type: 3}
@@ -90,6 +90,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 1962203984455306607, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}

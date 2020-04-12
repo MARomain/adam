@@ -12342,16 +12342,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8808831247751885313, guid: 81b2b719f95d65e488fbf6fb4898c561,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.8182961
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808831247751885313, guid: 81b2b719f95d65e488fbf6fb4898c561,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.11767286
-      objectReference: {fileID: 0}
     - target: {fileID: 8994886514985933304, guid: 81b2b719f95d65e488fbf6fb4898c561,
         type: 3}
       propertyPath: m_LocalPosition.x
