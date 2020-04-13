@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2057420624986835054}
   - component: {fileID: 2057420624986835057}
   - component: {fileID: 2273309540953881749}
-  - component: {fileID: 3113054421529011382}
+  - component: {fileID: 6639968836318972881}
+  - component: {fileID: 7564390312530319507}
   m_Layer: 0
-  m_Name: EnnemyBullet
+  m_Name: modelrocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057420624986835056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.128, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,7 +112,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3113054421529011382
+--- !u!114 &6639968836318972881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,9 +121,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 2057420624986835056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e18b7c20df6654429d0a496ea8fe982, type: 3}
+  m_Script: {fileID: 11500000, guid: b2ac53e3065f3bf4b868a1ae5ce9f021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  speed: 5
+  speedmultiply: 0
+  speed: 3
   rb: {fileID: 2273309540953881749}
+--- !u!95 &7564390312530319507
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057420624986835056}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f736e9b85bd017d47a62cbb1ff812fe5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

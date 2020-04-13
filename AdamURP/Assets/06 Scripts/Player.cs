@@ -488,6 +488,7 @@ public class Player : MonoBehaviour
                                     ennemy.Glorykill();//glorykill;
                                 ;
                                     animator.SetTrigger("glorykill");
+                                    Changeweaponmodel();
                                 }
                                 else
                                 {

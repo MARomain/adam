@@ -64,9 +64,9 @@ public class Ennemy : MonoBehaviour
         {
             //oriante le gyro (ca fait partie des choses pas propre
             var lookPos = lb.cibleplayer.transform.position - gyroscope.transform.position;
-
             var rotation = Quaternion.LookRotation(lookPos);
             gyroscope.transform.rotation = Quaternion.Slerp(gyroscope.transform.rotation, rotation, Time.deltaTime * précision);
+
 
             //calculaterotation = new Vector3(gyroscope.transform.rotation.eulerAngles.x + originalrotation.x, originalrotation.y, originalrotation.z);
 
@@ -94,9 +94,8 @@ public class Ennemy : MonoBehaviour
 
         }
 
-        // BUG PRESENT AU NIVEAU DU "INSIGHT" QUI S ACTIVE ET CE DESACTIVE DE FACON ALEATOIRE ,VIENS SURMENT DE L APPELLE DU RAYCAST
         RaycastHit hit;
-        Debug.DrawRay(Cannondirection.position, -Cannondirection.right * attackRange, Color.white);
+       
         if (Physics.Raycast(Cannondirection.position, -Cannondirection.right, out hit, attackRange))
         {
            
@@ -106,12 +105,13 @@ public class Ennemy : MonoBehaviour
                 insight = true;
               
                 Debug.DrawRay(Cannondirection.position, -Cannondirection.right * attackRange, Color.red);
+                
             }
             else 
             {
                 insight = false;
-               
-               
+                Debug.DrawRay(Cannondirection.position, -Cannondirection.right * attackRange, Color.white);
+
             }
         }
 
@@ -154,7 +154,11 @@ public class Ennemy : MonoBehaviour
     }
     public void Fire()
     {
-        GameObject go = Instantiate(projectile, cannontip.transform.position,Cannondirection.rotation );
+        //TO DO la balle part toujours en direction du joueur
+        //PROBLEME plus ou moins volontaire ,la balle part d'en face du cannon peut importe si il lui fait face:
+
+
+       GameObject go = Instantiate(projectile, Cannondirection.transform.position,Cannondirection.rotation );
     }
     public void Die()
     {
