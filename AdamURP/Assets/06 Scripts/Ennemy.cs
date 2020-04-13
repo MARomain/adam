@@ -24,9 +24,7 @@ public class Ennemy : MonoBehaviour
     public float timetodieafterstun = 3;
     private float timer;
 
-    public bool lookplayer = true;
-    public GameObject gyroscope; //ca c'est du debug bien sale ,moyen opti ,qui est pas tres beau,qui sert pour le calcule de rotation 
-    public bool faceright = true;
+    
 
 
     //tire
@@ -38,11 +36,14 @@ public class Ennemy : MonoBehaviour
     public bool canshoot = true;
     public float firerate = 1;
 
+    //faceplayer
+    public bool lookplayer = true;
+    public GameObject gyroscope; //ca c'est du debug bien sale ,moyen opti ,qui est pas tres beau,qui sert pour le calcule de rotation 
+    public bool faceright = true;
     public GameObject bassin;
     public Vector3 originalrotation;
-    public Vector3 calculaterotation;
+    private Vector3 calculaterotation;
     public Rigidbody rb;
-    public GameObject target;
     public Library lb;
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class Ennemy : MonoBehaviour
       //  originalrotation = new Vector3(bassin.transform.rotation.eulerAngles.x, bassin.transform.rotation.eulerAngles.y, bassin.transform.rotation.eulerAngles.z);
         rb = GetComponent<Rigidbody>();
         lb = FindObjectOfType<Library>();
-        target = lb.cibleplayer;
+
         animator.SetFloat("firerate", firerate);
     }
 
@@ -70,7 +71,7 @@ public class Ennemy : MonoBehaviour
 
             //calculaterotation = new Vector3(gyroscope.transform.rotation.eulerAngles.x + originalrotation.x, originalrotation.y, originalrotation.z);
 
-            if (target.transform.position.x > this.transform.position.x)
+            if (lb.cibleplayer.transform.position.x > this.transform.position.x)
             {
                 if (faceright)
                 {
@@ -80,7 +81,7 @@ public class Ennemy : MonoBehaviour
             
               calculaterotation = new Vector3(gyroscope.transform.rotation.eulerAngles.x + originalrotation.x, -originalrotation.y, originalrotation.z);
             }
-            else if (target.transform.position.x < this.transform.position.x) 
+            else if (lb.cibleplayer.transform.position.x < this.transform.position.x) 
             {
                 if (!faceright)
                 {
@@ -166,7 +167,7 @@ public class Ennemy : MonoBehaviour
     }
     public void AimLeftRight()
     {
-        if (target.transform.position.x - this.transform.position.x <= 0)
+        if (lb.cibleplayer.transform.position.x - this.transform.position.x <= 0)
         {
             this.transform.eulerAngles = new Vector3(0f, 180f, 0f);
             this.transform.localPosition = new Vector3(-1f, 0.3f, 0f);

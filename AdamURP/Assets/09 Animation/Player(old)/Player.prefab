@@ -75,13 +75,13 @@ MonoBehaviour:
   rof: 0.1
   weapontype: 0
   movementSpeed: 1000
-  maxMovementSpeed: 0
+  maxMovementSpeed: 2000
   health: 100
   maxhealth: 100
   healthtext: {fileID: 0}
   degatcoup: 1
-  cacpush: 10
-  jumpForce: 14
+  cacpush: 4
+  jumpForce: 21
   fallMultiplier: 5
   lowJumpMultiplier: 2.5
   jumpRequest: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_GameObject: {fileID: 1962203984455306592}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 4
   m_AngularDrag: 2
   m_UseGravity: 1
   m_IsKinematic: 0
