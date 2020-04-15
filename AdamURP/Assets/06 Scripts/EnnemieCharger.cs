@@ -6,81 +6,78 @@ public class EnnemieCharger : MonoBehaviour
 {
     public bool canAttack = true;
     public bool canMove = true;
-    public bool canBekilled = true;
     public Animator animator;
-    public float health = 3f;
 
-    public int weapontype = 1;
-    public float detectionRange = 5f;
-    public float attackRange = 3f;
+    public float dammage;
+    public float speed;
+    public float distancetocharge = 5;
+    public float reach = 5;
+    public float knockback;
 
-    //glorykill
-    public float glorykilllife = 1f;
-    public float livegivedback = 10f;
-    public bool opennedtoglorykill = false;
-    public float timetodieafterstun = 3;
-    private float timer;
+    public int weapontype = 0;
+
 
     public Rigidbody rb;
-    public GameObject projectile;
+    private bool faceright=false;
+    private float distancefromplayer = 0;
     public GameObject target;
-    public Transform canonTransform;
+    public Library lb;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (distancetocharge < reach)
+        {
+            reach = distancetocharge;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        distancefromplayer= Vector3.Distance(lb.cibleplayer.transform.position, transform.position);
+        if (distancefromplayer < distancetocharge)
+        {
+          
+            if (distancefromplayer < reach)
+            {
+                Attack();
+            }
+            else
+            {
+                Moving();
+            }
+        }
+    }
+   public void Moving()
+    {
+        if (this.transform.position.x > lb.player.transform.position.x)
+        {
+            //joueur a droite
+            rb.velocity=(new Vector2(-speed, rb.velocity.y));
+            if (!faceright)
+            {
+                this.transform.eulerAngles = new Vector3(0, 0, 0);
+                faceright = true;
+            }
+        }
+        else
+        {
+            rb.velocity = (new Vector2(speed, rb.velocity.y));
         
+        
+            if (faceright)
+            {
+                this.transform.eulerAngles = new Vector3(0, -180, 0);
+                faceright = false;
+            }
+        }
     }
-    public void TakeDamage(float amount)
+    public void Attack()
     {
-        health -= amount;
-
-        if (health <= 0f)
-        {
-            animator.SetTrigger("die");
-            // Die(); Die est maintenant dans l'animator
-
-        }
-        else if (health <= glorykilllife)
-        {
-            opennedtoglorykill = true;
-
-            animator.SetTrigger("hit");
-            animator.SetTrigger("stun");
-        }
-        else
-        {
-            animator.SetTrigger("hit");
-        }
-
-
-    }
-    public void Die()
-    {
-        Destroy(this.gameObject);
-    }
-
-    public void FindTarget()
-    {
-        target = GameObject.FindObjectOfType<Player>().gameObject;
-    }
-    public void AimLeftRight()
-    {
-        if (target.transform.position.x - this.transform.position.x <= 0)
-        {
-            this.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-            this.transform.localPosition = new Vector3(-1f, 0.3f, 0f);
-        }
-        else
-        {
-            this.transform.eulerAngles = Vector3.zero;
-            this.transform.localPosition = new Vector3(1f, 0.3f, 0f);
-        }
+        lb.player.gameObject.GetComponent<Player>().TakeDamage(dammage);
+        Vector3 pushdirection = transform.position - lb.player.transform.position;
+        lb.player.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * knockback);
     }
 }

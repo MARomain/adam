@@ -125,4 +125,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   speed: 3
+  knockbackforce: 0
   rb: {fileID: 2273309540953881749}

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float maxhealth = 100f;
     public Text healthtext;
     public float degatcoup = 1;
+    private Ennemy ennemyreached;
 
     public float cacpush = 10f;
     public float jumpForce = 20f;
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        
 
         Aim();
         /*
@@ -115,7 +116,10 @@ public class Player : MonoBehaviour
    
     private void FixedUpdate()
     {
-        if (!disabledinput) { Jump(); }
+        Movement();
+        if (!disabledinput) { 
+            Jump(); 
+        }
       
         IsGrounded();
     }
@@ -426,20 +430,20 @@ public class Player : MonoBehaviour
                         {
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
-                                Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                ennemy.TakeDamage(degatcoup);
-                                if (ennemy.opennedtoglorykill)//si il etait stun
+                                ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                                if (ennemyreached.opennedtoglorykill)//si il etait stun
                                 {
-                                    ennemy.Glorykill();//glorykill;
-                                    
-                                  
+                                   ennemyreached.Glorykill();//glorykill;
+
+                                    //ennemy.TakeDamage(degatcoup); //retire de la vie
+
                                     animator.SetTrigger("glorykill");
                                     Changeweaponmodel();
                                 }
                                 else
                                 {
                                    
-                                    ennemy.TakeDamage(degatcoup); //retire de la vie
+                                    //ennemy.TakeDamage(degatcoup); //retire de la vie
                                 
                                    
                                     animator.SetTrigger("kick"); 
@@ -447,12 +451,12 @@ public class Player : MonoBehaviour
                                     //Knockback
                                     if (faceright)
                                     {
-                                        ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
-                                 ;
+                                       // ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
+                                 
                                     }
                                     else
                                     {
-                                        ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
+                                       // ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
                                       
                                     }
                                 }
@@ -462,8 +466,6 @@ public class Player : MonoBehaviour
                         {
                    
                             animator.SetTrigger("kick");
-                            
-
                         }
                     }
 
@@ -481,12 +483,10 @@ public class Player : MonoBehaviour
                         {
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
-                                Ennemy ennemy = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                ennemy.TakeDamage(degatcoup);
-                                if (ennemy.opennedtoglorykill)//si il etait stun
+                                ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                                if (ennemyreached.opennedtoglorykill)//si il etait stun
                                 {
-                                    ennemy.Glorykill();//glorykill;
-                                ;
+                                    ennemyreached.Glorykill();//glorykill;;
                                     animator.SetTrigger("glorykill");
                                     Changeweaponmodel();
                                 }
@@ -494,18 +494,18 @@ public class Player : MonoBehaviour
                                 {
                                    
                                     animator.SetTrigger("kick");
-                                    ennemy.TakeDamage(degatcoup); //retire de la vie
+                                   // ennemyreached.TakeDamage(degatcoup); //retire de la vie
                                     
                                   
                                     //Knockback
                                     if (faceright)
                                     {
-                                        ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
+                                       // ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
                                    
                                     }
                                     else
                                     {
-                                        ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
+                                       // ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
                                    
                                     }
                                 }
@@ -534,9 +534,7 @@ public class Player : MonoBehaviour
   
     public void Attackdegat()
     {
-        //tu m'a bien dit que je fesait ce que je voulais mais je devais commenter 
-        //TO DO feedback attack
-        //Debug.Log("attack cac");
+        ennemyreached.TakeDamage(degatcoup);
     }
 
     public void Heal(float healamount)
@@ -560,6 +558,10 @@ public class Player : MonoBehaviour
         //sert dans l'animation (glorykill)
         disabledinput = true;
 
+    }
+    public void Punchdamage()
+    {
+ 
     }
     public void Enableplayerinput()
     {
@@ -677,14 +679,11 @@ public class Player : MonoBehaviour
     {
         //if(input.GetKeyDown("fire")
         //{
-        //animator.SetTrigger("shoot")}
+        //animator.SetBool("shooting")}
     }
     public void Punchsound()
     {
         audioSource.PlayOneShot(punchClip);
- 
-     
-
     }
 
 }

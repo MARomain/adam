@@ -10,6 +10,7 @@ public class rocket : MonoBehaviour
     public float speed = 20f;
 
 
+
     public Rigidbody rb;
 
     private void Start()
@@ -24,6 +25,7 @@ public class rocket : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
             player.TakeDamage(damage);
+           
         }
 
         Die();

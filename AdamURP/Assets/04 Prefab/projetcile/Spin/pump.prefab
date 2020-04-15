@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   speed: -1
+  knockbackforce: 0
   rb: {fileID: 0}
 --- !u!1001 &2143502799612476828
 PrefabInstance:
@@ -198,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113054421529011382, guid: 5962bf4845ef9a848963910a8afbcc5e,
+        type: 3}
+      propertyPath: knockbackforce
+      value: -800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5962bf4845ef9a848963910a8afbcc5e, type: 3}
@@ -294,6 +300,11 @@ PrefabInstance:
       propertyPath: speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3113054421529011382, guid: 5962bf4845ef9a848963910a8afbcc5e,
+        type: 3}
+      propertyPath: knockbackforce
+      value: -800
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5962bf4845ef9a848963910a8afbcc5e, type: 3}
 --- !u!4 &4414154196248245495 stripped
@@ -388,6 +399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3113054421529011382, guid: 5962bf4845ef9a848963910a8afbcc5e,
+        type: 3}
+      propertyPath: knockbackforce
+      value: -800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5962bf4845ef9a848963910a8afbcc5e, type: 3}

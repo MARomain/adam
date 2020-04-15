@@ -70,6 +70,7 @@
     <Compile Include="Assets\06 Scripts\EnnemieCharger.cs" />
     <Compile Include="Assets\06 Scripts\Ennemy.cs" />
     <Compile Include="Assets\06 Scripts\EnnemyBullet.cs" />
+    <Compile Include="Assets\06 Scripts\EnnemyRangeFighter.cs" />
     <Compile Include="Assets\06 Scripts\Ennemystorage.cs" />
     <Compile Include="Assets\06 Scripts\LevelLoader.cs" />
     <Compile Include="Assets\06 Scripts\Library.cs" />

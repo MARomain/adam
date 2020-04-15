@@ -6,6 +6,7 @@ public class EnnemyBullet : MonoBehaviour
 {
     public float damage;
     public float speed = 20f;
+    public float knockbackforce = 0;
 
     public Rigidbody rb; 
 
@@ -21,6 +22,9 @@ public class EnnemyBullet : MonoBehaviour
         {
             Player player = other.GetComponent<Player>();
             player.TakeDamage(damage);
+            Vector3 pushdirection = transform.position - other.transform.position;
+            other.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * -knockbackforce);
+           
         }
 
         Die();
