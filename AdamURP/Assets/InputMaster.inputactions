@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "b7de105d-c3e4-4b39-b304-483fe10d444c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -377,6 +385,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fc4b3a8-2afb-4437-8a8e-0d32a783cc52",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

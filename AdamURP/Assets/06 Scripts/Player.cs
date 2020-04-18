@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     public float degatcoup = 1;
     private Ennemy ennemyreached;
 
+
+    public bool dodge=false;
+    public float dodgecooldown = 1;
+    public float dodgetimer; //go passer private apres le test
+
     public float cacpush = 10f;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
@@ -90,6 +95,7 @@ public class Player : MonoBehaviour
         controls.Player.Jump.performed += ctx => JumpRequest();
         controls.Player.attack.performed += ctx => Attack();
         controls.Player.Shoot.performed += ctx => Shoot();
+        controls.Player.Action.performed += ctx => Action();
     }
 
     private void Start()
@@ -102,16 +108,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        
-
-        Aim();
-        /*
-        if (controls.Player.Shoot.ReadValue<float>() >= 1f && canShoot == true)
+        if (dodgetimer > 0)
         {
-            StopCoroutine("Shoot");
-            StartCoroutine("Shoot");
-        }*/
-
+            dodgetimer = dodgetimer - Time.deltaTime;
+        }
+   
+        Aim();
     }
    
     private void FixedUpdate()
@@ -353,7 +355,17 @@ public class Player : MonoBehaviour
             rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
-
+    private void Action()
+    {
+       
+       
+        if (dodgetimer <= 0)
+        {
+            animator.SetTrigger("dodge");
+            dodgetimer = dodgecooldown;
+        }
+        Debug.Log("dodgeinput");
+    }
     bool IsGrounded()  
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, groundLayer);
@@ -369,17 +381,24 @@ public class Player : MonoBehaviour
     {
         if (!invulnaribilite)
         {
-            health -= amount;
-            healthtext.text = "Player hp : " + health.ToString();
-            //animation degats sur un autre calque d'animation 
-            print("hited");
-            animator.SetTrigger("hit");
+            if (dodge == false) { 
+                health -= amount;
+                healthtext.text = "Player hp : " + health.ToString();
+                //animation degats sur un autre calque d'animation 
+                print("hited");
+                animator.SetTrigger("hit");
 
             if (health <= 0f)
             {
                 Die();
             }
-        }
+            }
+            else
+            {
+            //dodge effect
+                Debug.Log("dodged bullet");
+            }
+    }
 
     }
 
@@ -579,7 +598,14 @@ public class Player : MonoBehaviour
         //sert dans l'animation (glorykill)
         invulnaribilite = false;
     }
-
+    public void Startdodge()
+    {
+        dodge = true;
+    }
+    public void Enddodge()
+    {
+        dodge = false;
+    }
     public void Bruitdepas()
     {
         //sert dans l'animation (run)
