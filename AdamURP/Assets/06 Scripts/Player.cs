@@ -21,9 +21,9 @@ public class Player : MonoBehaviour
     private Ennemy ennemyreached;
 
 
-    public bool dodge=false;
-    public float dodgecooldown = 1;
-    public float dodgetimer; //go passer private apres le test
+    public bool dash=false;
+    public float dashcooldown = 1;
+    public float dashtimer; //go passer private apres le test
 
     public float cacpush = 10f;
     public float jumpForce = 20f;
@@ -108,9 +108,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (dodgetimer > 0)
+        if (dashtimer > 0)
         {
-            dodgetimer = dodgetimer - Time.deltaTime;
+            dashtimer = dashtimer - Time.deltaTime;
         }
    
         Aim();
@@ -359,10 +359,10 @@ public class Player : MonoBehaviour
     {
        
        
-        if (dodgetimer <= 0)
+        if (dashtimer <= 0)
         {
             animator.SetTrigger("dodge");
-            dodgetimer = dodgecooldown;
+            dashtimer = dashcooldown;
         }
         Debug.Log("dodgeinput");
     }
@@ -381,7 +381,7 @@ public class Player : MonoBehaviour
     {
         if (!invulnaribilite)
         {
-            if (dodge == false) { 
+            if (dash == false) { 
                 health -= amount;
                 healthtext.text = "Player hp : " + health.ToString();
                 //animation degats sur un autre calque d'animation 
@@ -600,11 +600,11 @@ public class Player : MonoBehaviour
     }
     public void Startdodge()
     {
-        dodge = true;
+        dash = true;
     }
     public void Enddodge()
     {
-        dodge = false;
+        dash = false;
     }
     public void Bruitdepas()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyRangeFighter : MonoBehaviour
+public class Ennemy_lazerfighter : MonoBehaviour
 {
     public bool canAttack = true;
     public bool canMove = true;
@@ -15,12 +15,13 @@ public class EnnemyRangeFighter : MonoBehaviour
     public float knockbackforce = 5;
     public float livegivedback = 10;
 
+    public LineRenderer lazer;
 
-
+ 
 
 
     //tire
-    public bool fireing = false;
+    public bool startedtoaim=false;
     public float précision = 3;
     public bool insight = false;
     public GameObject projectile;
@@ -30,6 +31,8 @@ public class EnnemyRangeFighter : MonoBehaviour
     public float firerate = 1;
     [SerializeField]
     public LayerMask ingnorelayer;
+
+
 
     //faceplayer
     public bool lookplayer = true;
@@ -45,7 +48,7 @@ public class EnnemyRangeFighter : MonoBehaviour
     void Start()
     {
         ingnorelayer = ~ingnorelayer;
-       
+        //  originalrotation = new Vector3(bassin.transform.rotation.eulerAngles.x, bassin.transform.rotation.eulerAngles.y, bassin.transform.rotation.eulerAngles.z);
         rb = GetComponent<Rigidbody>();
         lb = FindObjectOfType<Library>();
 
@@ -55,7 +58,7 @@ public class EnnemyRangeFighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
         //regarde le joueur
         if (lookplayer == true)
         {
@@ -65,7 +68,7 @@ public class EnnemyRangeFighter : MonoBehaviour
             gyroscope.transform.rotation = Quaternion.Slerp(gyroscope.transform.rotation, rotation, Time.deltaTime * précision);
 
 
-           
+         
 
             if (lb.cibleplayer.transform.position.x > this.transform.position.x)
             {
@@ -91,10 +94,17 @@ public class EnnemyRangeFighter : MonoBehaviour
 
         }
 
+
+
         RaycastHit hit;
+      
 
         if (Physics.Raycast(Cannondirection.position, -Cannondirection.right, out hit, attackRange, ingnorelayer))
         {
+           
+            lazer.SetPosition(0, Cannondirection.position);
+            lazer.SetPosition(1, hit.point);
+     
 
 
             if (hit.collider.gameObject.tag == "Player")
@@ -114,33 +124,23 @@ public class EnnemyRangeFighter : MonoBehaviour
 
         if (insight)
         {
-            if (canAttack)
-            {
-                
-                fireing = true;
-                Firecheck();
-                
-            }
-
+            animator.SetTrigger("fire");
+            startedtoaim = true;
         }
         else
         {
-            if (fireing == true)
+            animator.SetTrigger("stopfire");
+            if (startedtoaim==true)
             {
-                animator.SetTrigger("stop");
+                animator.SetTrigger("stopfire");
+                startedtoaim = false;
             }
+
         }
 
 
     }
-    public void Firecheck()
-    {
-        if (canshoot)
-        {
-           
-            animator.SetTrigger("fire");
-        }
-    }
+
     public void Fire()
     {
         //TO DO la balle part toujours en direction du joueur
@@ -162,5 +162,6 @@ public class EnnemyRangeFighter : MonoBehaviour
             this.transform.localPosition = new Vector3(1f, 0.3f, 0f);
         }
     }
-  
+
 }
+
