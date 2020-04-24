@@ -18,16 +18,26 @@ public class EnnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.GetComponent<Player>() != null)
         {
-            Player player = other.GetComponent<Player>();
-            player.TakeDamage(damage);
-            Vector3 pushdirection = transform.position - other.transform.position;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * -knockbackforce);
            
+            Player player = other.GetComponent<Player>();
+
+            if (player.dash == false)
+            {
+                player.TakeDamage(damage);
+                Vector3 pushdirection = transform.position - other.transform.position;
+                other.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * -knockbackforce);
+                Die();
+            }
+        }
+        else
+        {
+            Die();
         }
 
-        Die();
+
     }
 
 

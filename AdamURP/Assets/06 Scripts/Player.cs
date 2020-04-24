@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public Library lb;
     public UImanager uImanager;
     public GameObject bulletPrefab;
     public float rof;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     public float dashcooldown = 1;
     public float dashtimer; //go passer private apres le test
 
-    public float cacpush = 10f;
+    public float dodgeforce = 10f;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -675,10 +676,37 @@ public class Player : MonoBehaviour
                 animator.SetFloat("weapontype",1);
                 //TO DO changer le model de l'arme
                 break;
+            case 2:
+                armeadam.SetActive(true);
+                animator.SetFloat("weapontype",2);
+                //TO DO changer le model de l'arme
+                break;
         }
         Debug.Log("change weapon check");
   
      
+    }
+    private void Changeweaponbullet()
+    {
+        switch (weapontype)
+        {
+            case 0:
+                armeadam.SetActive(false);
+                animator.SetFloat("weapontype", 0);
+
+                break;
+            case 1:
+                armeadam.SetActive(true);
+                animator.SetFloat("weapontype", 1);
+                bulletPrefab = lb.bulletplayertype1;
+                break;
+            case 2:
+                armeadam.SetActive(true);
+                animator.SetFloat("weapontype", 2);
+                bulletPrefab = lb.bulletplayertype2;
+                break;
+        }
+        Debug.Log("change bullet check");
     }
 
     private void OnEnable()
@@ -694,11 +722,11 @@ public class Player : MonoBehaviour
     {
         if (faceright)
         {
-            rb.AddForce(Vector3.right * cacpush, ForceMode.Impulse);
+            rb.AddForce(Vector3.right * dodgeforce, ForceMode.Impulse);
         }
         else
         {
-            rb.AddForce(Vector3.left * cacpush, ForceMode.Impulse);
+            rb.AddForce(Vector3.left * dodgeforce, ForceMode.Impulse);
         }
     }
     public void Checkautomaticfire()//utile quand l'arme est automatique,check si il bouton est toujours appuyé et relance l'animation de tire.

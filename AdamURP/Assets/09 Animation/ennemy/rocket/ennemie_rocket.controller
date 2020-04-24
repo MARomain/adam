@@ -17,7 +17,7 @@ AnimatorStateMachine:
     m_Position: {x: -20, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8412586560244088761}
-    m_Position: {x: 263.738, y: 138.36978, z: 0}
+    m_Position: {x: 420, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -396,7 +396,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: firerate
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 2
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}

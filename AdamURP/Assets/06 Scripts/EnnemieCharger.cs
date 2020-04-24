@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnnemieCharger : MonoBehaviour
 {
+    public bool canJump = true;
     public bool canAttack = true;
     public bool canMove = true;
     public Animator animator;
@@ -16,7 +17,7 @@ public class EnnemieCharger : MonoBehaviour
 
     public int weapontype = 0;
 
-
+    public bool attacking = false;
     public Rigidbody rb;
     private bool faceright=false;
     private float distancefromplayer = 0;
@@ -43,11 +44,21 @@ public class EnnemieCharger : MonoBehaviour
             if (distancefromplayer < reach)
             {
                 Attack();
+                animator.SetBool("run", false);
             }
             else
             {
-                Moving();
+                if (attacking == false)
+                {
+                    Moving();
+                    animator.SetBool("run", true);
+                }
+              
             }
+        }
+        else
+        {
+            animator.SetBool("run", false);
         }
     }
    public void Moving()
@@ -76,8 +87,25 @@ public class EnnemieCharger : MonoBehaviour
     }
     public void Attack()
     {
-        lb.player.gameObject.GetComponent<Player>().TakeDamage(dammage);
-        Vector3 pushdirection = transform.position - lb.player.transform.position;
-        lb.player.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * knockback);
+        animator.SetTrigger("attack");
+
+    }
+    public void Damage()
+    {
+        if (distancefromplayer < reach)
+        {
+            lb.player.gameObject.GetComponent<Player>().TakeDamage(dammage);
+            Vector3 pushdirection = transform.position - lb.player.transform.position;
+            lb.player.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * knockback);
+        }
+     
+    }
+    public void Attackingtrue()
+    {
+        attacking = true;
+    }
+    public void Attackingfalse()
+    {
+        attacking = false;
     }
 }
