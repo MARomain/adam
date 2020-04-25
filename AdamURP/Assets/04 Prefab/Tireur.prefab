@@ -937,12 +937,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7188814884926725398}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43878e6784e4d5c41ab8a3bd1e0629ae, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2586803, y: 1.9517679, z: 1}
-  m_Center: {x: -0.45052052, y: 0.8488302, z: 0}
+  m_Size: {x: 0.604826, y: 1.9517679, z: 1}
+  m_Center: {x: -0.31120872, y: 0.8488302, z: 0}
 --- !u!95 &7188814884926725396
 Animator:
   serializedVersion: 3
@@ -982,6 +982,7 @@ MonoBehaviour:
   attackRange: 9
   knockbackforce: 5
   livegivedback: 10
+  fireing: 0
   "pr\xE9cision": 3
   insight: 0
   projectile: {fileID: 2057420624986835056, guid: 5962bf4845ef9a848963910a8afbcc5e,

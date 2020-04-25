@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 8633278094587057273}
   - component: {fileID: 8633278094587057276}
   m_Layer: 11
-  m_Name: Ennemy close combat
+  m_Name: Chargeur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8633278094587057275}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 43878e6784e4d5c41ab8a3bd1e0629ae, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5dff302eef64fb418923517a88bc620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canJump: 1
   canAttack: 1
   canMove: 1
   animator: {fileID: 8633278094587057273}
@@ -408,6 +409,7 @@ MonoBehaviour:
   reach: 1.2
   knockback: -100
   weapontype: 1
+  attacking: 0
   rb: {fileID: 0}
   target: {fileID: 0}
   lb: {fileID: 0}

@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     public Library lb;
     public UImanager uImanager;
-    public GameObject bulletPrefab;
     public float rof;
 
 
@@ -26,6 +25,7 @@ public class Player : MonoBehaviour
     public float dashcooldown = 1;
     public float dashtimer; //go passer private apres le test
 
+
     public float dodgeforce = 10f;
     public float jumpForce = 20f;
     public float fallMultiplier = 2.5f;
@@ -42,11 +42,13 @@ public class Player : MonoBehaviour
     //WEAPON 1 STAT C EST VRAIMENT CACA LE CODE
     public int weaponmaxammo = 10;
     public int ammoleft = 0;
+    public bool shootinputpressed = false;
 
     public Transform canonTransform;
 
     public Rigidbody rb;
-    public GameObject armeadam;
+    public GameObject weapon1;
+    public GameObject weapon2;
     public InputMaster controls;
 
     Vector2 movementInput;
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     public AudioClip shootClip;
     public AudioClip punchClip;
     public AudioClip deathClip;
+    
 
     // Documentation
     // Pour des actions qui ne se lance qu'une fois, setup un callback qui lance une fonction associé à l'action est good
@@ -78,7 +81,7 @@ public class Player : MonoBehaviour
         // Ne permet pas de laisser le bouton appuyer pour tirer en continue
         // Quand un bouton est laissé enfoncé sa valeur ne change pas, le callback n'est donc pas update
         //callback qui éxécute Shoot() quand l'action shoot est performed
-        //controls.Player.Shoot.performed += ctx => Shoot();
+        //controls.Player.Shoot.performed += ctx => Shoot();shoot
         //controls.Player.Shoot.performed += ctx => Shoot();
 
 
@@ -97,6 +100,7 @@ public class Player : MonoBehaviour
         controls.Player.attack.performed += ctx => Attack();
         controls.Player.Shoot.performed += ctx => Shoot();
         controls.Player.Action.performed += ctx => Action();
+        controls.Player.Shoot.canceled += ctx => Shootleave();
     }
 
     private void Start()
@@ -126,46 +130,6 @@ public class Player : MonoBehaviour
       
         IsGrounded();
     }
-    /* changer par de l'anim cherche "shoot"
-    IEnumerator Shoot()
-    {
-        if (!disabledinput)
-        {
-            switch (weapontype)
-            {
-                case 0:
-
-                    break;
-                case 1:
-                    canShoot = false;
-                    GameObject go = Instantiate(bulletPrefab, canonTransform);//CHANGER LE PREFAB POUR L ARME
-
-                    //sound
-                    audioSource.PlayOneShot(shootClip);
-
-                    go.transform.SetParent(null);
-                    Destroy(go, 6f);
-                    yield return new WaitForSeconds(rof);
-                    animator.SetTrigger("shoot");
-                    canShoot = true;
-                 
-                    break;
-            }
-          
-        }
-     
-        if (ammoleft == 1)
-        {
-            weapontype = 0;
-        }
-        else
-        {
-            ammoleft = ammoleft - 1;
-        }
-
-    }*/
-
-    //problème "GetButtonDown" pour le mouvement
     void Movement()
     {
         if (!disabledinput)
@@ -204,12 +168,22 @@ public class Player : MonoBehaviour
 
     void Aim()
     {
-        //neutre
+        //netral
         if (movementInput.x == 0f && movementInput.y == 0f)
         {
-            //canonTransform.eulerAngles = Vector3.zero;
-            canonTransform.localPosition = new Vector3(canonTransform.localPosition.x, canonTransform.localPosition.y, 0f);
-            animator.SetFloat("fireaim", 0);
+            if (faceright)
+            {
+                canonTransform.eulerAngles = Vector3.zero;
+                canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+                animator.SetFloat("fireaim", 0);
+            }
+            else
+            {
+                canonTransform.eulerAngles = new Vector3(0f, 0f, 180);
+                canonTransform.localPosition = new Vector3(0.75f, 0.3f, 0f);
+                animator.SetFloat("fireaim", 0);
+            }
+
         }
 
         //droite
@@ -248,7 +222,7 @@ public class Player : MonoBehaviour
         if (movementInput.x == 0f && movementInput.y >= 0.5f)
         {
             canonTransform.eulerAngles = new Vector3(0f, 0f, 90f);
-            canonTransform.localPosition = new Vector3(0f, 1.2f, 0f);
+            canonTransform.localPosition = new Vector3(0f, 1.6f, 0f);
             animator.SetFloat("fireaim", 2);
         }
 
@@ -620,6 +594,9 @@ public class Player : MonoBehaviour
     //remplace l'enumerator 
     public void Shoot()
     {
+        animator.SetBool("shootinputpressed", true);
+        shootinputpressed = true;
+        Debug.Log(shootinputpressed); 
         if (weapontype != 0)
         {
             if (ammoleft == 1)
@@ -647,15 +624,19 @@ public class Player : MonoBehaviour
                     break;
                 case 1:
 
-                    GameObject go = Instantiate(bulletPrefab, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                    GameObject go = Instantiate(lb.bulletplayertype1, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
                     //sound
                     audioSource.PlayOneShot(shootClip);
 
                     go.transform.SetParent(null);
-                    Destroy(go, 6f);
+                    Destroy(go,4f);
                     ammoleft = ammoleft - 1;
 
+
+                    break;
+                case 2:
+                   
 
                     break;
             }
@@ -664,50 +645,29 @@ public class Player : MonoBehaviour
     }
     private void Changeweaponmodel()
     {
+        weapon1.SetActive(false);
+        weapon2.SetActive(false);
         switch (weapontype)
         {
             case 0:
-                armeadam.SetActive(false);
+
                 animator.SetFloat("weapontype", 0);
 
                 break;
             case 1:
-                armeadam.SetActive(true);
+                weapon1.SetActive(true);
                 animator.SetFloat("weapontype",1);
-                //TO DO changer le model de l'arme
                 break;
             case 2:
-                armeadam.SetActive(true);
+                weapon2.SetActive(true);
                 animator.SetFloat("weapontype",2);
-                //TO DO changer le model de l'arme
                 break;
         }
         Debug.Log("change weapon check");
   
      
     }
-    private void Changeweaponbullet()
-    {
-        switch (weapontype)
-        {
-            case 0:
-                armeadam.SetActive(false);
-                animator.SetFloat("weapontype", 0);
 
-                break;
-            case 1:
-                armeadam.SetActive(true);
-                animator.SetFloat("weapontype", 1);
-                bulletPrefab = lb.bulletplayertype1;
-                break;
-            case 2:
-                armeadam.SetActive(true);
-                animator.SetFloat("weapontype", 2);
-                bulletPrefab = lb.bulletplayertype2;
-                break;
-        }
-        Debug.Log("change bullet check");
-    }
 
     private void OnEnable()
     {
@@ -738,6 +698,30 @@ public class Player : MonoBehaviour
     public void Punchsound()
     {
         audioSource.PlayOneShot(punchClip);
+    }
+    public void Weaponchargedtrue()
+    {
+        lb.weapon2charged = true;
+    }
+    public void Shootleave()
+    {
+        animator.SetBool("shootinputpressed", false);
+        shootinputpressed = false;
+  
+        if ((weapontype == 2)&&(lb.weapon2charged==true))
+        {
+            GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
+
+            //sound
+            audioSource.PlayOneShot(shootClip);
+
+            go.transform.SetParent(null);
+            Destroy(go, 4f);
+            ammoleft = ammoleft - 1;
+            lb.weapon2charged = false;
+            lb.weapon2chargevalue = 0;
+
+        }
     }
 
 }
