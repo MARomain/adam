@@ -19,7 +19,6 @@ public class Library : MonoBehaviour
     public float weapon2chargetime = 1;
     public float weapon2chargevalue = 0;
     public bool weapon2charged=false;
-    public int weapon2damage = 1;
     public int weapon2munitions = 20;
     public GameObject bulletplayertype2;
 

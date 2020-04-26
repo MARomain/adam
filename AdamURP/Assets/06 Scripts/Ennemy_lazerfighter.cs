@@ -48,7 +48,6 @@ public class Ennemy_lazerfighter : MonoBehaviour
     void Start()
     {
         ingnorelayer = ~ingnorelayer;
-        //  originalrotation = new Vector3(bassin.transform.rotation.eulerAngles.x, bassin.transform.rotation.eulerAngles.y, bassin.transform.rotation.eulerAngles.z);
         rb = GetComponent<Rigidbody>();
         lb = FindObjectOfType<Library>();
 

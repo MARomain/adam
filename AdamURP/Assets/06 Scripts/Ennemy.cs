@@ -70,14 +70,19 @@ public class Ennemy : MonoBehaviour
         playerGO = GameObject.FindGameObjectsWithTag("Player");
         Player player;
         player = playerGO[0].GetComponent<Player>();
-        player.ammoleft = player.weaponmaxammo;
         player.Heal(livegivedback);
         EnnemyRangeFighter ERF = GetComponent<EnnemyRangeFighter>();
         if (ERF != null)
         {
             player.weapontype = ERF.weapontype;
+            player.ammoleft = lb.weapon1munitions;
         }
-
+        Ennemy_lazerfighter EZF = GetComponent<Ennemy_lazerfighter>();
+        if (EZF != null)
+        {
+            player.weapontype = EZF.weapontype;
+            player.ammoleft = lb.weapon2munitions;
+        }
 
     }
 }

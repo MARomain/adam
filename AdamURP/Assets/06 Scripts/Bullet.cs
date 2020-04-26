@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody rb; 
 
-    private void Start()
+    private void FixedUpdate()
     {
         rb.GetComponent<Rigidbody>();
         rb.velocity = transform.right * speed;

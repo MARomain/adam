@@ -549,7 +549,7 @@ public class Player : MonoBehaviour
     }
     public void Disableplayerinput()
     {
-        //sert dans l'animation (glorykill)
+
         disabledinput = true;
 
     }
@@ -559,18 +559,18 @@ public class Player : MonoBehaviour
     }
     public void Enableplayerinput()
     {
-        //sert dans l'animation (glorykill)
+
         disabledinput = false;
 
     }
     public void InvincibleON()
     {
-        //sert dans l'animation (glorykill)
+      
         invulnaribilite = true;
     }
     public void InvincibleOFF()
     {
-        //sert dans l'animation (glorykill)
+
         invulnaribilite = false;
     }
     public void Startdodge()
@@ -599,19 +599,16 @@ public class Player : MonoBehaviour
         Debug.Log(shootinputpressed); 
         if (weapontype != 0)
         {
-            if (ammoleft == 1)
-            {
-                weapontype = 0;
-                Changeweaponmodel();
-            }
-            else
-            {
                 animator.SetTrigger("shoot");
-           
-            }
         }
-
-      
+    }
+    public void Ammocheck()
+    {
+        if (ammoleft == 0)
+        {
+            weapontype = 0;
+            Changeweaponmodel();
+        }
     }
     public void Fire()
     {
@@ -632,7 +629,7 @@ public class Player : MonoBehaviour
                     go.transform.SetParent(null);
                     Destroy(go,4f);
                     ammoleft = ammoleft - 1;
-
+                    Ammocheck();
 
                     break;
                 case 2:
@@ -720,7 +717,7 @@ public class Player : MonoBehaviour
             ammoleft = ammoleft - 1;
             lb.weapon2charged = false;
             lb.weapon2chargevalue = 0;
-
+            Ammocheck();
         }
     }
 

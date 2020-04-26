@@ -10,7 +10,11 @@ public class UImanager : MonoBehaviour
     public Text ammoleft;
     public GameObject minature;
     public Animator animator;
+    public Library lb;
 
+    public Image weaponicon;
+    public Sprite weapon1M;
+    public Sprite weapon2M;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,18 +24,31 @@ public class UImanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((player.weapontype == 1)&&(player.ammoleft>=0))
+        if (player.ammoleft > 0)
         {
-           minature.SetActive(true);
-            ammoleft.text = player.ammoleft.ToString();
-            weaponmaxammo.text = player.weaponmaxammo.ToString();
+            switch (player.weapontype)
+            {
+                case 1:
+                    weaponicon.sprite = weapon1M;
+                    minature.SetActive(true);
+                    ammoleft.text = player.ammoleft.ToString();
+                    weaponmaxammo.text = lb.weapon1munitions.ToString();
+                    break;
+                case 2:
+                    weaponicon.sprite = weapon2M;
+                    minature.SetActive(true);
+                    ammoleft.text = player.ammoleft.ToString();
+                    weaponmaxammo.text = lb.weapon2munitions.ToString();
+                    break;
+            }
         }
         else
         {
-             minature.SetActive(false);
+            minature.SetActive(false);
             ammoleft.text = ("0");
             weaponmaxammo.text = ("0");
         }
+
        
     }
 }
