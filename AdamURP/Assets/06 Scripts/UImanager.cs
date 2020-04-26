@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class UImanager : MonoBehaviour
     public GameObject minature;
     public Animator animator;
     public Library lb;
+    public Text textlife;
 
     public Image weaponicon;
     public Sprite weapon1M;
@@ -22,6 +24,10 @@ public class UImanager : MonoBehaviour
     }
 
     // Update is called once per frame
+    public void HpupdateUI()
+    {
+        textlife.text = player.health.ToString();
+    }
     void Update()
     {
         if (player.ammoleft > 0)
@@ -48,7 +54,8 @@ public class UImanager : MonoBehaviour
             ammoleft.text = ("0");
             weaponmaxammo.text = ("0");
         }
-
-       
+     
     }
+
 }
+

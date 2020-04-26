@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public float maxMovementSpeed;
     public float health = 100f;
     public float maxhealth = 100f;
-    public Text healthtext;
     public float degatcoup = 1;
     private Ennemy ennemyreached;
 
@@ -75,7 +74,7 @@ public class Player : MonoBehaviour
 
         //On instancie InputMaster
         controls = new InputMaster();
-       
+
 
         // ** NE FONCTIONNE PAS ** 
         // Ne permet pas de laisser le bouton appuyer pour tirer en continue
@@ -96,19 +95,24 @@ public class Player : MonoBehaviour
         //.Player.Movement.canceled += ctx => Movement(Vector2.zero);
 
 
-        controls.Player.Jump.performed += ctx => JumpRequest();
-        controls.Player.attack.performed += ctx => Attack();
-        controls.Player.Shoot.performed += ctx => Shoot();
-        controls.Player.Action.performed += ctx => Action();
-        controls.Player.Shoot.canceled += ctx => Shootleave();
+        if (!disabledinput)
+        {
+            controls.Player.Jump.performed += ctx => JumpRequest();
+            controls.Player.attack.performed += ctx => Attack();
+            controls.Player.Shoot.performed += ctx => Shoot();
+            controls.Player.Action.performed += ctx => Action();
+            controls.Player.Shoot.canceled += ctx => Shootleave();
+        }
+
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
-        healthtext = GameObject.Find("PlayerHpText").GetComponent<Text>();
-      
+        uImanager.HpupdateUI();
+
+
     }
 
     private void Update()
@@ -358,10 +362,9 @@ public class Player : MonoBehaviour
         {
             if (dash == false) { 
                 health -= amount;
-                healthtext.text = "Player hp : " + health.ToString();
-                //animation degats sur un autre calque d'animation 
-                print("hited");
+          
                 animator.SetTrigger("hit");
+                uImanager.HpupdateUI();
 
             if (health <= 0f)
             {
@@ -379,25 +382,7 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        //death particles
-        //death sound effects
 
-        //audioSource.clip = deathClip;
-        audioSource.PlayOneShot(deathClip);
-
-        //FIX THIS LATER
-        foreach (MeshRenderer item in this.gameObject.GetComponentsInChildren<MeshRenderer>())
-        {
-            item.enabled = false;
-        }
-        foreach (Collider item in this.gameObject.GetComponentsInChildren<Collider>())
-        {
-            item.enabled = false;
-        }
-        this.rb.useGravity = false;
-
-
-        //Destroy(this.gameObject);
     }
 
     
@@ -545,7 +530,7 @@ public class Player : MonoBehaviour
         {
             health = maxhealth;
         }
-        healthtext.text = "Player hp : " + health.ToString();
+        uImanager.HpupdateUI();
     }
     public void Disableplayerinput()
     {

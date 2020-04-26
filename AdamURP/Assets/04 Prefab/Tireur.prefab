@@ -924,8 +924,8 @@ MonoBehaviour:
   canBekilled: 1
   animator: {fileID: 7188814884926725396}
   health: 3
-  glorykilllife: 3
-  livegivedback: 10
+  glorykilllife: 1
+  livegivedback: 1
   opennedtoglorykill: 0
   timetodieafterstun: 3
   rb: {fileID: 0}
@@ -981,7 +981,7 @@ MonoBehaviour:
   weapontype: 1
   attackRange: 9
   knockbackforce: 5
-  livegivedback: 10
+  livegivedback: 1
   fireing: 0
   "pr\xE9cision": 3
   insight: 0

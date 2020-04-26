@@ -442,7 +442,7 @@ MonoBehaviour:
   canBekilled: 1
   animator: {fileID: 4661589014252265650}
   health: 3
-  glorykilllife: 3
+  glorykilllife: 1
   livegivedback: 10
   opennedtoglorykill: 0
   timetodieafterstun: 3
@@ -499,9 +499,8 @@ MonoBehaviour:
   weapontype: 2
   attackRange: 10
   knockbackforce: 5
-  livegivedback: 10
+  livegivedback: 1
   lazer: {fileID: 2554252984692764161}
-  debuggameobject: {fileID: 0}
   startedtoaim: 0
   "pr\xE9cision": 23
   insight: 0
