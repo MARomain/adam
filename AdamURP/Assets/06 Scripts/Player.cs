@@ -303,7 +303,7 @@ public class Player : MonoBehaviour
         {
             jumpRequest = false;
             animator.SetTrigger("jump");
-
+          
             //rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             //rb.velocity = Vector3.up * jumpForce;
