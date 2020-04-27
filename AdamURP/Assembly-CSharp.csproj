@@ -82,6 +82,8 @@
     <Compile Include="Assets\06 Scripts\TriggerTimeline.cs" />
     <Compile Include="Assets\06 Scripts\UImanager.cs" />
     <Compile Include="Assets\06 Scripts\pike.cs" />
+    <Compile Include="Assets\11 Cinematics\Bomb.cs" />
+    <Compile Include="Assets\11 Cinematics\Helico.cs" />
     <Compile Include="Assets\InputMaster.cs" />
     <Compile Include="Assets\Outline Shader tutorial\Tutorial\Scripts\DepthNormalsFeature.cs" />
     <Compile Include="Assets\Outline Shader tutorial\Tutorial\Scripts\OutlineFeature.cs" />
