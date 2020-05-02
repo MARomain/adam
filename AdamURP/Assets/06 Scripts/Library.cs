@@ -23,4 +23,7 @@ public class Library : MonoBehaviour
     public GameObject bulletplayertype2;
 
 
+    public int weapon3munitions = 50;
+    public GameObject bulletplayertype3;
+
 }

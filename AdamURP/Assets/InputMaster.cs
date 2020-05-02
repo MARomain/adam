@@ -28,9 +28,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Shoot"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""c3bc7557-2b92-44c4-be1f-25afe7a94129"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -57,31 +57,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Feu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0b5154d-2256-4611-bdfe-f33829e7ea37"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""fdb9042a-13ae-44ba-a5d2-b9e0590c4958"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b99f8a61-9a47-46f3-b42b-ef3ec335cbed"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""4bd58069-5ab5-4396-aabc-431403cc9c09"",
@@ -95,19 +81,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""839226c9-c4ba-4c9c-b765-a07a2b4b934b"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8b4f37ac-fc00-43db-85e7-94dc158723cf"",
-                    ""path"": ""<Keyboard>/period"",
+                    ""path"": ""<Keyboard>/comma"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -360,7 +335,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2693036b-1cdc-49f0-901e-1e121f9b44a0"",
-                    ""path"": ""<Keyboard>/comma"",
+                    ""path"": ""<Keyboard>/slash"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -393,7 +368,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b5692270-834f-4128-9ae5-2748ff79490b"",
-                    ""path"": ""<Keyboard>/slash"",
+                    ""path"": ""<Keyboard>/period"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -409,6 +384,28 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dfeb28f-8c47-4d8d-9481-a08d1059c9cd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Feu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df58d933-3bf4-4285-9037-16a29387f94a"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Feu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -517,6 +514,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+        m_Player_Feu = m_Player.FindAction("Feu", throwIfNotFound: true);
         // Dev
         m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
         m_Dev_SpawnEnnemyatlocation = m_Dev.FindAction("Spawn Ennemy at location", throwIfNotFound: true);
@@ -577,6 +575,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_Feu;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -586,6 +585,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @Feu => m_Wrapper.m_Player_Feu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -610,6 +610,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Action.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 @Action.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 @Action.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
+                @Feu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFeu;
+                @Feu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFeu;
+                @Feu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFeu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -629,6 +632,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Action.started += instance.OnAction;
                 @Action.performed += instance.OnAction;
                 @Action.canceled += instance.OnAction;
+                @Feu.started += instance.OnFeu;
+                @Feu.performed += instance.OnFeu;
+                @Feu.canceled += instance.OnFeu;
             }
         }
     }
@@ -724,6 +730,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnFeu(InputAction.CallbackContext context);
     }
     public interface IDevActions
     {

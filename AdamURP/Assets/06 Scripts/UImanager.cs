@@ -13,6 +13,8 @@ public class UImanager : MonoBehaviour
     public Animator animator;
     public Library lb;
     public Text textlife;
+    public Slider sliderdash;
+    public GameObject dahsloadedimage;
 
     public Image weaponicon;
     public Sprite weapon1M;
@@ -20,7 +22,8 @@ public class UImanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sliderdash.value = player.dashtimer;
+        sliderdash.maxValue = player.dashcooldown;
     }
 
     // Update is called once per frame
@@ -54,7 +57,20 @@ public class UImanager : MonoBehaviour
             ammoleft.text = ("0");
             weaponmaxammo.text = ("0");
         }
-     
+
+
+
+
+        sliderdash.value = player.dashtimer;
+        if (player.dashtimer <=0)
+        {
+            dahsloadedimage.SetActive(true);
+        }
+        else
+        {
+            dahsloadedimage.SetActive(false);
+        }
+
     }
 
 }

@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public GameObject weapon1;
     public GameObject weapon2;
+    public GameObject weapon3;
     public InputMaster controls;
 
     Vector2 movementInput;
@@ -99,9 +100,9 @@ public class Player : MonoBehaviour
         {
             controls.Player.Jump.performed += ctx => JumpRequest();
             controls.Player.attack.performed += ctx => Attack();
-            controls.Player.Shoot.performed += ctx => Shoot();
+            controls.Player.Feu.performed += ctx => Shoot();
             controls.Player.Action.performed += ctx => Action();
-            controls.Player.Shoot.canceled += ctx => Shootleave();
+            controls.Player.Feu.canceled += ctx => Shootleave();
         }
 
     }
@@ -128,9 +129,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
-        if (!disabledinput) { 
             Jump(); 
-        }
       
         IsGrounded();
     }
@@ -325,6 +324,7 @@ public class Player : MonoBehaviour
 
         //il faut conserver la structure avec "jumprequest" pour permettre à Jump d'être éxécuter dans l'update
         //et donc que ce code puisse être lu dans l'update
+        
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
@@ -449,7 +449,7 @@ public class Player : MonoBehaviour
                     }
 
                 animator.SetTrigger("kick");
-               
+           
 
             }
             else
@@ -504,9 +504,9 @@ public class Player : MonoBehaviour
 
             }
         }
-       
 
 
+  
     }
 
 
@@ -514,6 +514,7 @@ public class Player : MonoBehaviour
     public void Attackdegat()
     {
         ennemyreached.TakeDamage(degatcoup);
+        ennemyreached = null;
     }
 
     public void Heal(float healamount)
@@ -581,7 +582,7 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("shootinputpressed", true);
         shootinputpressed = true;
-        Debug.Log(shootinputpressed); 
+ 
         if (weapontype != 0)
         {
                 animator.SetTrigger("shoot");
@@ -621,6 +622,18 @@ public class Player : MonoBehaviour
                    
 
                     break;
+                case 3:
+                    GameObject go3 = Instantiate(lb.bulletplayertype3, canonTransform);//CHANGER LE PREFAB POUR L ARME
+
+                    //sound
+                    audioSource.PlayOneShot(shootClip);
+
+                    go3.transform.SetParent(null);
+                    Destroy(go3, 4f);
+                    ammoleft = ammoleft - 1;
+                    Ammocheck();
+
+                    break;
             }
 
         }
@@ -629,6 +642,7 @@ public class Player : MonoBehaviour
     {
         weapon1.SetActive(false);
         weapon2.SetActive(false);
+        weapon3.SetActive(false);
         switch (weapontype)
         {
             case 0:
@@ -643,6 +657,10 @@ public class Player : MonoBehaviour
             case 2:
                 weapon2.SetActive(true);
                 animator.SetFloat("weapontype",2);
+                break;
+            case 3:
+                weapon3.SetActive(true);
+                animator.SetFloat("weapontype", 2);
                 break;
         }
         Debug.Log("change weapon check");

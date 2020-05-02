@@ -7,11 +7,13 @@ public class EnnemyBullet : MonoBehaviour
     public float damage;
     public float speed = 20f;
     public float knockbackforce = 0;
-
-    public Rigidbody rb; 
+    public float dodgeregen = 0.4f;
+    public Rigidbody rb;
+    public Animator animator;
 
     private void Start()
     {
+    
         rb.GetComponent<Rigidbody>();
         rb.velocity = -transform.right * speed;
     }
@@ -30,6 +32,13 @@ public class EnnemyBullet : MonoBehaviour
                 Vector3 pushdirection = transform.position - other.transform.position;
                 other.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * -knockbackforce);
                 Die();
+            }
+            else
+            {
+                //le joueur esquive
+                player.dashtimer = player.dashtimer - dodgeregen;
+                animator.SetTrigger("regen");
+                Debug.Log("rengen timer dodge");
             }
         }
         else
