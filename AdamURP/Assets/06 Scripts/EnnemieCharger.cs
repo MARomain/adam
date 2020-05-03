@@ -37,6 +37,7 @@ public class EnnemieCharger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         distancefromplayer= Vector3.Distance(lb.cibleplayer.transform.position, transform.position);
         if (distancefromplayer < distancetocharge)
         {
@@ -63,6 +64,7 @@ public class EnnemieCharger : MonoBehaviour
     }
    public void Moving()
     {
+        if (canMove) { 
         if (this.transform.position.x > lb.player.transform.position.x)
         {
             //joueur a droite
@@ -83,6 +85,7 @@ public class EnnemieCharger : MonoBehaviour
                 this.transform.eulerAngles = new Vector3(0, -180, 0);
                 faceright = false;
             }
+        }
         }
     }
     public void Attack()

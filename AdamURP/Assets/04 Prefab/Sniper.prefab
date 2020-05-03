@@ -421,7 +421,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 111
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBekilled: 1
   animator: {fileID: 4661589014252265650}
-  health: 3
+  health: 4
   glorykilllife: 1
   livegivedback: 10
   opennedtoglorykill: 0
@@ -492,6 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90145577bb26fca46b2032acb609e072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAim: 1
   canAttack: 1
   canMove: 1
   canBekilled: 1

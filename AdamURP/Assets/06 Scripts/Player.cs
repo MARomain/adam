@@ -645,7 +645,7 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 weapon3.SetActive(true);
-                animator.SetFloat("weapontype", 2);
+                animator.SetFloat("weapontype", 3);
                 break;
         }
         Debug.Log("change weapon check");

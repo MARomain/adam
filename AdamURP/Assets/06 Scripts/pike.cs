@@ -10,18 +10,22 @@ public class pike : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("bump");
-/*
-        if (collision.gameObject.GetComponent<Player>().faceright == false)
+        /*
+                if (collision.gameObject.GetComponent<Player>().faceright == false)
+                {
+                    collision.gameObject.GetComponent<Rigidbody>().AddForce(2650,3,0);
+                }
+                else
+                {
+                    collision.gameObject.GetComponent<Rigidbody>().AddForce(-2650, 3, 0);
+                }
+                */
+        if (collision.gameObject.tag == ("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(2650,3,0);
+            collision.gameObject.GetComponent<Player>().TakeDamage(damageammout);
+            Vector3 pushdirection = transform.position - collision.transform.position;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * force);
         }
-        else
-        {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(-2650, 3, 0);
-        }
-        */
-        collision.gameObject.GetComponent<Player>().TakeDamage(damageammout);
-        Vector3 pushdirection = transform.position - collision.transform.position;
-        collision.gameObject.GetComponent<Rigidbody>().AddForce(pushdirection.normalized * force);
+       
     }
 }

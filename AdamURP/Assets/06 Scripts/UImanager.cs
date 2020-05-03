@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +19,7 @@ public class UImanager : MonoBehaviour
     public Image weaponicon;
     public Sprite weapon1M;
     public Sprite weapon2M;
+    public Sprite weapon3M;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +49,12 @@ public class UImanager : MonoBehaviour
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
                     weaponmaxammo.text = lb.weapon2munitions.ToString();
+                    break;
+                case 3:
+                    weaponicon.sprite = weapon3M;
+                    minature.SetActive(true);
+                    ammoleft.text = player.ammoleft.ToString();
+                    weaponmaxammo.text = lb.weapon3munitions.ToString();
                     break;
             }
         }
