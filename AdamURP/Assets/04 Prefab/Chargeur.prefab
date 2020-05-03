@@ -403,10 +403,10 @@ MonoBehaviour:
   canAttack: 1
   canMove: 1
   animator: {fileID: 8633278094587057273}
-  dammage: 0
-  speed: 1.5
+  dammage: 1
+  speed: 3
   distancetocharge: 7
-  reach: 1.2
+  reach: 1.7
   knockback: -100
   weapontype: 1
   attacking: 0

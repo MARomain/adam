@@ -62,8 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBekilled: 1
   animator: {fileID: 873706091}
-  health: 3
-  glorykilllife: 1
+  health: 2
+  glorykilllife: -1
   livegivedback: 0
   opennedtoglorykill: 0
   timetodieafterstun: 3

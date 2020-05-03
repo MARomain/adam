@@ -84,7 +84,37 @@ PrefabInstance:
     - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
       propertyPath: movementSpeed
-      value: 2000
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: maxMovementSpeed
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: maxhealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: dashcooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: dodgeforce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: jumpForce
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1962203984455306607, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
