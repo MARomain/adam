@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UImanager : MonoBehaviour
@@ -15,7 +16,7 @@ public class UImanager : MonoBehaviour
     public Text textlife;
     public Slider sliderdash;
     public GameObject dahsloadedimage;
-
+    public GameObject deathscreen;
     public Image weaponicon;
     public Sprite weapon1M;
     public Sprite weapon2M;
@@ -71,6 +72,11 @@ public class UImanager : MonoBehaviour
             dahsloadedimage.SetActive(false);
         }
 
+    }
+    public void Reloadscene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
 }

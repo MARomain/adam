@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -52,7 +54,8 @@ public class Player : MonoBehaviour
     public InputMaster controls;
 
     Vector2 movementInput;
-
+    public CinemachineVirtualCamera CVC;
+    private CinemachineBasicMultiChannelPerlin CBMP;
     public AudioSource audioSource;
     public AudioClip footstepClip;
     public AudioClip jumpClip;
@@ -72,29 +75,8 @@ public class Player : MonoBehaviour
         
     private void Awake()
     {
-
-        //On instancie InputMaster
+        CBMP = CVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         controls = new InputMaster();
-
-
-        // ** NE FONCTIONNE PAS ** 
-        // Ne permet pas de laisser le bouton appuyer pour tirer en continue
-        // Quand un bouton est laissé enfoncé sa valeur ne change pas, le callback n'est donc pas update
-        //callback qui éxécute Shoot() quand l'action shoot est performed
-        //controls.Player.Shoot.performed += ctx => Shoot();shoot
-        //controls.Player.Shoot.performed += ctx => Shoot();
-
-
-        // ** NE FONCTIONNE PAS ** 
-        // InputAction.performed n'est appelé que quand une valeur change. 
-        // SI le joueur maintient la touche de déplacement (ou le stick) la valeur ne change pas et donc le callback n'est pas émis 
-        // On perd donc l'information et on ne peut pas avoir les données sur les inputs continuellement
-        // Utilisation de controls.Player.Movement.ReadValue<Vector2>(); à la place
-
-        //callback qui éxécute Movement() quand l'action Movement est performed et récupère la valeur de Movement et la passe dans le paramètre de la fonction Movement()
-        //controls.Player.Movement.performed += ctx => Movement(ctx.ReadValue<Vector2>());
-        //.Player.Movement.canceled += ctx => Movement(Vector2.zero);
-
 
         if (!disabledinput)
         {
@@ -382,7 +364,10 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-
+        disabledinput = true;
+        animator.SetTrigger("die");
+        Time.timeScale = 0.1f;
+        uImanager.deathscreen.SetActive(true);
     }
 
     
@@ -723,5 +708,31 @@ public class Player : MonoBehaviour
             Ammocheck();
         }
     }
+    public void ShakeDamage()
+    {
+        CBMP.m_AmplitudeGain = 3;
+        CBMP.m_FrequencyGain = 3;
+    }
+    public void ShakeHeavyfire()
+    {
+        CBMP.m_AmplitudeGain = 1.8f;
+        CBMP.m_FrequencyGain = 1;
+    }
+    public void Shakefire()
+    {
+        CBMP.m_AmplitudeGain = 1.4f;
+        CBMP.m_FrequencyGain = 1;
+    }
+    public void ShakeKick()
+    {
+        CBMP.m_AmplitudeGain = 2;
+        CBMP.m_FrequencyGain = 1;
+    }
+    public void ShakeStop()
+    {
+        CBMP.m_AmplitudeGain = 0;
+        CBMP.m_FrequencyGain = 0;
+    }
+
 
 }

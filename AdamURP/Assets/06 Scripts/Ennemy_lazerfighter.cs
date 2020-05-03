@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ennemy_lazerfighter : MonoBehaviour
 {
+    public bool canAim = true;
     public bool canAttack = true;
     public bool canMove = true;
     public bool canBekilled = true;
