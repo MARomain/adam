@@ -405,8 +405,8 @@ MonoBehaviour:
   animator: {fileID: 8633278094587057273}
   dammage: 1
   speed: 3
-  distancetocharge: 7
-  reach: 1.7
+  distancetocharge: 13
+  reach: 1.6
   knockback: -100
   weapontype: 1
   attacking: 0

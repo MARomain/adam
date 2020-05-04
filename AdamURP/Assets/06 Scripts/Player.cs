@@ -60,11 +60,13 @@ public class Player : MonoBehaviour
     public AudioClip footstepClip;
     public AudioClip jumpClip;
     public AudioClip fallClip;
-    public AudioClip shootClip;
+
     public AudioClip punchClip;
     public AudioClip deathClip;
-    
 
+    public AudioClip Weapon1clip;
+    public AudioClip Weapon2clip;
+    public AudioClip Weapon3clip;
     // Documentation
     // Pour des actions qui ne se lance qu'une fois, setup un callback qui lance une fonction associé à l'action est good
     // Pour une action de type continue (il faut avoir l'info à toutes les frames) on la choppe avec .ReadValue<>()
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour
 
 
 
-        
+
     private void Awake()
     {
         CBMP = CVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -595,7 +597,7 @@ public class Player : MonoBehaviour
                     GameObject go = Instantiate(lb.bulletplayertype1, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
                     //sound
-                    audioSource.PlayOneShot(shootClip);
+                    audioSource.PlayOneShot(Weapon1clip);
 
                     go.transform.SetParent(null);
                     Destroy(go,4f);
@@ -611,7 +613,7 @@ public class Player : MonoBehaviour
                     GameObject go3 = Instantiate(lb.bulletplayertype3, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
                     //sound
-                    audioSource.PlayOneShot(shootClip);
+                    audioSource.PlayOneShot(Weapon3clip);
 
                     go3.transform.SetParent(null);
                     Destroy(go3, 4f);
@@ -698,7 +700,7 @@ public class Player : MonoBehaviour
             GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
             //sound
-            audioSource.PlayOneShot(shootClip);
+            audioSource.PlayOneShot(Weapon2clip);
 
             go.transform.SetParent(null);
             Destroy(go, 4f);

@@ -40,7 +40,8 @@ public class EnnemyRangeFighter : MonoBehaviour
     private Vector3 calculaterotation;
     public Rigidbody rb;
     public Library lb;
-
+    public AudioClip FireClip;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -148,6 +149,11 @@ public class EnnemyRangeFighter : MonoBehaviour
 
 
         GameObject go = Instantiate(projectile, Cannondirection.transform.position, Cannondirection.rotation);
+       
+    }
+    public void FireSound()
+    {
+        audioSource.PlayOneShot(FireClip);
     }
     public void AimLeftRight()
     {
