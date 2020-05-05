@@ -15,8 +15,6 @@ public class EnnemieCharger : MonoBehaviour
     public float reach = 5;
     public float knockback;
 
-    public int weapontype = 0;
-
     public bool attacking = false;
     public Rigidbody rb;
     private bool faceright=false;

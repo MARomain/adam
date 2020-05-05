@@ -674,7 +674,31 @@ public class Player : MonoBehaviour
     {
         weapon2charging = true;
     }
+    public void RefillAmmo()
+    {
+        switch (weapontype)
+        {
+            case 0:
 
+                break;
+            case 1:
+     
+               weaponmaxammo = lb.weapon1munitions;
+               ammoleft = lb.weapon1munitions;
+                Debug.Log(lb.weapon1munitions.ToString());
+                break;
+            case 2:
+                weaponmaxammo = lb.weapon2munitions;
+                ammoleft = lb.weapon2munitions;
+                Debug.Log(lb.weapon2munitions.ToString());
+                break;
+            case 3:
+                weaponmaxammo = lb.weapon3munitions;
+                ammoleft = lb.weapon3munitions;
+                Debug.Log(lb.weapon3munitions.ToString());
+                break;
+        }
+    }
     public void Shootleave()
     {
         animator.SetBool("shootinputpressed", false);

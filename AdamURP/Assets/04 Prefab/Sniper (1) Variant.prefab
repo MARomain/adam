@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: livegivedback
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4661589014252265652, guid: b310cd66c18f66b4a9d9a145c677fbcc,
+        type: 3}
+      propertyPath: weapontype
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4661589014252265654, guid: b310cd66c18f66b4a9d9a145c677fbcc,
         type: 3}
       propertyPath: m_LocalPosition.x

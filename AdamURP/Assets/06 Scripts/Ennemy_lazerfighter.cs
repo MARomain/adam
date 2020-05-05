@@ -11,7 +11,6 @@ public class Ennemy_lazerfighter : MonoBehaviour
 
     public Animator animator;
 
-    public int weapontype = 1;
     public float attackRange = 3f;
     public float knockbackforce = 5;
     public float livegivedback = 10;

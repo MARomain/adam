@@ -45,19 +45,19 @@ public class UImanager : MonoBehaviour
                     weaponicon.sprite = weapon1M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = lb.weapon1munitions.ToString();
+                    weaponmaxammo.text = player.weaponmaxammo.ToString();
                     break;
                 case 2:
                     weaponicon.sprite = weapon2M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = lb.weapon2munitions.ToString();
+                    weaponmaxammo.text = player.weaponmaxammo.ToString();
                     break;
                 case 3:
                     weaponicon.sprite = weapon3M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = lb.weapon3munitions.ToString();
+                    weaponmaxammo.text = player.weaponmaxammo.ToString();
                     break;
             }
         }

@@ -16,6 +16,7 @@ public class Ennemy : MonoBehaviour
     public bool opennedtoglorykill = false;
     public float timetodieafterstun = 3;
     private float timer;
+    public int weapontype = 0;
 
 
     public Rigidbody rb;
@@ -91,23 +92,13 @@ public class Ennemy : MonoBehaviour
             {
                 player.Heal(livegivedback);
             }
- 
-
-
-
-
-            EnnemyRangeFighter ERF = GetComponent<EnnemyRangeFighter>();
-            if (ERF != null)
+            if (weapontype != 0)
             {
-                player.weapontype = ERF.weapontype;
-                player.ammoleft = lb.weapon1munitions;
+                player.weapontype = weapontype;
+                player.RefillAmmo();
             }
-            Ennemy_lazerfighter EZF = GetComponent<Ennemy_lazerfighter>();
-            if (EZF != null)
-            {
-                player.weapontype = EZF.weapontype;
-                player.ammoleft = lb.weapon2munitions;
-            }
+
+
             opennedtoglorykill = false;
         }
     }

@@ -109,10 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e18b7c20df6654429d0a496ea8fe982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 1
   speed: -1
   knockbackforce: 0
+  dodgeregen: 0.4
   rb: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1001 &2143502799612476828
 PrefabInstance:
   m_ObjectHideFlags: 0

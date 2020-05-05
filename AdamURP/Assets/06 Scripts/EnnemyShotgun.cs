@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyRangeFighter : MonoBehaviour
+public class EnnemyShotgun : MonoBehaviour
 {
     public bool canAttack = true;
     public bool canMove = true;
@@ -10,6 +10,7 @@ public class EnnemyRangeFighter : MonoBehaviour
 
     public Animator animator;
 
+    public int weapontype = 1;
     public float attackRange = 3f;
     public float knockbackforce = 5;
     public float livegivedback = 10;
@@ -45,7 +46,7 @@ public class EnnemyRangeFighter : MonoBehaviour
     void Start()
     {
         ingnorelayer = ~ingnorelayer;
-       
+
         rb = GetComponent<Rigidbody>();
         lb = FindObjectOfType<Library>();
 
@@ -65,7 +66,7 @@ public class EnnemyRangeFighter : MonoBehaviour
             gyroscope.transform.rotation = Quaternion.Slerp(gyroscope.transform.rotation, rotation, Time.deltaTime * précision);
 
 
-           
+
 
             if (lb.cibleplayer.transform.position.x > this.transform.position.x)
             {
@@ -116,10 +117,10 @@ public class EnnemyRangeFighter : MonoBehaviour
         {
             if (canAttack)
             {
-                
+
                 fireing = true;
                 Firecheck();
-                
+
             }
 
         }
@@ -137,7 +138,7 @@ public class EnnemyRangeFighter : MonoBehaviour
     {
         if (canshoot)
         {
-           
+
             animator.SetTrigger("fire");
         }
     }
@@ -148,7 +149,7 @@ public class EnnemyRangeFighter : MonoBehaviour
 
 
         GameObject go = Instantiate(projectile, Cannondirection.transform.position, Cannondirection.rotation);
-       
+
     }
     public void FireSound()
     {
@@ -167,5 +168,5 @@ public class EnnemyRangeFighter : MonoBehaviour
             this.transform.localPosition = new Vector3(1f, 0.3f, 0f);
         }
     }
-  
+
 }

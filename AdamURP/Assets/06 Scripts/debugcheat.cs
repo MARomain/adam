@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class debugcheat : MonoBehaviour
 {
-    public Camera camera;
+    public Camera cammain;
+    public Camera cambonus;
+    public bool bonuscam = false;
     public Player player;
     public GameObject Chargeur;
     public GameObject Range;
@@ -26,6 +28,10 @@ public class debugcheat : MonoBehaviour
             SpawnCharger();
             Debug.Log("inputed spawn");
         }
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            Bonuscam();
+        }
     }
     public void Fullammo()
     {
@@ -33,16 +39,27 @@ public class debugcheat : MonoBehaviour
     }
     public void SpawnCharger()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
+        Vector3 mousePositionInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Instantiate(Chargeur, new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, 0), Quaternion.identity);
+        Debug.Log("spawncharger");
+    }
+    public void Bonuscam()
+    {
+        if (!bonuscam)
         {
-            Vector3 pose = hit.point;
-            GameObject Chargeurclone = Instantiate(Chargeur, new Vector3(pose.x,pose.y,0f), new Quaternion());
-            Debug.Log("spawncharger");
+            cammain.targetDisplay =3;
+            cambonus.targetDisplay = 0;
+            bonuscam = true;
+            Debug.Log("camnbonus");
         }
-
-
+        else
+        {
+            cammain.targetDisplay = 0;
+            cambonus.targetDisplay = 3;
+            bonuscam = false;
+            Debug.Log("camnormal");
+        }
     }
 
 
