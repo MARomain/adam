@@ -20,6 +20,9 @@ public class UImanager : MonoBehaviour
     public Sprite weapon1M;
     public Sprite weapon2M;
     public Sprite weapon3M;
+
+    public AudioSource audioSource;
+    public AudioClip healclip;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +86,10 @@ public class UImanager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
+    }
+    public void Healsound()
+    {
+        audioSource.PlayOneShot(healclip);
     }
 
 }

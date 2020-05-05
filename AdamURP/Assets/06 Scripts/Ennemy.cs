@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,6 +28,15 @@ public class Ennemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lb = FindObjectOfType<Library>();
 
+
+        if (health <= glorykilllife)
+        {
+            opennedtoglorykill = true;
+            animator.SetTrigger("stun");
+        }
+
+
+
     }
 
     // Update is called once per frame
@@ -40,7 +50,7 @@ public class Ennemy : MonoBehaviour
 
         if (health <= 0f)
         {
-            animator.SetTrigger("die");
+            animator.SetBool("die",true);
 
         }
         else if (health <= glorykilllife)
@@ -63,26 +73,42 @@ public class Ennemy : MonoBehaviour
 
     public void Glorykill()
     {
-        //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
-        Debug.Log("Glorykill");
-        animator.SetTrigger("glorykill");
-        GameObject[] playerGO;
-        playerGO = GameObject.FindGameObjectsWithTag("Player");
-        Player player;
-        player = playerGO[0].GetComponent<Player>();
-        player.Heal(livegivedback);
-        EnnemyRangeFighter ERF = GetComponent<EnnemyRangeFighter>();
-        if (ERF != null)
+        if (opennedtoglorykill)
         {
-            player.weapontype = ERF.weapontype;
-            player.ammoleft = lb.weapon1munitions;
-        }
-        Ennemy_lazerfighter EZF = GetComponent<Ennemy_lazerfighter>();
-        if (EZF != null)
-        {
-            player.weapontype = EZF.weapontype;
-            player.ammoleft = lb.weapon2munitions;
-        }
+            //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
+            Debug.Log("Glorykill");
+            animator.SetTrigger("glorykill");
 
+
+
+            GameObject[] playerGO;
+            playerGO = GameObject.FindGameObjectsWithTag("Player");
+            Player player;
+            player = playerGO[0].GetComponent<Player>();
+
+
+            if ((player.health < player.maxhealth)&&(livegivedback>0))
+            {
+                player.Heal(livegivedback);
+            }
+ 
+
+
+
+
+            EnnemyRangeFighter ERF = GetComponent<EnnemyRangeFighter>();
+            if (ERF != null)
+            {
+                player.weapontype = ERF.weapontype;
+                player.ammoleft = lb.weapon1munitions;
+            }
+            Ennemy_lazerfighter EZF = GetComponent<Ennemy_lazerfighter>();
+            if (EZF != null)
+            {
+                player.weapontype = EZF.weapontype;
+                player.ammoleft = lb.weapon2munitions;
+            }
+            opennedtoglorykill = false;
+        }
     }
 }

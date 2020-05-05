@@ -51,8 +51,16 @@ public class EnnemieCharger : MonoBehaviour
             {
                 if (attacking == false)
                 {
-                    Moving();
-                    animator.SetBool("run", true);
+                    if (lb.player.transform.position.y <= (this.transform.position.y +1.4))
+                    {
+                        Moving();
+                        animator.SetBool("run", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("run", false);
+                    }
+
                 }
               
             }
@@ -62,37 +70,50 @@ public class EnnemieCharger : MonoBehaviour
             animator.SetBool("run", false);
         }
     }
+
+
+
+
    public void Moving()
     {
-        if (canMove) { 
-        if (this.transform.position.x > lb.player.transform.position.x)
-        {
-            //joueur a droite
-            rb.velocity=(new Vector2(-speed, rb.velocity.y));
-            if (!faceright)
-            {
-                this.transform.eulerAngles = new Vector3(0, 0, 0);
-                faceright = true;
-            }
-        }
-        else
-        {
-            rb.velocity = (new Vector2(speed, rb.velocity.y));
-        
-        
-            if (faceright)
-            {
-                this.transform.eulerAngles = new Vector3(0, -180, 0);
-                faceright = false;
-            }
-        }
+        if (canMove) {
+       
+                if (this.transform.position.x > lb.player.transform.position.x)
+                {
+                    //joueur a droite
+                    rb.velocity = (new Vector2(-speed, rb.velocity.y));
+                    if (!faceright)
+                    {
+                        this.transform.eulerAngles = new Vector3(0, 0, 0);
+                        faceright = true;
+                    }
+                }
+                else
+                {
+                    rb.velocity = (new Vector2(speed, rb.velocity.y));
+
+
+                    if (faceright)
+                    {
+                        this.transform.eulerAngles = new Vector3(0, -180, 0);
+                        faceright = false;
+                    }
+                }
+            
+
         }
     }
+
+
     public void Attack()
     {
         animator.SetTrigger("attack");
 
     }
+
+
+
+
     public void Damage()
     {
         if (distancefromplayer < reach)
@@ -103,6 +124,9 @@ public class EnnemieCharger : MonoBehaviour
         }
      
     }
+
+
+
     public void Attackingtrue()
     {
         attacking = true;

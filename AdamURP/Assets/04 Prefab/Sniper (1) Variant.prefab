@@ -120,11 +120,16 @@ PrefabInstance:
     - target: {fileID: 4661589014252265648, guid: b310cd66c18f66b4a9d9a145c677fbcc,
         type: 3}
       propertyPath: m_Name
-      value: Sniper (1)
+      value: Sniper (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4661589014252265652, guid: b310cd66c18f66b4a9d9a145c677fbcc,
         type: 3}
       propertyPath: opennedtoglorykill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661589014252265652, guid: b310cd66c18f66b4a9d9a145c677fbcc,
+        type: 3}
+      propertyPath: livegivedback
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4661589014252265654, guid: b310cd66c18f66b4a9d9a145c677fbcc,
@@ -192,6 +197,16 @@ PrefabInstance:
       propertyPath: lb
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4661589014252265655, guid: b310cd66c18f66b4a9d9a145c677fbcc,
+        type: 3}
+      propertyPath: LoadClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b6470cea843c6845a0d1c91d172a1a5, type: 3}
+    - target: {fileID: 4661589014252265655, guid: b310cd66c18f66b4a9d9a145c677fbcc,
+        type: 3}
+      propertyPath: ClingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 709e5ddfc9c79c946934464fd4fb2734, type: 3}
     - target: {fileID: 4661589014343143596, guid: b310cd66c18f66b4a9d9a145c677fbcc,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -867,10 +867,10 @@ GameObject:
   - component: {fileID: 7188814884926725392}
   - component: {fileID: 7188814884926725395}
   - component: {fileID: 7188814884926725394}
-  - component: {fileID: 7188814884926725397}
   - component: {fileID: 7188814884926725396}
   - component: {fileID: 7188814884926725399}
   - component: {fileID: 5082271185670314976}
+  - component: {fileID: 8969607745169403327}
   m_Layer: 0
   m_Name: Tireur
   m_TagString: Untagged
@@ -926,24 +926,11 @@ MonoBehaviour:
   animator: {fileID: 7188814884926725396}
   health: 3
   glorykilllife: 1
-  livegivedback: 1
+  livegivedback: 0
   opennedtoglorykill: 0
   timetodieafterstun: 3
   rb: {fileID: 0}
   lb: {fileID: 0}
---- !u!65 &7188814884926725397
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7188814884926725398}
-  m_Material: {fileID: 13400000, guid: 43878e6784e4d5c41ab8a3bd1e0629ae, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.604826, y: 1.9517679, z: 1}
-  m_Center: {x: -0.31120872, y: 0.8488302, z: 0}
 --- !u!95 &7188814884926725396
 Animator:
   serializedVersion: 3
@@ -982,7 +969,7 @@ MonoBehaviour:
   weapontype: 1
   attackRange: 13
   knockbackforce: 5
-  livegivedback: 1
+  livegivedback: 0
   fireing: 0
   "pr\xE9cision": 3
   insight: 0
@@ -1100,6 +1087,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &8969607745169403327
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7188814884926725398}
+  m_Material: {fileID: 13400000, guid: 39a2feea62dd00b41badbd4561130a30, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.68829155
+  m_Height: 2.1280785
+  m_Direction: 1
+  m_Center: {x: -0.18829155, y: 0.85284376, z: 0}
 --- !u!1 &7188814885028101812
 GameObject:
   m_ObjectHideFlags: 0

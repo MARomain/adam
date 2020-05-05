@@ -131,16 +131,19 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 840, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5080335734688765529}
-    m_Position: {x: 140, y: 760, z: 0}
+    m_Position: {x: 140, y: 730, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -543313366579100457}
-    m_Position: {x: 140, y: 800, z: 0}
+    m_Position: {x: 140, y: 780, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3118367797539134810}
     m_Position: {x: 550, y: 720, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6493457712271728342}
     m_Position: {x: 540, y: 650, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 862722102340197146}
+    m_Position: {x: 575, y: 715, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1058,6 +1061,32 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 640, y: -240, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4150906149842732103}
+--- !u!1102 &862722102340197146
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: crouch
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 03faffd1220ed474789664de98674ee1, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1109 &1068301229477907882
 AnimatorTransition:
   m_ObjectHideFlags: 1

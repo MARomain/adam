@@ -45,7 +45,12 @@ public class Ennemy_lazerfighter : MonoBehaviour
     public Rigidbody rb;
     public Library lb;
 
-    // Start is called before the first frame update
+    public AudioClip LoadClip;
+    public AudioClip FireClip;
+    public AudioClip ClingClip;
+    public AudioSource audioSource;
+
+
     void Start()
     {
         ingnorelayer = ~ingnorelayer;
@@ -130,10 +135,12 @@ public class Ennemy_lazerfighter : MonoBehaviour
         else
         {
             animator.SetTrigger("stopfire");
+            audioSource.Stop();
             if (startedtoaim==true)
             {
                 animator.SetTrigger("stopfire");
                 startedtoaim = false;
+                audioSource.Stop();
             }
 
         }
@@ -161,6 +168,18 @@ public class Ennemy_lazerfighter : MonoBehaviour
             this.transform.eulerAngles = Vector3.zero;
             this.transform.localPosition = new Vector3(1f, 0.3f, 0f);
         }
+    }
+    public void Playchargesound()
+    {
+        audioSource.PlayOneShot(LoadClip);
+    }
+    public void PlayFireSound()
+    {
+        audioSource.PlayOneShot(FireClip);
+    }
+    public void PlayClingSound()
+    {
+        audioSource.PlayOneShot(ClingClip);
     }
 
 }

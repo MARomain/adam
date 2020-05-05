@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Library lb;
+    public musicmanager musicmanager;
     public UImanager uImanager;
     public float rof;
 
@@ -39,7 +40,8 @@ public class Player : MonoBehaviour
     public bool invulnaribilite = false;
     public bool disabledinput = false;
     public LayerMask groundLayer;
-
+    public bool isgrounded = true;
+    private bool punchconnect = false;
     //WEAPON 1 STAT C EST VRAIMENT CACA LE CODE
     public int weaponmaxammo = 10;
     public int ammoleft = 0;
@@ -50,20 +52,25 @@ public class Player : MonoBehaviour
     public Rigidbody rb;
     public GameObject weapon1;
     public GameObject weapon2;
+    public bool weapon2charging = false;
     public GameObject weapon3;
     public InputMaster controls;
 
     Vector2 movementInput;
     public CinemachineVirtualCamera CVC;
     private CinemachineBasicMultiChannelPerlin CBMP;
+
     public AudioSource audioSource;
     public AudioClip footstepClip;
     public AudioClip jumpClip;
     public AudioClip fallClip;
 
-    public AudioClip punchClip;
+    public AudioClip InvalidClip;
+    public AudioClip punchMissClip;
+    public AudioClip punchhitClip;
     public AudioClip deathClip;
 
+    public AudioClip Weapon2charge;
     public AudioClip Weapon1clip;
     public AudioClip Weapon2clip;
     public AudioClip Weapon3clip;
@@ -297,12 +304,14 @@ public class Player : MonoBehaviour
 
         if(IsGrounded())
         {
+            isgrounded = true;
             animator.SetBool("grounded", true);
         
             //jumpCount = 0;
         }
         else
         {
+            isgrounded = false;
             animator.SetBool("grounded", false);
         }
 
@@ -324,8 +333,16 @@ public class Player : MonoBehaviour
        
         if (dashtimer <= 0)
         {
-            animator.SetTrigger("dodge");
-            dashtimer = dashcooldown;
+            if ((weapon2charging)||(lb.weapon2charged))
+            {
+                InvalidSound();
+            }
+            else
+            {
+                animator.SetTrigger("dodge");
+                dashtimer = dashcooldown;
+            }
+
         }
         Debug.Log("dodgeinput");
     }
@@ -370,6 +387,7 @@ public class Player : MonoBehaviour
         animator.SetTrigger("die");
         Time.timeScale = 0.1f;
         uImanager.deathscreen.SetActive(true);
+        musicmanager.Dieeffectonmusic();
     }
 
     
@@ -400,37 +418,19 @@ public class Player : MonoBehaviour
                                 if (ennemyreached.opennedtoglorykill)//si il etait stun
                                 {
                                    ennemyreached.Glorykill();//glorykill;
-
-                                    //ennemy.TakeDamage(degatcoup); //retire de la vie
-
                                     animator.SetTrigger("glorykill");
                                     Changeweaponmodel();
                                 }
                                 else
                                 {
-                                   
-                                    //ennemy.TakeDamage(degatcoup); //retire de la vie
-                                
-                                   
-                                    animator.SetTrigger("kick"); 
-
-                                    //Knockback
-                                    if (faceright)
-                                    {
-                                       // ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
+                                    punchconnect = true;
+                                    animator.SetTrigger("kick");
                                  
-                                    }
-                                    else
-                                    {
-                                       // ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
-                                      
-                                    }
                                 }
                             }
                         }
                         else
                         {
-                   
                             animator.SetTrigger("kick");
                         }
                     }
@@ -452,35 +452,23 @@ public class Player : MonoBehaviour
                                 ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
                                 if (ennemyreached.opennedtoglorykill)//si il etait stun
                                 {
+                                    punchconnect = true;
                                     ennemyreached.Glorykill();//glorykill;;
                                     animator.SetTrigger("glorykill");
                                     Changeweaponmodel();
+                                 
                                 }
                                 else
                                 {
-                                   
+                                    punchconnect = true;
                                     animator.SetTrigger("kick");
-                                   // ennemyreached.TakeDamage(degatcoup); //retire de la vie
-                                    
-                                  
-                                    //Knockback
-                                    if (faceright)
-                                    {
-                                       // ennemy.rb.AddForce(Vector3.right * ennemy.knockbackforce, ForceMode.Impulse);
-                                   
-                                    }
-                                    else
-                                    {
-                                       // ennemy.rb.AddForce(Vector3.left * ennemy.knockbackforce, ForceMode.Impulse);
-                                   
-                                    }
+                                
                                 }
                             }
 
                         }
                         else
                         {
-                     
                             animator.SetTrigger("kick");
                          
                         }
@@ -497,7 +485,7 @@ public class Player : MonoBehaviour
     }
 
 
-  
+
     public void Attackdegat()
     {
         ennemyreached.TakeDamage(degatcoup);
@@ -511,6 +499,7 @@ public class Player : MonoBehaviour
         health = health + healamount;
         uImanager.animator.SetTrigger("heal");
         print("heal");
+        uImanager.Healsound();
 
 
 
@@ -676,20 +665,16 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.left * dodgeforce, ForceMode.Impulse);
         }
     }
-    public void Checkautomaticfire()//utile quand l'arme est automatique,check si il bouton est toujours appuyé et relance l'animation de tire.
-    {
-        //if(input.GetKeyDown("fire")
-        //{
-        //animator.SetBool("shooting")}
-    }
-    public void Punchsound()
-    {
-        audioSource.PlayOneShot(punchClip);
-    }
     public void Weaponchargedtrue()
     {
         lb.weapon2charged = true;
+        weapon2charging = false;
     }
+    public void Weapon2chargingTrue()
+    {
+        weapon2charging = true;
+    }
+
     public void Shootleave()
     {
         animator.SetBool("shootinputpressed", false);
@@ -699,7 +684,7 @@ public class Player : MonoBehaviour
         {
             GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
-            //sound
+            Debug.Log("snipershoot");
             audioSource.PlayOneShot(Weapon2clip);
 
             go.transform.SetParent(null);
@@ -709,6 +694,11 @@ public class Player : MonoBehaviour
             lb.weapon2chargevalue = 0;
             Ammocheck();
         }
+     else if((weapontype == 2) && (weapon2charging == true))
+        {
+            Stopsound();
+        }
+        weapon2charging = false;
     }
     public void ShakeDamage()
     {
@@ -735,6 +725,27 @@ public class Player : MonoBehaviour
         CBMP.m_AmplitudeGain = 0;
         CBMP.m_FrequencyGain = 0;
     }
-
-
+    public void Punchsound()
+    {
+        if (punchconnect)
+        {
+            audioSource.PlayOneShot(punchhitClip);
+            punchconnect = false;
+        }
+        else {
+            audioSource.PlayOneShot(punchMissClip);
+        }
+    }
+    public void Chargesound()
+    {
+        audioSource.PlayOneShot(Weapon2charge);
+    }
+    public void InvalidSound()
+    {
+        audioSource.PlayOneShot(InvalidClip);
+    }
+    public void Stopsound()
+    {
+        audioSource.Stop();
+    }
 }

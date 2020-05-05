@@ -8,6 +8,7 @@ public class Spawnhotstuff : MonoBehaviour
     public float spawnrate;
     public Animator animator;
     public GameObject spawnsource;
+    public int charge = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +18,20 @@ public class Spawnhotstuff : MonoBehaviour
 
 public void SpawnObject()
     {
-        GameObject Hotobject = Instantiate(spawnobject, spawnsource.transform.position, new Quaternion());
-        Hotobject.transform.SetParent(null);
+        if (charge > 0)
+        {
+            GameObject Hotobject = Instantiate(spawnobject, spawnsource.transform.position, new Quaternion());
+            Hotobject.transform.SetParent(null);
+            charge--;
+        }
+       
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<pike>() != null)
         {
             Destroy(other.gameObject);
+            charge++;
         }
     }
 }

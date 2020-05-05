@@ -138,10 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e18b7c20df6654429d0a496ea8fe982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
   speed: 0
   knockbackforce: 7
+  dodgeregen: 0.4
   rb: {fileID: 2273309540953881749}
+  animator: {fileID: 0}
 --- !u!1 &4813492861226078349
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,18 +69,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48c052ecde3c0c47bb2fde7e0c499fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lb: {fileID: 0}
+  musicmanager: {fileID: 0}
   uImanager: {fileID: 0}
-  bulletPrefab: {fileID: 2057420624986835056, guid: 17e93cf542ee2ef4db73a8357b0bf77c,
-    type: 3}
   rof: 0.1
   weapontype: 0
   movementSpeed: 1000
   maxMovementSpeed: 2000
   health: 100
   maxhealth: 100
-  healthtext: {fileID: 0}
   degatcoup: 1
-  cacpush: 4
+  dash: 0
+  dashcooldown: 1
+  dashtimer: 0
+  dodgeforce: 24
   jumpForce: 21
   fallMultiplier: 5
   lowJumpMultiplier: 2.5
@@ -96,16 +98,22 @@ MonoBehaviour:
     m_Bits: 256
   weaponmaxammo: 10
   ammoleft: 0
+  shootinputpressed: 0
   canonTransform: {fileID: 1962203984585539813}
   rb: {fileID: 6628437771504892064}
-  armeadam: {fileID: 0}
+  weapon1: {fileID: 0}
+  weapon2: {fileID: 0}
+  weapon3: {fileID: 0}
+  CVC: {fileID: 0}
   audioSource: {fileID: 0}
   footstepClip: {fileID: 0}
   jumpClip: {fileID: 0}
   fallClip: {fileID: 0}
-  shootClip: {fileID: 0}
   punchClip: {fileID: 0}
   deathClip: {fileID: 0}
+  Weapon1clip: {fileID: 0}
+  Weapon2clip: {fileID: 0}
+  Weapon3clip: {fileID: 0}
 --- !u!54 &6628437771504892064
 Rigidbody:
   m_ObjectHideFlags: 0
