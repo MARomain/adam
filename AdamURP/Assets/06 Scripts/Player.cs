@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
     public AudioClip footstepClip;
     public AudioClip jumpClip;
     public AudioClip fallClip;
+    public AudioClip hitClip;
 
     public AudioClip InvalidClip;
     public AudioClip punchMissClip;
@@ -73,6 +75,7 @@ public class Player : MonoBehaviour
     public AudioClip Weapon2charge;
     public AudioClip Weapon1clip;
     public AudioClip Weapon2clip;
+    public AudioClip Weapon2Readyclip;
     public AudioClip Weapon3clip;
     // Documentation
     // Pour des actions qui ne se lance qu'une fois, setup un callback qui lance une fonction associé à l'action est good
@@ -763,6 +766,18 @@ public class Player : MonoBehaviour
     public void Chargesound()
     {
         audioSource.PlayOneShot(Weapon2charge);
+    }
+    public void ChargedSound()
+    {
+        audioSource.PlayOneShot(Weapon2Readyclip);
+    }
+    public void Hitsound()
+    {
+        audioSource.PlayOneShot(hitClip);
+    }
+    public void FallSound()
+    {
+        audioSource.PlayOneShot(fallClip);
     }
     public void InvalidSound()
     {
