@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public bool dash=false;
     public float dashcooldown = 1;
     public float dashtimer; //go passer private apres le test
-
+    public bool havedash = false;
 
     public float dodgeforce = 10f;
     public float jumpForce = 20f;
@@ -48,8 +48,9 @@ public class Player : MonoBehaviour
     public int ammoleft = 0;
     public bool shootinputpressed = false;
 
-    public Transform canonTransform;
 
+    public Transform canonTransform;
+    
     public Rigidbody rb;
     public GameObject weapon1;
     public GameObject weapon2;
@@ -66,7 +67,8 @@ public class Player : MonoBehaviour
     public AudioClip jumpClip;
     public AudioClip fallClip;
     public AudioClip hitClip;
-
+    public AudioClip dashclip;
+    public AudioClip dashreadyclip;
     public AudioClip InvalidClip;
     public AudioClip punchMissClip;
     public AudioClip punchhitClip;
@@ -115,6 +117,14 @@ public class Player : MonoBehaviour
         if (dashtimer > 0)
         {
             dashtimer = dashtimer - Time.deltaTime;
+        }
+        else
+        {
+            if (havedash)
+            {
+                DashReadySound();
+                havedash = false;
+            }
         }
    
         Aim();
@@ -343,6 +353,7 @@ public class Player : MonoBehaviour
             else
             {
                 animator.SetTrigger("dodge");
+                havedash = true;
                 dashtimer = dashcooldown;
             }
 
@@ -775,6 +786,10 @@ public class Player : MonoBehaviour
     {
         audioSource.PlayOneShot(hitClip);
     }
+    public void Dashdsound()
+    {
+        audioSource.PlayOneShot(dashclip);
+    }
     public void FallSound()
     {
         audioSource.PlayOneShot(fallClip);
@@ -786,5 +801,9 @@ public class Player : MonoBehaviour
     public void Stopsound()
     {
         audioSource.Stop();
+    }
+    public void DashReadySound()
+    {
+        audioSource.PlayOneShot(dashreadyclip);
     }
 }
