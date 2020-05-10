@@ -42,6 +42,16 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: Weapon1clip
+      value: 
+      objectReference: {fileID: 8300000, guid: bd1e41c1c82cda44998285f3e76d0843, type: 3}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: glorykillClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bd7fd5116a4270048bf77dc4b0190f08, type: 3}
     - target: {fileID: 1962203984455306607, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
       propertyPath: m_LocalPosition.x

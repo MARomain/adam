@@ -931,6 +931,8 @@ MonoBehaviour:
   opennedtoglorykill: 0
   timetodieafterstun: 3
   weapontype: 1
+  glorykillClip: {fileID: 8300000, guid: bd7fd5116a4270048bf77dc4b0190f08, type: 3}
+  audioSource: {fileID: 5082271185670314976}
   rb: {fileID: 0}
   lb: {fileID: 0}
 --- !u!95 &7188814884926725396
@@ -970,7 +972,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 116
+  Priority: 90
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1100,7 +1102,7 @@ MonoBehaviour:
   originalrotation: {x: 0, y: -90, z: -90}
   rb: {fileID: 7188814884926725395}
   lb: {fileID: 0}
-  FireClip: {fileID: 8300000, guid: 41e5bc25918731d438cf6832bbef4ad4, type: 3}
+  FireClip: {fileID: 8300000, guid: bd1e41c1c82cda44998285f3e76d0843, type: 3}
   audioSource: {fileID: 5082271185670314976}
 --- !u!1 &7188814885028101812
 GameObject:

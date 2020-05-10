@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Lifetime;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,8 +18,8 @@ public class Ennemy : MonoBehaviour
     public float timetodieafterstun = 3;
     private float timer;
     public int weapontype = 0;
-
-
+    public AudioClip glorykillClip;
+    public AudioSource audioSource;
     public Rigidbody rb;
     public Library lb;
 
@@ -74,7 +75,7 @@ public class Ennemy : MonoBehaviour
 
     public void Glorykill()
     {
-        if (opennedtoglorykill)
+        if ((opennedtoglorykill)&&(health>0))
         {
             //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
             Debug.Log("Glorykill");
@@ -96,6 +97,7 @@ public class Ennemy : MonoBehaviour
             {
                 player.weapontype = weapontype;
                 player.RefillAmmo();
+                audioSource.PlayOneShot(glorykillClip);
             }
 
 

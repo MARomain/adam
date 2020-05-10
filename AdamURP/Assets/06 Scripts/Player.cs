@@ -433,6 +433,7 @@ public class Player : MonoBehaviour
                                 {
                                    ennemyreached.Glorykill();//glorykill;
                                     animator.SetTrigger("glorykill");
+                  
                                     Changeweaponmodel();
                                 }
                                 else
@@ -469,6 +470,7 @@ public class Player : MonoBehaviour
                                     punchconnect = true;
                                     ennemyreached.Glorykill();//glorykill;;
                                     animator.SetTrigger("glorykill");
+                                
                                     Changeweaponmodel();
                                  
                                 }
@@ -806,4 +808,5 @@ public class Player : MonoBehaviour
     {
         audioSource.PlayOneShot(dashreadyclip);
     }
+
 }
