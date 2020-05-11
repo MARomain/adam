@@ -85,21 +85,21 @@ MonoBehaviour:
   havedash: 0
   dodgeforce: 24
   jumpForce: 21
-  fallMultiplier: 5
+  fallMultiplier: 6
   lowJumpMultiplier: 2.5
   jumpRequest: 0
   faceright: 1
   distToGround: 0
   animator: {fileID: 4968909174227342258}
-  porteecoup: 3
+  porteecoup: 1.9
   invulnaribilite: 0
   disabledinput: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 15415
   isgrounded: 1
-  weaponmaxammo: 10
-  ammoleft: 0
+  weaponmaxammo: 100
+  ammoleft: 100
   shootinputpressed: 0
   canonTransform: {fileID: 1962203984585539813}
   rb: {fileID: 6628437771504892064}
@@ -114,7 +114,7 @@ MonoBehaviour:
   fallClip: {fileID: 8300000, guid: f9a4d2ab776df1a44a25bc300058f8a7, type: 3}
   hitClip: {fileID: 8300000, guid: 910255bf8836520438c96d1fddcd4781, type: 3}
   dashclip: {fileID: 8300000, guid: 7c65748272a8b704ca628b173dcca638, type: 3}
-  dashreadyclip: {fileID: 8300000, guid: d42fb6e3afc61ee4dbbba900aaa66ecb, type: 3}
+  dashreadyclip: {fileID: 0}
   InvalidClip: {fileID: 8300000, guid: 3ea9913d7f7682f42b4eaf35d2f4f5a1, type: 3}
   punchMissClip: {fileID: 8300000, guid: bf9645b86d1c55a438369dad4bd8bc21, type: 3}
   punchhitClip: {fileID: 8300000, guid: 365b27abe431ee7439df8022c09b47bf, type: 3}

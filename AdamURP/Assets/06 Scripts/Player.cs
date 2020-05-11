@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -79,6 +80,11 @@ public class Player : MonoBehaviour
     public AudioClip Weapon2clip;
     public AudioClip Weapon2Readyclip;
     public AudioClip Weapon3clip;
+
+
+
+
+    public int hittedtimes = 0;
     // Documentation
     // Pour des actions qui ne se lance qu'une fois, setup un callback qui lance une fonction associé à l'action est good
     // Pour une action de type continue (il faut avoir l'info à toutes les frames) on la choppe avec .ReadValue<>()
@@ -377,7 +383,7 @@ public class Player : MonoBehaviour
         {
             if (dash == false) { 
                 health -= amount;
-          
+                hittedtimes++;
                 animator.SetTrigger("hit");
                 uImanager.HpupdateUI();
 
@@ -392,10 +398,10 @@ public class Player : MonoBehaviour
                 Debug.Log("dodged bullet");
             }
     }
-
+   
     }
 
-    void Die()
+        void Die()
     {
         disabledinput = true;
         animator.SetTrigger("die");

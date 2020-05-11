@@ -410,7 +410,7 @@ MonoBehaviour:
   canBekilled: 1
   animator: {fileID: 6073936227337605335}
   weapontype: 1
-  attackRange: 8
+  attackRange: 13
   knockbackforce: 0
   livegivedback: 0
   fireing: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   Cannondirection: {fileID: 8184735752179901057}
   cannontip: {fileID: 432680577747234549}
   canshoot: 1
-  firerate: 0.3
+  firerate: 0.2
   ingnorelayer:
     serializedVersion: 2
     m_Bits: 2816

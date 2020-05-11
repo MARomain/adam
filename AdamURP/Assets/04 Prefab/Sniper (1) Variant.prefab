@@ -167,6 +167,8 @@ MonoBehaviour:
   opennedtoglorykill: 0
   timetodieafterstun: 3
   weapontype: 2
+  glorykillClip: {fileID: 8300000, guid: e5d71ec4fcbeb884fb154d97a421eed1, type: 3}
+  audioSource: {fileID: 8502912199651474606}
   rb: {fileID: 0}
   lb: {fileID: 0}
 --- !u!65 &3653200343107085042
