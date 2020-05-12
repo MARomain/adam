@@ -87,6 +87,11 @@ public class UImanager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }
+    public void Menuscene()
+    {
+        SceneManager.LoadScene("Main_menu", LoadSceneMode.Single);
+        Time.timeScale = 1;
+    }
     public void Healsound()
     {
         audioSource.PlayOneShot(healclip);

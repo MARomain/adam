@@ -5,17 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/05 Scenes/LD_aleis.unity
-    guid: cbe68159537f8f043952f71df83a8aeb
-  - enabled: 0
-    path: Assets/05 Scenes/Menu.unity
-    guid: dc67f77fab12a5840b5d1a0d4e8507d6
-  - enabled: 0
-    path: Assets/05 Scenes/RomainScene.unity
-    guid: 8c02034fc49c1ba43b6571cd324d88be
   - enabled: 1
-    path: Assets/05 Scenes/LD_alexis.unity
+    path: Assets/05 Scenes/mainmenu_/Main_menu.unity
+    guid: fbe7dac8200b65640a4fab3ebbda0f1f
+  - enabled: 1
+    path: Assets/05 Scenes/level_1.unity
     guid: 87abaea37bac3e04185f84d05a238909
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e80bcb0dc346acc4a9f7648cbd22f346,
