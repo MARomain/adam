@@ -13618,6 +13618,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3543346632834003409, guid: 1533aab72b80adc46902ef4783a12cb2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 548026043}
+    - target: {fileID: 3543346632834003409, guid: 1533aab72b80adc46902ef4783a12cb2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reloadscene
+      objectReference: {fileID: 0}
     - target: {fileID: 4092707584490542324, guid: 1533aab72b80adc46902ef4783a12cb2,
         type: 3}
       propertyPath: player
@@ -13628,6 +13638,11 @@ PrefabInstance:
       propertyPath: lb
       value: 
       objectReference: {fileID: 777264990}
+    - target: {fileID: 5826657564516805594, guid: 1533aab72b80adc46902ef4783a12cb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6951538090685488570, guid: 1533aab72b80adc46902ef4783a12cb2,
         type: 3}
       propertyPath: m_Name
