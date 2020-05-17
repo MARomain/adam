@@ -24,8 +24,14 @@ public class UImanager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip healclip;
     // Start is called before the first frame update
+    public void Awake()
+    {
+        player = FindObjectOfType<Player>();
+         lb = FindObjectOfType<Library>();
+    }
     void Start()
     {
+        Debug.Log(sliderdash.gameObject);
         sliderdash.value = player.dashtimer;
         sliderdash.maxValue = player.dashcooldown;
     }

@@ -12,6 +12,7 @@ public class Menu_navigation : MonoBehaviour
     public GameObject Homescreen;
     public GameObject levelselect;
     public GameObject Level1menu;
+    public GameObject Leveltutomenu;
     public Animator animator;
 
 
@@ -27,6 +28,7 @@ public class Menu_navigation : MonoBehaviour
         audioSource.PlayOneShot(validClip);
         levelselect.SetActive(true);
         animator.SetBool("level1", false);
+        animator.SetBool("leveltuto", false);
     }
 
     public void Level1Screen()
@@ -35,6 +37,13 @@ public class Menu_navigation : MonoBehaviour
         audioSource.PlayOneShot(validClip);
         animator.SetBool("level1", true);
         Level1menu.SetActive(true);
+    }
+    public void LeveltutoScreen()
+    {
+        Clearmenu();
+        audioSource.PlayOneShot(validClip);
+        animator.SetBool("leveltuto", true);
+        Leveltutomenu.SetActive(true);
     }
     public void Notreadybutton()
     {
@@ -45,6 +54,11 @@ public class Menu_navigation : MonoBehaviour
         SceneManager.LoadScene("Level_1", LoadSceneMode.Single);
         
     }
+    public void LevelTutoStart()
+    {
+        SceneManager.LoadScene("Level_tuto", LoadSceneMode.Single);
+
+    }
 
 
     public void Clearmenu()
@@ -52,6 +66,7 @@ public class Menu_navigation : MonoBehaviour
         Homescreen.SetActive(false);
         levelselect.SetActive(false);
         Level1menu.SetActive(false);
+        Leveltutomenu.SetActive(false);
     }
 }
 

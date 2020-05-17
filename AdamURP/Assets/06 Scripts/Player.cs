@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
     public AudioClip punchMissClip;
     public AudioClip punchhitClip;
     public AudioClip deathClip;
+    public AudioClip emptyammoClip;
 
     public AudioClip Weapon2charge;
     public AudioClip Weapon1clip;
@@ -95,6 +96,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        lb = FindObjectOfType<Library>();
+        uImanager = FindObjectOfType<UImanager>(); 
         CBMP = CVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         controls = new InputMaster();
 
@@ -308,7 +311,10 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if (jumpRequest)
+        if (!disabledinput)
+        {
+       
+            if (jumpRequest)
         {
             jumpRequest = false;
             animator.SetTrigger("jump");
@@ -320,8 +326,9 @@ public class Player : MonoBehaviour
             audioSource.clip = jumpClip;
             audioSource.Play();
         }
+        }
 
-        if(IsGrounded())
+        if (IsGrounded())
         {
             isgrounded = true;
             animator.SetBool("grounded", true);
@@ -348,9 +355,11 @@ public class Player : MonoBehaviour
     }
     private void Action()
     {
+
+        if (!disabledinput)
+        {
        
-       
-        if (dashtimer <= 0)
+            if (dashtimer <= 0)
         {
             if ((weapon2charging)||(lb.weapon2charged))
             {
@@ -365,6 +374,7 @@ public class Player : MonoBehaviour
 
         }
         Debug.Log("dodgeinput");
+        }
     }
     bool IsGrounded()  
     {
@@ -590,8 +600,7 @@ public class Player : MonoBehaviour
     {
         if (ammoleft == 0)
         {
-            weapontype = 0;
-            Changeweaponmodel();
+            EmptyammoSound();
         }
     }
     public void Fire()
@@ -604,16 +613,23 @@ public class Player : MonoBehaviour
 
                     break;
                 case 1:
+                    if (ammoleft > 0)
+                    {
+                        GameObject go = Instantiate(lb.bulletplayertype1, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
-                    GameObject go = Instantiate(lb.bulletplayertype1, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                        //sound
+                        audioSource.PlayOneShot(Weapon1clip);
 
-                    //sound
-                    audioSource.PlayOneShot(Weapon1clip);
+                        go.transform.SetParent(null);
+                        Destroy(go, 4f);
+                        ammoleft = ammoleft - 1;
 
-                    go.transform.SetParent(null);
-                    Destroy(go,4f);
-                    ammoleft = ammoleft - 1;
-                    Ammocheck();
+                    }
+                    else
+                    {
+                        audioSource.PlayOneShot(emptyammoClip);
+                    }
+      
 
                     break;
                 case 2:
@@ -621,15 +637,23 @@ public class Player : MonoBehaviour
 
                     break;
                 case 3:
-                    GameObject go3 = Instantiate(lb.bulletplayertype3, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                    if (ammoleft > 0)
+                    {
+                        GameObject go3 = Instantiate(lb.bulletplayertype3, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
-                    //sound
-                    audioSource.PlayOneShot(Weapon3clip);
+                        //sound
+                        audioSource.PlayOneShot(Weapon3clip);
 
-                    go3.transform.SetParent(null);
-                    Destroy(go3, 4f);
-                    ammoleft = ammoleft - 1;
-                    Ammocheck();
+                        go3.transform.SetParent(null);
+                        Destroy(go3, 4f);
+                        ammoleft = ammoleft - 1;
+                        
+                    }
+                    else
+                    {
+                        audioSource.PlayOneShot(emptyammoClip);
+                    }
+
 
                     break;
             }
@@ -723,28 +747,41 @@ public class Player : MonoBehaviour
     }
     public void Shootleave()
     {
+        if (!disabledinput)
+        {
+
         animator.SetBool("shootinputpressed", false);
         shootinputpressed = false;
   
         if ((weapontype == 2)&&(lb.weapon2charged==true))
         {
-            GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                if (ammoleft > 0)
+                {
+                    GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
 
-            Debug.Log("snipershoot");
-            audioSource.PlayOneShot(Weapon2clip);
+                    Debug.Log("snipershoot");
+                    audioSource.PlayOneShot(Weapon2clip);
 
-            go.transform.SetParent(null);
-            Destroy(go, 4f);
-            ammoleft = ammoleft - 1;
-            lb.weapon2charged = false;
-            lb.weapon2chargevalue = 0;
-            Ammocheck();
+                    go.transform.SetParent(null);
+                    Destroy(go, 4f);
+                    ammoleft = ammoleft - 1;
+                    lb.weapon2charged = false;
+                    lb.weapon2chargevalue = 0;
+                }
+                else
+                {
+                    audioSource.PlayOneShot(emptyammoClip);
+                }
+
+            
         }
      else if((weapontype == 2) && (weapon2charging == true))
         {
             Stopsound();
         }
         weapon2charging = false;
+    }
+
     }
     public void ShakeDamage()
     {
@@ -813,6 +850,10 @@ public class Player : MonoBehaviour
     public void DashReadySound()
     {
         audioSource.PlayOneShot(dashreadyclip);
+    }
+    public void EmptyammoSound()
+    {
+        audioSource.PlayOneShot(emptyammoClip);
     }
 
 }

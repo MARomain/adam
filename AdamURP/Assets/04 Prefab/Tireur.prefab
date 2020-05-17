@@ -929,7 +929,7 @@ MonoBehaviour:
   glorykilllife: 1
   livegivedback: 0
   opennedtoglorykill: 0
-  timetodieafterstun: 3
+  timetodieafterstun: 1
   weapontype: 1
   glorykillClip: {fileID: 8300000, guid: bd7fd5116a4270048bf77dc4b0190f08, type: 3}
   audioSource: {fileID: 5082271185670314976}

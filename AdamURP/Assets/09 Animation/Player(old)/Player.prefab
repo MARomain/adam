@@ -119,11 +119,13 @@ MonoBehaviour:
   punchMissClip: {fileID: 8300000, guid: bf9645b86d1c55a438369dad4bd8bc21, type: 3}
   punchhitClip: {fileID: 8300000, guid: 365b27abe431ee7439df8022c09b47bf, type: 3}
   deathClip: {fileID: 8300000, guid: c297c6d6d0ef1fc4ab45a1e4b16e925f, type: 3}
+  emptyammoClip: {fileID: 0}
   Weapon2charge: {fileID: 8300000, guid: 4ef414a6c981fd44aa50d73e3bac438e, type: 3}
   Weapon1clip: {fileID: 8300000, guid: 41e5bc25918731d438cf6832bbef4ad4, type: 3}
   Weapon2clip: {fileID: 8300000, guid: 5c79f598536c6a543b5434e5e8bdf821, type: 3}
   Weapon2Readyclip: {fileID: 8300000, guid: 709e5ddfc9c79c946934464fd4fb2734, type: 3}
   Weapon3clip: {fileID: 8300000, guid: 5c79f598536c6a543b5434e5e8bdf821, type: 3}
+  hittedtimes: 0
 --- !u!54 &6628437771504892064
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ Animator:
   m_GameObject: {fileID: 1962203984455306592}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d42799682d628d24a9bb1927373f3ee5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7d848a592d4a07c4b919b56fbf905bd9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
