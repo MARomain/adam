@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float maxhealth = 100f;
     public float degatcoup = 1;
     private Ennemy ennemyreached;
+    private GameObject weapononground;
 
 
     public bool dash=false;
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
     public AudioClip punchhitClip;
     public AudioClip deathClip;
     public AudioClip emptyammoClip;
+    public AudioClip equipeweaponClip;
 
     public AudioClip Weapon2charge;
     public AudioClip Weapon1clip;
@@ -434,6 +436,28 @@ public class Player : MonoBehaviour
         {
            
             RaycastHit hit;
+
+
+
+            if (movementInput.x == 0f && movementInput.y < 0f)
+            {
+                //vers le bas
+                if (Physics.Raycast(transform.position, Vector3.down, out hit))
+                {
+                    if (hit.collider.gameObject.GetComponent<WeaponOnTheGround>() != null)
+                    {
+                        EquipeweaponSound();
+                        animator.SetTrigger("takeweapon");
+                        weapononground = hit.collider.gameObject;
+                        weapontype = weapononground.GetComponent<WeaponOnTheGround>().weapontype;
+                        ammoleft = weapononground.GetComponent<WeaponOnTheGround>().ammo;
+                        Changeweaponmodel();
+                        Destroy(weapononground.gameObject);
+
+                    }
+                }
+            }else
+
             if (faceright)
             {
                 if (Physics.Raycast(transform.position, Vector3.right, out hit))
@@ -445,19 +469,8 @@ public class Player : MonoBehaviour
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
                                 ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                if (ennemyreached.opennedtoglorykill)//si il etait stun
-                                {
-                                   ennemyreached.Glorykill();//glorykill;
-                                    animator.SetTrigger("glorykill");
-                  
-                                    Changeweaponmodel();
-                                }
-                                else
-                                {
                                     punchconnect = true;
                                     animator.SetTrigger("kick");
-                                 
-                                }
                             }
                         }
                         else
@@ -481,21 +494,10 @@ public class Player : MonoBehaviour
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
                                 ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                if (ennemyreached.opennedtoglorykill)//si il etait stun
-                                {
-                                    punchconnect = true;
-                                    ennemyreached.Glorykill();//glorykill;;
-                                    animator.SetTrigger("glorykill");
-                                
-                                    Changeweaponmodel();
-                                 
-                                }
-                                else
-                                {
-                                    punchconnect = true;
+                                punchconnect = true;
                                     animator.SetTrigger("kick");
                                 
-                                }
+                                
                             }
 
                         }
@@ -516,7 +518,10 @@ public class Player : MonoBehaviour
   
     }
 
-
+    public void DropWeapon()
+    {
+       
+    }
 
     public void Attackdegat()
     {
@@ -603,6 +608,8 @@ public class Player : MonoBehaviour
             EmptyammoSound();
         }
     }
+
+
     public void Fire()
     {
         if (!disabledinput)
@@ -854,6 +861,10 @@ public class Player : MonoBehaviour
     public void EmptyammoSound()
     {
         audioSource.PlayOneShot(emptyammoClip);
+    }
+    public void EquipeweaponSound()
+    {
+        audioSource.PlayOneShot(equipeweaponClip);
     }
 
 }

@@ -52,14 +52,8 @@ public class Ennemy : MonoBehaviour
         if (health <= 0f)
         {
             animator.SetBool("die",true);
-
-        }
-        else if (health <= glorykilllife)
-        {
             opennedtoglorykill = true;
 
-            animator.SetTrigger("hit");
-            animator.SetTrigger("stun");
         }
         else
         {
@@ -74,8 +68,9 @@ public class Ennemy : MonoBehaviour
 
     public void Glorykill()
     {
-        if ((opennedtoglorykill)&&(health>0))
+        if (opennedtoglorykill)
         {
+            
             //TO DO teleporter le joueur sur la postion de l'ennemie ->lancer les animations ->depop ennemie ->change item 
             Debug.Log("Glorykill");
             animator.SetTrigger("glorykill");
@@ -101,6 +96,7 @@ public class Ennemy : MonoBehaviour
 
 
             opennedtoglorykill = false;
+           
         }
     }
 }
