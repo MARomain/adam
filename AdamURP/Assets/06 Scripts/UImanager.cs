@@ -16,6 +16,7 @@ public class UImanager : MonoBehaviour
     public Slider sliderdash;
     public GameObject dahsloadedimage;
     public GameObject deathscreen;
+    public Text firetypeinfo;
     public Image weaponicon;
     public Sprite weapon1M;
     public Sprite weapon2M;
@@ -48,18 +49,21 @@ public class UImanager : MonoBehaviour
             switch (player.weapontype)
             {
                 case 1:
+                    firetypeinfo.text = lb.weapon1firetype;
                     weaponicon.sprite = weapon1M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
                     weaponmaxammo.text = player.weaponmaxammo.ToString();
                     break;
                 case 2:
+                    firetypeinfo.text = lb.weapon2firetype;
                     weaponicon.sprite = weapon2M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
                     weaponmaxammo.text = player.weaponmaxammo.ToString();
                     break;
                 case 3:
+                    firetypeinfo.text = lb.weapon3firetype;
                     weaponicon.sprite = weapon3M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();

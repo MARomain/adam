@@ -253,6 +253,7 @@ RectTransform:
   - {fileID: 3198055723815100206}
   - {fileID: 5822465253767020893}
   - {fileID: 5849173555573069061}
+  - {fileID: 1730705828285606877}
   m_Father: {fileID: 2825342056284498169}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -737,6 +738,83 @@ MonoBehaviour:
   m_Text: '\
 
 '
+--- !u!1 &5438431188828237381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730705828285606877}
+  - component: {fileID: 8921753261058398059}
+  - component: {fileID: 8554182072056673741}
+  m_Layer: 5
+  m_Name: weapon fire type info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1730705828285606877
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438431188828237381}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.64836365, y: 0.8229636, z: 0.64836365}
+  m_Children: []
+  m_Father: {fileID: 1142936684739941837}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 12.5, y: 38}
+  m_SizeDelta: {x: 236.41, y: 25.73}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8921753261058398059
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438431188828237381}
+  m_CullTransparentMesh: 0
+--- !u!114 &8554182072056673741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438431188828237381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ff88880a32d8ff14fbf6b6ea56436893, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: semi-Automatic
 --- !u!1 &5653326784415755593
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1071,7 @@ MonoBehaviour:
   sliderdash: {fileID: 7218548283354997122}
   dahsloadedimage: {fileID: 3235865252893070006}
   deathscreen: {fileID: 5826657564516805594}
+  firetypeinfo: {fileID: 8554182072056673741}
   weaponicon: {fileID: 2803908089313547040}
   weapon1M: {fileID: 21300000, guid: a03c7bc58aab04043b994d2cda3dbc78, type: 3}
   weapon2M: {fileID: 21300000, guid: af831916a33b06e4a8f39b12c1dca542, type: 3}

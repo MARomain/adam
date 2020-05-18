@@ -379,7 +379,7 @@ MonoBehaviour:
   canBekilled: 1
   animator: {fileID: 8968781728243786905}
   health: 8
-  glorykilllife: 0
+  glorykilllife: -1
   livegivedback: 0
   opennedtoglorykill: 0
   timetodieafterstun: 3

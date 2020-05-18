@@ -10,7 +10,7 @@ public class Menu_navigation : MonoBehaviour
     public AudioClip validClip;
     public AudioClip InvalidClip;
 
-    public GameObject playButton;
+    public GameObject homescreen;
     public GameObject levelselect;
     public GameObject Level1menu;
     public GameObject Leveltutomenu;
@@ -31,13 +31,14 @@ public class Menu_navigation : MonoBehaviour
     public void LevelSelectmenu()
     {
         Clearmenu();
+        Clearanimator();
         audioSource.PlayOneShot(validClip);
         levelselect.SetActive(true);
         animator.SetBool("level1", false);
         eventSystem.SetSelectedGameObject(levelSelectLevel1Button);
     }
 
-    public void Startbutton()
+    public void Homebutton()
     {
         Clearmenu();
         audioSource.PlayOneShot(validClip);
@@ -77,13 +78,22 @@ public class Menu_navigation : MonoBehaviour
 
     }
 
-
+    public void Clearanimator()
+    {
+        animator.SetBool("leveltuto", false);
+        animator.SetBool("leveltuto", false);
+    }
     public void Clearmenu()
     {
-        eventSystem.SetSelectedGameObject(playButton);
+      
+        homescreen.SetActive(false);
         levelselect.SetActive(false);
         Level1menu.SetActive(false);
         Leveltutomenu.SetActive(false);
+
+
+
+
     }
 }
 
