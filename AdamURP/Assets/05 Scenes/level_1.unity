@@ -2393,7 +2393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85460833}
   m_LocalRotation: {x: 0.08715578, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 3.9830246, y: 2.915392, z: -7.609351}
+  m_LocalPosition: {x: 3.9834595, y: 2.915392, z: -7.609351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 691050318}
@@ -11320,7 +11320,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624218187}
   m_LocalRotation: {x: 0.08715578, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 3.9830246, y: 2.915392, z: -7.751972}
+  m_LocalPosition: {x: 3.9834595, y: 2.915392, z: -7.751972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 438794348}
@@ -18548,6 +18548,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dropped_rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536174296307961999, guid: 786360ec55dfeef4ba07b167fd78b85e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7849349999382979228, guid: 786360ec55dfeef4ba07b167fd78b85e,
         type: 3}

@@ -55,6 +55,11 @@ public class Ennemy : MonoBehaviour
             opennedtoglorykill = true;
 
         }
+        if (health <= glorykilllife)
+        {
+            animator.SetBool("stun", true);
+            opennedtoglorykill = true;
+        }
         else
         {
             animator.SetTrigger("hit");

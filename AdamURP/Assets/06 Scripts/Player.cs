@@ -469,8 +469,17 @@ public class Player : MonoBehaviour
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
                                 ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+                                 
+                                if (ennemyreached.opennedtoglorykill)
+                                {
+                                    punchconnect = true;
+                                    ennemyreached.animator.SetTrigger("glorykill");
+                                }
+                                else
+                                {
                                     punchconnect = true;
                                     animator.SetTrigger("kick");
+                                }
                             }
                         }
                         else
@@ -493,11 +502,16 @@ public class Player : MonoBehaviour
                         {
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
-                                ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                punchconnect = true;
+                                if (ennemyreached.opennedtoglorykill)
+                                {
+                                    punchconnect = true;
+                                    ennemyreached.animator.SetTrigger("glorykill");
+                                }
+                                else
+                                {
+                                    punchconnect = true;
                                     animator.SetTrigger("kick");
-                                
-                                
+                                }
                             }
 
                         }
