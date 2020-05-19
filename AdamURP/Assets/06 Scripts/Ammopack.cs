@@ -60,6 +60,18 @@ public class Ammopack : MonoBehaviour
 
                     }
                     break;
+                case 4:
+
+                    if (other.GetComponent<Player>().ammoleft != lb.weapon4munitions)
+                    {
+                        other.GetComponent<Player>().RefillAmmo();
+                        if (destroyafteruse)
+                        {
+                            Destroy(this.gameObject);
+                        }
+
+                    }
+                    break;
             }
 
 

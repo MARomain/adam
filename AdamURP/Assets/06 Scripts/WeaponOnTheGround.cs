@@ -34,6 +34,10 @@ public class WeaponOnTheGround : MonoBehaviour
             {
                 ammo = lb.weapon3munitions;
             }
+            if (weapontype == 4)
+            {
+                ammo = lb.weapon4munitions;
+            }
         }
     }
 

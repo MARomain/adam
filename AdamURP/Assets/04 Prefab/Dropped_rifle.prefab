@@ -401,7 +401,7 @@ MonoBehaviour:
   ammo: 10
   animator: {fileID: 0}
   marqueur: {fileID: 1944180710588288832}
-  distancetoshow: 2
+  distancetoshow: 3
   startwithfullammo: 1
 --- !u!65 &6536174296307961993
 BoxCollider:
@@ -414,8 +414,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.37100855, y: 2.3512874, z: 2.9201608}
-  m_Center: {x: -0.0978758, y: -0.29181862, z: -0.34159422}
+  m_Size: {x: 0.37100855, y: 5.0549693, z: 2.9201608}
+  m_Center: {x: -0.0978758, y: -0.32854736, z: -0.34159422}
 --- !u!65 &6536174296307962004
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class UImanager : MonoBehaviour
     public Sprite weapon1M;
     public Sprite weapon2M;
     public Sprite weapon3M;
+    public Sprite weapon4M;
 
     public AudioSource audioSource;
     public AudioClip healclip;
@@ -53,21 +54,28 @@ public class UImanager : MonoBehaviour
                     weaponicon.sprite = weapon1M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = player.weaponmaxammo.ToString();
+                    weaponmaxammo.text = lb.weapon1munitions.ToString();
                     break;
                 case 2:
                     firetypeinfo.text = lb.weapon2firetype;
                     weaponicon.sprite = weapon2M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = player.weaponmaxammo.ToString();
+                    weaponmaxammo.text = lb.weapon2munitions.ToString();
                     break;
                 case 3:
                     firetypeinfo.text = lb.weapon3firetype;
                     weaponicon.sprite = weapon3M;
                     minature.SetActive(true);
                     ammoleft.text = player.ammoleft.ToString();
-                    weaponmaxammo.text = player.weaponmaxammo.ToString();
+                    weaponmaxammo.text = lb.weapon3munitions.ToString();
+                    break;
+                case 4:
+                    firetypeinfo.text = lb.weapon4firetype;
+                    weaponicon.sprite = weapon4M;
+                    minature.SetActive(true);
+                    ammoleft.text = player.ammoleft.ToString();
+                    weaponmaxammo.text = lb.weapon4munitions.ToString();
                     break;
             }
         }

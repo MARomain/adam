@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     public GameObject weapon2;
     public bool weapon2charging = false;
     public GameObject weapon3;
+    public GameObject weapon4;
     public InputMaster controls;
 
     Vector2 movementInput;
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour
     public AudioClip Weapon2clip;
     public AudioClip Weapon2Readyclip;
     public AudioClip Weapon3clip;
+    public AudioClip Weapon4clip;
 
 
 
@@ -110,6 +112,7 @@ public class Player : MonoBehaviour
             controls.Player.Feu.performed += ctx => Shoot();
             controls.Player.Action.performed += ctx => Action();
             controls.Player.Feu.canceled += ctx => Shootleave();
+           
         }
 
     }
@@ -139,6 +142,30 @@ public class Player : MonoBehaviour
         }
    
         Aim();
+
+        //arme ramasse drop weapon
+        RaycastHit hit;
+
+
+
+        if (movementInput.y < 0f)
+        {
+            //vers le bas
+            if (Physics.Raycast(transform.position, Vector3.down, out hit))
+            {
+                if (hit.collider.gameObject.GetComponent<WeaponOnTheGround>() != null)
+                {
+                    EquipeweaponSound();
+                    animator.SetTrigger("takeweapon");
+                    weapononground = hit.collider.gameObject;
+                    weapontype = weapononground.GetComponent<WeaponOnTheGround>().weapontype;
+                    ammoleft = weapononground.GetComponent<WeaponOnTheGround>().ammo;
+                    Changeweaponmodel();
+                    Destroy(weapononground.gameObject);
+
+                }
+            }
+        }
     }
    
     private void FixedUpdate()
@@ -360,7 +387,7 @@ public class Player : MonoBehaviour
 
         if (!disabledinput)
         {
-       
+
             if (dashtimer <= 0)
         {
             if ((weapon2charging)||(lb.weapon2charged))
@@ -369,7 +396,9 @@ public class Player : MonoBehaviour
             }
             else
             {
-                animator.SetTrigger("dodge");
+                    shootinputpressed = false;
+                    animator.SetBool("shootinputpressed", false);
+                    animator.SetTrigger("dodge");
                 havedash = true;
                 dashtimer = dashcooldown;
             }
@@ -438,26 +467,6 @@ public class Player : MonoBehaviour
             RaycastHit hit;
 
 
-
-            if (movementInput.x == 0f && movementInput.y < 0f)
-            {
-                //vers le bas
-                if (Physics.Raycast(transform.position, Vector3.down, out hit))
-                {
-                    if (hit.collider.gameObject.GetComponent<WeaponOnTheGround>() != null)
-                    {
-                        EquipeweaponSound();
-                        animator.SetTrigger("takeweapon");
-                        weapononground = hit.collider.gameObject;
-                        weapontype = weapononground.GetComponent<WeaponOnTheGround>().weapontype;
-                        ammoleft = weapononground.GetComponent<WeaponOnTheGround>().ammo;
-                        Changeweaponmodel();
-                        Destroy(weapononground.gameObject);
-
-                    }
-                }
-            }else
-
             if (faceright)
             {
                 if (Physics.Raycast(transform.position, Vector3.right, out hit))
@@ -502,6 +511,8 @@ public class Player : MonoBehaviour
                         {
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
+                                ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
+
                                 if (ennemyreached.opennedtoglorykill)
                                 {
                                     punchconnect = true;
@@ -607,6 +618,7 @@ public class Player : MonoBehaviour
     //remplace l'enumerator 
     public void Shoot()
     {
+        
         animator.SetBool("shootinputpressed", true);
         shootinputpressed = true;
  
@@ -626,8 +638,10 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
+
         if (!disabledinput)
         {
+
             switch (weapontype)
             {
                 case 0:
@@ -654,9 +668,13 @@ public class Player : MonoBehaviour
 
                     break;
                 case 2:
-                   
+                    if (ammoleft == 0)
+                    {
+                        audioSource.PlayOneShot(emptyammoClip);
+                    }
 
-                    break;
+
+                        break;
                 case 3:
                     if (ammoleft > 0)
                     {
@@ -669,6 +687,26 @@ public class Player : MonoBehaviour
                         Destroy(go3, 4f);
                         ammoleft = ammoleft - 1;
                         
+                    }
+                    else
+                    {
+                        audioSource.PlayOneShot(emptyammoClip);
+                    }
+
+
+                    break;
+                case 4:
+                    if (ammoleft > 0)
+                    {
+                        GameObject go3 = Instantiate(lb.bulletplayertype4, canonTransform);//CHANGER LE PREFAB POUR L ARME
+
+                        //sound
+                        audioSource.PlayOneShot(Weapon4clip);
+
+                        go3.transform.SetParent(null);
+                        Destroy(go3, 4f);
+                        ammoleft = ammoleft - 1;
+
                     }
                     else
                     {
@@ -704,6 +742,10 @@ public class Player : MonoBehaviour
             case 3:
                 weapon3.SetActive(true);
                 animator.SetFloat("weapontype", 3);
+                break;
+            case 4:
+                weapon4.SetActive(true);
+                animator.SetFloat("weapontype", 4);
                 break;
         }
         Debug.Log("change weapon check");
@@ -764,6 +806,11 @@ public class Player : MonoBehaviour
                 ammoleft = lb.weapon3munitions;
                 Debug.Log(lb.weapon3munitions.ToString());
                 break;
+            case 4:
+                weaponmaxammo = lb.weapon4munitions;
+                ammoleft = lb.weapon4munitions;
+         
+                break;
         }
     }
     public void Shootleave()
@@ -791,7 +838,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    audioSource.PlayOneShot(emptyammoClip);
+                    //nothing t'as plus de balles
                 }
 
             
@@ -842,7 +889,11 @@ public class Player : MonoBehaviour
     }
     public void Chargesound()
     {
-        audioSource.PlayOneShot(Weapon2charge);
+        if (ammoleft > 0)
+        {
+            audioSource.PlayOneShot(Weapon2charge);
+        }
+     
     }
     public void ChargedSound()
     {

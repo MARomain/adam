@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4092707584490542324}
         m_MethodName: Reloadscene
         m_Mode: 1
         m_Arguments:
@@ -656,7 +656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ALPHA VERSION 0.3
+  m_Text: 'ALPHA VERSION 0.4
 
 '
 --- !u!1 &4717989696367241788
@@ -1076,6 +1076,7 @@ MonoBehaviour:
   weapon1M: {fileID: 21300000, guid: a03c7bc58aab04043b994d2cda3dbc78, type: 3}
   weapon2M: {fileID: 21300000, guid: af831916a33b06e4a8f39b12c1dca542, type: 3}
   weapon3M: {fileID: 21300000, guid: f2392f9ed2db07d4090648b113561717, type: 3}
+  weapon4M: {fileID: 21300000, guid: af831916a33b06e4a8f39b12c1dca542, type: 3}
   audioSource: {fileID: 1940859268271751822}
   healclip: {fileID: 8300000, guid: 371274359f9a21a4b979e82f7ec6e0a2, type: 3}
 --- !u!95 &2215099669751763924

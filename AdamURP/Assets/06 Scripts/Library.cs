@@ -26,4 +26,9 @@ public class Library : MonoBehaviour
     public int weapon3munitions = 50;
     public GameObject bulletplayertype3;
 
+
+    public string weapon4firetype = "semi-auto";
+    public int weapon4munitions = 50;
+    public GameObject bulletplayertype4;
+
 }

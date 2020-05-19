@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f95cfefcc11e5f4a9e594127169ce1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapontype: 2
+  weapontype: 4
   ammo: 10
   animator: {fileID: 0}
   marqueur: {fileID: 4418918319322257529}
