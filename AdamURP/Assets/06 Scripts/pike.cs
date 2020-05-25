@@ -9,7 +9,7 @@ public class pike : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("bump");
+
         /*
                 if (collision.gameObject.GetComponent<Player>().faceright == false)
                 {

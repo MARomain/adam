@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     public Library lb;
     public musicmanager musicmanager;
     public UImanager uImanager;
-    public float rof;
 
-
+    public bool isdead = false;
+    public float slowmodievalue = 0.1f;
     public int weapontype =0;
     public float movementSpeed;
     public float maxMovementSpeed;
@@ -373,7 +373,7 @@ public class Player : MonoBehaviour
         //il faut conserver la structure avec "jumprequest" pour permettre à Jump d'être éxécuter dans l'update
         //et donc que ce code puisse être lu dans l'update
         
-        if (rb.velocity.y < 0)
+        if ((rb.velocity.y < 0)&&(!isgrounded))
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }

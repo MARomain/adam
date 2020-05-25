@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: weapon4
       value: 
       objectReference: {fileID: 1108400932680278496}
+    - target: {fileID: 1962203984455306595, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1962203984455306607, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
       propertyPath: m_LocalPosition.x

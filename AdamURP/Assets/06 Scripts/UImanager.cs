@@ -33,7 +33,7 @@ public class UImanager : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log(sliderdash.gameObject);
+
         sliderdash.value = player.dashtimer;
         sliderdash.maxValue = player.dashcooldown;
     }
