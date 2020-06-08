@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1822013720196875126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3391859282133643621}
+  - component: {fileID: 5929350325585627987}
+  - component: {fileID: 105203332211750826}
+  - component: {fileID: 7667654089674292127}
+  - component: {fileID: 7667654089674292126}
+  m_Layer: 0
+  m_Name: decor1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3391859282133643621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822013720196875126}
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -108.268845, y: 7.068205, z: -13.598003}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!33 &5929350325585627987
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822013720196875126}
+  m_Mesh: {fileID: 6699780780042553194, guid: 6985b94070a06ec4fbac1a55049785d6, type: 3}
+--- !u!23 &105203332211750826
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822013720196875126}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1bbfecaab0ccb3344ad1907dd60ca849, type: 2}
+  - {fileID: 2100000, guid: 7f61dda3641e05343966e41cfd4711d6, type: 2}
+  - {fileID: 2100000, guid: f65ba3ba9a4028142b726ac78bb129d6, type: 2}
+  - {fileID: 2100000, guid: 8ebe46eb008ab034d80e61f7424aff78, type: 2}
+  - {fileID: 2100000, guid: 8ebe46eb008ab034d80e61f7424aff78, type: 2}
+  - {fileID: 2100000, guid: 3854c101af5ec5b43be39c19bf94111a, type: 2}
+  - {fileID: 2100000, guid: dae630bbb73e9c4469af4e8136c4f9d9, type: 2}
+  - {fileID: 2100000, guid: 9a515cf58afa41e49aea25acad93fa45, type: 2}
+  - {fileID: 2100000, guid: 0d246e80261d57747b8d53d55815d95a, type: 2}
+  - {fileID: 2100000, guid: 0d246e80261d57747b8d53d55815d95a, type: 2}
+  - {fileID: 2100000, guid: b575659487710aa4b95eee5c9cd322f9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &7667654089674292127
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822013720196875126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.710926, y: 7.452665, z: 2.392003}
+  m_Center: {x: -0.0000006357829, y: 3.6990993, z: -3.2584655}
+--- !u!65 &7667654089674292126
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822013720196875126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.710926, y: 0.3843597, z: 8.908924}
+  m_Center: {x: -0.0000006357829, y: -0.14982812, z: 0}
