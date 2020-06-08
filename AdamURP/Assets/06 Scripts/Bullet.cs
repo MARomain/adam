@@ -7,29 +7,48 @@ public class Bullet : MonoBehaviour
     public float damage;
     public float speed = 20f;
 
-    public Rigidbody rb; 
+    public Rigidbody rb;
+    public GameObject effectonground;
+    private bool stoped = false;
 
-    private void FixedUpdate()
+    private void Start()
     {
         rb.GetComponent<Rigidbody>();
-        rb.velocity = transform.right * speed;
+    }
+    private void FixedUpdate()
+    {
+     if(!stoped) 
+            rb.velocity = transform.right * speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponentInParent<Ennemy>() != null)
+
+        if (other.GetComponentInParent<Ennemy>() != null)
         {
             Ennemy ennemy = other.GetComponentInParent<Ennemy>();
             ennemy.TakeDamage(damage);
         }
 
-        Die();
+        if (other.tag == "reachplayer")
+        {
+            Destroy(this.gameObject);
+       
+        }
+        else
+        {
+            Die();
+        }
+
+       
     }
 
     public void Die()
     {
-        //death particles
-        //death sound effects
+ 
+        stoped = true;
+        GameObject go = Instantiate(effectonground, this.transform.position, this.transform.rotation, null);
+
         Destroy(this.gameObject);
     }
 

@@ -127,6 +127,8 @@ MonoBehaviour:
   damage: 1
   speed: 35
   rb: {fileID: 2273309540953881749}
+  effectonground: {fileID: 2801012812845247225, guid: 526931b91e6a9514b9bd903732977543,
+    type: 3}
 --- !u!1001 &2023382411867115064
 PrefabInstance:
   m_ObjectHideFlags: 0

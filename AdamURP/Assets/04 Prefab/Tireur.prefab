@@ -1092,7 +1092,7 @@ MonoBehaviour:
   Cannondirection: {fileID: 1222876862734747000}
   cannontip: {fileID: 7188814885869450419}
   canshoot: 1
-  firerate: 0.4
+  firerate: 0.2
   ingnorelayer:
     serializedVersion: 2
     m_Bits: 2816

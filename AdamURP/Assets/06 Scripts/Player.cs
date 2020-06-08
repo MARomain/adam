@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         distToGround = GetComponent<Collider>().bounds.extents.y;
         uImanager.HpupdateUI();
 
-
+        animator.SetInteger("ammoleft", ammoleft);
     }
 
     private void Update()
@@ -550,7 +550,11 @@ public class Player : MonoBehaviour
 
     public void Attackdegat()
     {
-        ennemyreached.TakeDamage(degatcoup);
+        if (ennemyreached != null)
+        {
+            ennemyreached.TakeDamage(degatcoup);
+        }
+
         ennemyreached = null;
     }
 
@@ -624,14 +628,16 @@ public class Player : MonoBehaviour
  
         if (weapontype != 0)
         {
+            if (ammoleft > 0)
+            {
                 animator.SetTrigger("shoot");
-        }
-    }
-    public void Ammocheck()
-    {
-        if (ammoleft == 0)
-        {
-            EmptyammoSound();
+            }
+            else
+            {
+                animator.SetTrigger("emptyshoot");
+                audioSource.PlayOneShot(emptyammoClip);
+            }
+             
         }
     }
 
@@ -651,13 +657,14 @@ public class Player : MonoBehaviour
                     if (ammoleft > 0)
                     {
                         GameObject go = Instantiate(lb.bulletplayertype1, canonTransform);//CHANGER LE PREFAB POUR L ARME
-
+                        go.transform.parent = null;
                         //sound
                         audioSource.PlayOneShot(Weapon1clip);
 
                         go.transform.SetParent(null);
                         Destroy(go, 4f);
                         ammoleft = ammoleft - 1;
+                        animator.SetInteger("ammoleft", ammoleft);
 
                     }
                     else
@@ -679,14 +686,15 @@ public class Player : MonoBehaviour
                     if (ammoleft > 0)
                     {
                         GameObject go3 = Instantiate(lb.bulletplayertype3, canonTransform);//CHANGER LE PREFAB POUR L ARME
-
+                        go3.transform.parent = null;
                         //sound
                         audioSource.PlayOneShot(Weapon3clip);
 
                         go3.transform.SetParent(null);
                         Destroy(go3, 4f);
                         ammoleft = ammoleft - 1;
-                        
+                        animator.SetInteger("ammoleft", ammoleft);
+
                     }
                     else
                     {
@@ -699,13 +707,14 @@ public class Player : MonoBehaviour
                     if (ammoleft > 0)
                     {
                         GameObject go3 = Instantiate(lb.bulletplayertype4, canonTransform);//CHANGER LE PREFAB POUR L ARME
-
+                        go3.transform.parent = null;
                         //sound
                         audioSource.PlayOneShot(Weapon4clip);
 
                         go3.transform.SetParent(null);
                         Destroy(go3, 4f);
                         ammoleft = ammoleft - 1;
+                        animator.SetInteger("ammoleft", ammoleft);
 
                     }
                     else
@@ -826,6 +835,7 @@ public class Player : MonoBehaviour
                 if (ammoleft > 0)
                 {
                     GameObject go = Instantiate(lb.bulletplayertype2, canonTransform);//CHANGER LE PREFAB POUR L ARME
+                    go.transform.parent = null;
 
                     Debug.Log("snipershoot");
                     audioSource.PlayOneShot(Weapon2clip);
@@ -833,6 +843,7 @@ public class Player : MonoBehaviour
                     go.transform.SetParent(null);
                     Destroy(go, 4f);
                     ammoleft = ammoleft - 1;
+                    animator.SetInteger("ammoleft", ammoleft);
                     lb.weapon2charged = false;
                     lb.weapon2chargevalue = 0;
                 }
