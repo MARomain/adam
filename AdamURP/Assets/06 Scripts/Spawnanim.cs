@@ -10,6 +10,7 @@ public class Spawnanim : MonoBehaviour
 
     public void Spawn()
     {
+        Debug.Log("SPAWN ENNE");
         GameObject appeared = Instantiate(spawnobject, spawnsource.transform.position, new Quaternion());
     }
 

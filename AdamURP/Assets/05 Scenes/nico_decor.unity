@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 5db44ca13050e9e4ab2156e8e33c4a66,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3455,7 +3455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85460833}
   m_LocalRotation: {x: 0.08715578, y: -0, z: -0, w: 0.9961947}
-  m_LocalPosition: {x: 4.0044403, y: 2.915392, z: -7.60935}
+  m_LocalPosition: {x: 3.990715, y: 2.915392, z: -7.60935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 691050318}
@@ -14331,7 +14331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624218187}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: -72.085556, y: 3.5283918, z: -7.60935}
+  m_LocalPosition: {x: -72.09928, y: 3.5283918, z: -7.60935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 438794348}
@@ -22646,18 +22646,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1521826314}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1003310895 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5611352251995572757, guid: bc9dd6359f6e2d844b1c00655963b551,
-    type: 3}
-  m_PrefabInstance: {fileID: 5611352252133770554}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6802ab4975096b34aa497ad21bd43f76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1006821045
 GameObject:
   m_ObjectHideFlags: 0
@@ -49130,6 +49118,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2283412164865159473, guid: bc9dd6359f6e2d844b1c00655963b551,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458705825515505014, guid: bc9dd6359f6e2d844b1c00655963b551,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458705825515505014, guid: bc9dd6359f6e2d844b1c00655963b551,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4458705825515505014, guid: bc9dd6359f6e2d844b1c00655963b551,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4886134552461166462, guid: bc9dd6359f6e2d844b1c00655963b551,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -49421,7 +49429,7 @@ PrefabInstance:
     - target: {fileID: 1513286379001357275, guid: 81b2b719f95d65e488fbf6fb4898c561,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0044403
+      value: 3.990715
       objectReference: {fileID: 0}
     - target: {fileID: 1513286379001357275, guid: 81b2b719f95d65e488fbf6fb4898c561,
         type: 3}
@@ -50563,7 +50571,7 @@ PrefabInstance:
         type: 3}
       propertyPath: uImanager
       value: 
-      objectReference: {fileID: 1003310895}
+      objectReference: {fileID: 0}
     - target: {fileID: 6903519814137286602, guid: 81b2b719f95d65e488fbf6fb4898c561,
         type: 3}
       propertyPath: audioSource
