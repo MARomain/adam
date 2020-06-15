@@ -143,7 +143,7 @@ Material:
     - _ShowAmbientSettings: 0
     - _ShowBack: 1
     - _ShowBottom: 1
-    - _ShowColorCorrection: 0
+    - _ShowColorCorrection: 1
     - _ShowCustomShading: 1
     - _ShowFog: 1
     - _ShowFront: 1
@@ -169,7 +169,7 @@ Material:
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color1_B: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}
     - _Color1_D: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}
-    - _Color1_F: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}
+    - _Color1_F: {r: 0.5960784, g: 0.76470596, b: 0.72156864, a: 1}
     - _Color1_L: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}
     - _Color1_R: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}
     - _Color1_T: {r: 0.59607846, g: 0.76470596, b: 0.72156864, a: 1}

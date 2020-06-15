@@ -25,6 +25,7 @@ public class EnnemieCharger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lb = FindObjectOfType<Library>();
         rb = GetComponent<Rigidbody>();
         if (distancetocharge < reach)
         {
@@ -65,7 +66,7 @@ public class EnnemieCharger : MonoBehaviour
         }
         else
         {
-            animator.SetBool("run", false);
+           // animator.SetBool("run", false);
         }
     }
 
