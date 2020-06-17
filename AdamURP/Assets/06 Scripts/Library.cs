@@ -7,7 +7,7 @@ public class Library : MonoBehaviour
     public GameObject player;
     public GameObject cibleplayer;
 
-
+    public bool weapon1picked = false;
 
     public string weapon1firetype = "auto";
     public int weapon1munitions = 20;
@@ -22,6 +22,7 @@ public class Library : MonoBehaviour
     public int weapon2munitions = 20;
     public GameObject bulletplayertype2;
 
+    public bool weapon3picked = false;
     public string weapon3firetype = "semi-auto";
     public int weapon3munitions = 50;
     public GameObject bulletplayertype3;

@@ -23,6 +23,9 @@ public class UImanager : MonoBehaviour
     public Sprite weapon3M;
     public Sprite weapon4M;
 
+    public Image newweaponicon;
+
+
     public AudioSource audioSource;
     public AudioClip healclip;
     // Start is called before the first frame update
@@ -113,6 +116,12 @@ public class UImanager : MonoBehaviour
     public void Healsound()
     {
         audioSource.PlayOneShot(healclip);
+    }
+    public void Playnewweaponanim()
+    {
+
+        animator.SetTrigger("newweapon");
+
     }
 
 }

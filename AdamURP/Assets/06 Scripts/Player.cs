@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -17,7 +16,7 @@ public class Player : MonoBehaviour
 
     public bool isdead = false;
     public float slowmodievalue = 0.1f;
-    public int weapontype =0;
+    public int weapontype = 0;
     public float movementSpeed;
     public float maxMovementSpeed;
     public float health = 100f;
@@ -27,7 +26,7 @@ public class Player : MonoBehaviour
     private GameObject weapononground;
 
 
-    public bool dash=false;
+    public bool dash = false;
     public float dashcooldown = 1;
     public float dashtimer; //go passer private apres le test
     public bool havedash = false;
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
     public bool faceright = true;
     public float distToGround;
     public Animator animator;
-    public float porteecoup=3f;
+    public float porteecoup = 3f;
     public bool invulnaribilite = false;
     public bool disabledinput = false;
     public LayerMask groundLayer;
@@ -50,12 +49,10 @@ public class Player : MonoBehaviour
     public int weaponmaxammo = 10;
     public int ammoleft = 0;
     public bool shootinputpressed = false;
-
-    public SkinnedMeshRenderer meshRenderer;
-
+    private SkinnedMeshRenderer meshRenderer;
 
     public Transform canonTransform;
-    
+
     public Rigidbody rb;
     public GameObject weapon1;
     public GameObject weapon2;
@@ -104,7 +101,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         lb = FindObjectOfType<Library>();
-        uImanager = FindObjectOfType<UImanager>(); 
+        uImanager = FindObjectOfType<UImanager>();
         CBMP = CVC.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         controls = new InputMaster();
 
@@ -115,7 +112,7 @@ public class Player : MonoBehaviour
             controls.Player.Feu.performed += ctx => Shoot();
             controls.Player.Action.performed += ctx => Action();
             controls.Player.Feu.canceled += ctx => Shootleave();
-           
+
         }
 
     }
@@ -126,14 +123,11 @@ public class Player : MonoBehaviour
         distToGround = GetComponent<Collider>().bounds.extents.y;
         uImanager.HpupdateUI();
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-
         animator.SetInteger("ammoleft", ammoleft);
     }
 
     private void Update()
     {
-
-
         if (dashtimer > 0)
         {
             dashtimer = dashtimer - Time.deltaTime;
@@ -146,7 +140,7 @@ public class Player : MonoBehaviour
                 havedash = false;
             }
         }
-   
+
         Aim();
 
         //arme ramasse drop weapon
@@ -168,24 +162,24 @@ public class Player : MonoBehaviour
                     ammoleft = weapononground.GetComponent<WeaponOnTheGround>().ammo;
                     Changeweaponmodel();
                     Destroy(weapononground.gameObject);
-
+                    Checknewweapon();
                 }
             }
         }
     }
-   
+
     private void FixedUpdate()
     {
         Movement();
-            Jump(); 
-      
+        Jump();
+
         IsGrounded();
     }
     void Movement()
     {
         if (!disabledinput)
         {
-            if (movementInput.x==0)
+            if (movementInput.x == 0)
             {
                 animator.SetBool("run", false);
             }
@@ -195,7 +189,6 @@ public class Player : MonoBehaviour
             }
 
 
-      
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
 
 
@@ -247,9 +240,9 @@ public class Player : MonoBehaviour
 
             if (!faceright)
             {
-                this.transform.Rotate(0, -180,0 );
-              
-          
+                this.transform.Rotate(0, -180, 0);
+
+
             }
             faceright = true;
         }
@@ -301,7 +294,7 @@ public class Player : MonoBehaviour
             if (faceright)
             {
                 this.transform.Rotate(0, 180, 0);
-         
+
             }
             faceright = false;
         }
@@ -349,26 +342,26 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
-       
-            if (jumpRequest)
-        {
-            jumpRequest = false;
-            animator.SetTrigger("jump");
-          
-            //rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //rb.velocity = Vector3.up * jumpForce;
 
-            audioSource.clip = jumpClip;
-            audioSource.Play();
-        }
+            if (jumpRequest)
+            {
+                jumpRequest = false;
+                animator.SetTrigger("jump");
+
+                //rb.velocity = new Vector3(rb.velocity.x, 0f, 0f);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                //rb.velocity = Vector3.up * jumpForce;
+
+                audioSource.clip = jumpClip;
+                audioSource.Play();
+            }
         }
 
         if (IsGrounded())
         {
             isgrounded = true;
             animator.SetBool("grounded", true);
-        
+
             //jumpCount = 0;
         }
         else
@@ -379,8 +372,8 @@ public class Player : MonoBehaviour
 
         //il faut conserver la structure avec "jumprequest" pour permettre à Jump d'être éxécuter dans l'update
         //et donc que ce code puisse être lu dans l'update
-        
-        if ((rb.velocity.y < 0)&&(!isgrounded))
+
+        if ((rb.velocity.y < 0) && (!isgrounded))
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
@@ -396,64 +389,63 @@ public class Player : MonoBehaviour
         {
 
             if (dashtimer <= 0)
-        {
-            if ((weapon2charging)||(lb.weapon2charged))
             {
-                InvalidSound();
-            }
-            else
-            {
+                if ((weapon2charging) || (lb.weapon2charged))
+                {
+                    InvalidSound();
+                }
+                else
+                {
                     shootinputpressed = false;
                     animator.SetBool("shootinputpressed", false);
                     animator.SetTrigger("dodge");
-                havedash = true;
-                dashtimer = dashcooldown;
-            }
+                    havedash = true;
+                    dashtimer = dashcooldown;
+                }
 
-        }
-        Debug.Log("dodgeinput");
+            }
+            Debug.Log("dodgeinput");
         }
     }
-    bool IsGrounded()  
+    bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, groundLayer);
     }
 
     void JumpRequest()
     {
-        if(IsGrounded())
-        jumpRequest = true;
+        if (IsGrounded())
+            jumpRequest = true;
     }
 
     public void TakeDamage(float amount)
     {
         if (!invulnaribilite)
         {
-            if (dash == false) { 
+
+            if (dash == false) {
                 health -= amount;
+                //change la saturation du perso quand il prend des dégats
+                meshRenderer.material.SetFloat("_saturation", health / maxhealth);
                 hittedtimes++;
                 animator.SetTrigger("hit");
                 uImanager.HpupdateUI();
 
-                //change la saturation du perso quand il prend des dégats
-                meshRenderer.material.SetFloat("_saturation", health / maxhealth);
-
-            if (health <= 0f)
-            {
-                Die();
-            }
+                if (health <= 0f)
+                {
+                    Die();
+                }
             }
             else
             {
-            //dodge effect
+                //dodge effect
                 Debug.Log("dodged bullet");
             }
-    }
-   
+        }
+
     }
 
-
-        void Die()
+    void Die()
     {
         disabledinput = true;
         animator.SetTrigger("die");
@@ -462,7 +454,7 @@ public class Player : MonoBehaviour
         musicmanager.Dieeffectonmusic();
     }
 
-    
+
 
     private void OnDrawGizmos()
     {
@@ -474,7 +466,7 @@ public class Player : MonoBehaviour
     {
         if (!disabledinput)
         {
-           
+
             RaycastHit hit;
 
 
@@ -489,7 +481,7 @@ public class Player : MonoBehaviour
                             if (hit.collider.gameObject.GetComponentInParent<Ennemy>() != null) //check si il a touché un ennemie
                             {
                                 ennemyreached = hit.collider.gameObject.GetComponentInParent<Ennemy>();
-                                 
+
                                 if (ennemyreached.opennedtoglorykill)
                                 {
                                     punchconnect = true;
@@ -509,7 +501,7 @@ public class Player : MonoBehaviour
                     }
 
                 animator.SetTrigger("kick");
-           
+
 
             }
             else
@@ -540,23 +532,23 @@ public class Player : MonoBehaviour
                         else
                         {
                             animator.SetTrigger("kick");
-                         
+
                         }
                     }
-                
+
                 animator.SetTrigger("kick");
-          
+
 
             }
         }
 
 
-  
+
     }
 
     public void DropWeapon()
     {
-       
+
     }
 
     public void Attackdegat()
@@ -584,10 +576,9 @@ public class Player : MonoBehaviour
         {
             health = maxhealth;
         }
-        uImanager.HpupdateUI();
-
         //change la saturation du perso quand il prend des dégats
         meshRenderer.material.SetFloat("_saturation", health / maxhealth);
+        uImanager.HpupdateUI();
     }
     public void Disableplayerinput()
     {
@@ -597,7 +588,7 @@ public class Player : MonoBehaviour
     }
     public void Punchdamage()
     {
- 
+
     }
     public void Enableplayerinput()
     {
@@ -607,7 +598,7 @@ public class Player : MonoBehaviour
     }
     public void InvincibleON()
     {
-      
+
         invulnaribilite = true;
     }
     public void InvincibleOFF()
@@ -636,10 +627,10 @@ public class Player : MonoBehaviour
     //remplace l'enumerator 
     public void Shoot()
     {
-        
+
         animator.SetBool("shootinputpressed", true);
         shootinputpressed = true;
- 
+
         if (weapontype != 0)
         {
             if (ammoleft > 0)
@@ -651,7 +642,7 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("emptyshoot");
                 audioSource.PlayOneShot(emptyammoClip);
             }
-             
+
         }
     }
 
@@ -685,7 +676,7 @@ public class Player : MonoBehaviour
                     {
                         audioSource.PlayOneShot(emptyammoClip);
                     }
-      
+
 
                     break;
                 case 2:
@@ -695,7 +686,7 @@ public class Player : MonoBehaviour
                     }
 
 
-                        break;
+                    break;
                 case 3:
                     if (ammoleft > 0)
                     {
@@ -756,11 +747,11 @@ public class Player : MonoBehaviour
                 break;
             case 1:
                 weapon1.SetActive(true);
-                animator.SetFloat("weapontype",1);
+                animator.SetFloat("weapontype", 1);
                 break;
             case 2:
                 weapon2.SetActive(true);
-                animator.SetFloat("weapontype",2);
+                animator.SetFloat("weapontype", 2);
                 break;
             case 3:
                 weapon3.SetActive(true);
@@ -772,11 +763,34 @@ public class Player : MonoBehaviour
                 break;
         }
         Debug.Log("change weapon check");
-  
-     
+
+
     }
 
+    private void Checknewweapon(){
 
+        if (weapontype == 1)
+        {
+            if (lb.weapon1picked == false)
+            {
+                lb.weapon1picked = true;
+       
+                uImanager.newweaponicon.sprite = uImanager.weapon1M;
+                uImanager.Playnewweaponanim();
+
+            }
+        }
+        if (weapontype == 3)
+        {
+            if (lb.weapon3picked == false)
+            {
+                lb.weapon3picked = true;
+                uImanager.newweaponicon.sprite = uImanager.weapon3M;
+                uImanager.Playnewweaponanim();
+            }
+        }
+
+    }
     private void OnEnable()
     {
         controls.Enable();
