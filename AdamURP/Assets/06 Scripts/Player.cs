@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -49,6 +50,8 @@ public class Player : MonoBehaviour
     public int weaponmaxammo = 10;
     public int ammoleft = 0;
     public bool shootinputpressed = false;
+
+    public SkinnedMeshRenderer meshRenderer;
 
 
     public Transform canonTransform;
@@ -122,12 +125,15 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         distToGround = GetComponent<Collider>().bounds.extents.y;
         uImanager.HpupdateUI();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
         animator.SetInteger("ammoleft", ammoleft);
     }
 
     private void Update()
     {
+
+
         if (dashtimer > 0)
         {
             dashtimer = dashtimer - Time.deltaTime;
@@ -187,6 +193,7 @@ public class Player : MonoBehaviour
             {
                 animator.SetBool("run", true);
             }
+
 
       
             movementInput = controls.Player.Movement.ReadValue<Vector2>();
@@ -428,6 +435,9 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("hit");
                 uImanager.HpupdateUI();
 
+                //change la saturation du perso quand il prend des dégats
+                meshRenderer.material.SetFloat("_saturation", health / maxhealth);
+
             if (health <= 0f)
             {
                 Die();
@@ -441,6 +451,7 @@ public class Player : MonoBehaviour
     }
    
     }
+
 
         void Die()
     {
@@ -574,6 +585,9 @@ public class Player : MonoBehaviour
             health = maxhealth;
         }
         uImanager.HpupdateUI();
+
+        //change la saturation du perso quand il prend des dégats
+        meshRenderer.material.SetFloat("_saturation", health / maxhealth);
     }
     public void Disableplayerinput()
     {
