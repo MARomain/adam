@@ -78,6 +78,12 @@ public class Menu_navigation : MonoBehaviour
 
     }
 
+    public void LevelNicoStart()
+    {
+        SceneManager.LoadScene("nico_decor", LoadSceneMode.Single);
+
+    }
+
     public void Clearanimator()
     {
         animator.SetBool("leveltuto", false);

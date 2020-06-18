@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1983,7 +1983,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1970858830}
-        m_MethodName: LevelSelectmenu
+        m_MethodName: LevelNicoStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2853,14 +2853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '-Gameplay :weapons now drop on fist-defeated ennemies
-
-    -Level:new
-    level "tutorial"
-
-    -small UI change
-
-    -sniper rework'
+  m_Text: 
 --- !u!222 &1865649290
 CanvasRenderer:
   m_ObjectHideFlags: 0
