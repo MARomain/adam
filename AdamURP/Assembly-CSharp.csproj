@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\01 Mesh\enviro\affichage-objectif\affichage_production.cs" />
+    <Compile Include="Assets\04 Prefab\porte\porte.cs" />
     <Compile Include="Assets\04 Prefab\projetcile\rocket\rocket.cs" />
     <Compile Include="Assets\05 Scenes\mainmenu_\Menu_navigation.cs" />
     <Compile Include="Assets\06 Scripts\Ammopack.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\06 Scripts\Bullet.cs" />
     <Compile Include="Assets\06 Scripts\Cinmeatic_start.cs" />
     <Compile Include="Assets\06 Scripts\Dash.cs" />
+    <Compile Include="Assets\06 Scripts\Destroyaftertime.cs" />
     <Compile Include="Assets\06 Scripts\DevManager.cs" />
     <Compile Include="Assets\06 Scripts\Dodge_Dash.cs" />
     <Compile Include="Assets\06 Scripts\EditShader.cs" />
@@ -85,33 +87,44 @@
     <Compile Include="Assets\06 Scripts\LevelLoader.cs" />
     <Compile Include="Assets\06 Scripts\Library.cs" />
     <Compile Include="Assets\06 Scripts\Looktarget.cs" />
+    <Compile Include="Assets\06 Scripts\Pausemenu.cs" />
     <Compile Include="Assets\06 Scripts\Player.cs" />
     <Compile Include="Assets\06 Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\06 Scripts\Spawnanim.cs" />
     <Compile Include="Assets\06 Scripts\TriggerTimeline.cs" />
     <Compile Include="Assets\06 Scripts\UImanager.cs" />
+    <Compile Include="Assets\06 Scripts\WeaponOnTheGround.cs" />
+    <Compile Include="Assets\06 Scripts\ammotuto.cs" />
+    <Compile Include="Assets\06 Scripts\bossdeath.cs" />
     <Compile Include="Assets\06 Scripts\chrono.cs" />
     <Compile Include="Assets\06 Scripts\cinematic_launch.cs" />
     <Compile Include="Assets\06 Scripts\debugcheat.cs" />
     <Compile Include="Assets\06 Scripts\healpack.cs" />
+    <Compile Include="Assets\06 Scripts\makejump.cs" />
+    <Compile Include="Assets\06 Scripts\musicmanager.cs" />
     <Compile Include="Assets\06 Scripts\pike.cs" />
+    <Compile Include="Assets\06 Scripts\startmusicondeath.cs" />
+    <Compile Include="Assets\06 Scripts\tapisroulant.cs" />
+    <Compile Include="Assets\06 Scripts\turncameraaround.cs" />
     <Compile Include="Assets\11 Cinematics\Bomb.cs" />
     <Compile Include="Assets\11 Cinematics\Helico.cs" />
     <Compile Include="Assets\Demoressources\AnimationOnTrigger.cs" />
     <Compile Include="Assets\Demoressources\Ascor_employee.cs" />
     <Compile Include="Assets\Demoressources\Spawnhotstuff.cs" />
     <Compile Include="Assets\InputMaster.cs" />
-    <Compile Include="Assets\Outline Shader tutorial\Tutorial\Scripts\DepthNormalsFeature.cs" />
-    <Compile Include="Assets\Outline Shader tutorial\Tutorial\Scripts\OutlineFeature.cs" />
+    <Compile Include="Assets\Outline Shader\Scripts\DepthNormalsFeature.cs" />
+    <Compile Include="Assets\Outline Shader\Scripts\OutlineFeature.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\breakable.cs" />
-    <Compile Include="Assets\musicmanager.cs" />
-    <Compile Include="Assets\musicondeath.cs" />
-    <Compile Include="Assets\startmusicondeath.cs" />
-    <Compile Include="Assets\tapisroulant.cs" />
-    <None Include="Assets\Outline Shader tutorial\Tutorial\Shaders\Outline.hlsl" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\Common\Minimalist Sky.shader" />
+    <None Include="Assets\Outline Shader\Shaders\Outline.hlsl" />
     <None Include="Assets\07 Shaders\Outline.shader" />
-    <None Include="Assets\Outline Shader tutorial\Tutorial\Shaders\OutlineOnMaterial.hlsl" />
+    <None Include="Assets\Outline Shader\Shaders\OutlineOnMaterial.hlsl" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\URP\Minimalist Standard (GlobalSpace).shader" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\BRP\Minimalist Standard.shader" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\BRP\Minimalist Standard LocalSpace.shader" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\URP\Minimalist Standard (LocalSpace).shader" />
     <None Include="Assets\02 Texture\Placeholder.txt" />
+    <None Include="Assets\Minimalist v2.4.5\Shaders\URP\Minimalist.hlsl" />
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>C:/Users/Aleis/Desktop/adamwork/adam.git/trunk/AdamURP/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>

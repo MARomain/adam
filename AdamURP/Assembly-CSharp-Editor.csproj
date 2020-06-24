@@ -63,6 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Minimalist v2.4.5\Editor\EditorGUILayoutExtended.cs" />
+    <Compile Include="Assets\Minimalist v2.4.5\Editor\MinimalistClipboard.cs" />
+    <Compile Include="Assets\Minimalist v2.4.5\Editor\MinimalistSkyEditor.cs" />
+    <Compile Include="Assets\Minimalist v2.4.5\Editor\MinimalistStandardEditor.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>C:/Users/Aleis/Desktop/adamwork/adam.git/trunk/AdamURP/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>

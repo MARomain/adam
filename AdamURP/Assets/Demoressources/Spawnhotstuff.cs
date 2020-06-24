@@ -33,5 +33,11 @@ public void SpawnObject()
             Destroy(other.gameObject);
             charge++;
         }
+
+        if (other.gameObject.tag == "caisse")
+        {
+            Destroy(other.gameObject);
+            charge++;
+        }
     }
 }

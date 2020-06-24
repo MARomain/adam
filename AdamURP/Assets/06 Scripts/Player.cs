@@ -897,7 +897,7 @@ public class Player : MonoBehaviour
     }
     public void ShakeHeavyfire()
     {
-        CBMP.m_AmplitudeGain = 1.8f;
+        CBMP.m_AmplitudeGain = 6f;
         CBMP.m_FrequencyGain = 1;
     }
     public void Shakefire()

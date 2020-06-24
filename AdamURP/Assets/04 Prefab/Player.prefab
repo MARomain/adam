@@ -319,6 +319,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789363163411866272, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: far clip plane
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 1962203984455306592, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
       propertyPath: m_Name
@@ -489,6 +494,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5905724758506774898, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.51092
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905724758506774898, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.865392
+      objectReference: {fileID: 0}
     - target: {fileID: 5960420461327994984, guid: b1d4b0b1d60152c4d88c6da995a4b4e3,
         type: 3}
       propertyPath: m_IsActive
@@ -583,6 +598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: adam_skelleton
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7987f9c7efa9e814d8fc95f244d1afae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 424402849924771759, guid: 7987f9c7efa9e814d8fc95f244d1afae,
         type: 3}

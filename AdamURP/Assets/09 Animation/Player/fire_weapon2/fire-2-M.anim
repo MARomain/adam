@@ -4982,7 +4982,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.05
+  - time: 0.21666667
     functionName: ShakeStop
     data: 
     objectReferenceParameter: {fileID: 0}
